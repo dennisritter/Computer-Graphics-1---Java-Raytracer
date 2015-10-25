@@ -20,7 +20,7 @@ public class Vector3 {
   public final double magnitude;
 
   /**
-   * Constructs the vector with the first, second and third component
+   * Constructs the vector with the first, second and third component as x, y, z
    *
    * @param     x   The first vector component
    * @param     y   The second vector component
@@ -34,7 +34,7 @@ public class Vector3 {
   }
 
   /**
-   * Creates a new vector which represents the sum of this vector and the vector provided as the first parameter
+   * Creates a new vector which represents the sum of this vector and the provided vector v
    *
    * @param     v   The vector to add to this value
    * @return        The new vector which represents the sum of the two vectors
@@ -44,13 +44,23 @@ public class Vector3 {
   }
 
   /**
-   * Creates a new vector which represents the product of this vector and the vector provided as the first parameter
+   * Creates a new vector which represents the product of this vector and the provided vector v
    *
    * @param     v   The vector to multiply with this vector
    * @return        The new vector which represents the sum of the two vectors
    */
   public Vector3 mul ( final Vector3 v ) {
     return new Vector3( x * v.x, y * v.y, z * v.z );
+  }
+
+  /**
+   * Calculates the dot product of this vector and the provided vector v
+   *
+   * @param     v   The other vector to use for the dot product
+   * @return        The dot product of this vector and the provided vector v
+   */
+  public double dot ( final Vector3 v ) {
+    return Math.sqrt( x * v.x + y * v.y + z * v.z );
   }
 
   @Override
