@@ -7,4 +7,12 @@
     <groupId>de.beuth-hochschule.schinken</groupId>
     <artifactId>cg1-raytracer</artifactId>
     <version>1.0</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.5</version>
+        </dependency>
+    </dependencies>
 </project>
