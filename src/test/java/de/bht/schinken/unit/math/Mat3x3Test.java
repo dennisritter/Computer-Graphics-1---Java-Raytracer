@@ -5,6 +5,8 @@ import de.bht.schinken.math.Vector3;
 import junit.framework.Assert;
 import org.junit.Test;
 
+import java.util.Vector;
+
 public class Mat3x3Test {
 
   @Test
@@ -44,6 +46,19 @@ public class Mat3x3Test {
   }
 
   @Test
+  public void testMultiplyWithVector () {
+    final Mat3x3 m = new Mat3x3(
+        1, 2, 3,
+        4, 5, 6,
+        7, 8, 9
+    );
+
+    final Vector3 v = new Vector3( 1, 2, 3 );
+
+    Assert.assertEquals( m.mul( v ), new Vector3( 14, 32, 50 ) );
+  }
+
+  @Test
   public void testChangeCol1 () {
     final Mat3x3 m = new Mat3x3(
         1, 1, 1,
@@ -78,7 +93,7 @@ public class Mat3x3Test {
         1, 2, 1
     );
 
-    Assert.assertEquals( m.changeCol2( v ), expected );
+    Assert.assertEquals( m.changeCol2(v), expected );
   }
 
   @Test
@@ -97,7 +112,7 @@ public class Mat3x3Test {
         1, 1, 2
     );
 
-    Assert.assertEquals( m.changeCol3( v ), expected );
+    Assert.assertEquals( m.changeCol3(v), expected );
   }
 
 }

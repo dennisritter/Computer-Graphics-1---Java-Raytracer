@@ -81,11 +81,11 @@ public class Mat3x3 {
   }
 
   /**
-   * Returns the product of this matrix and the matrix provided as the first and only parameter
+   * Returns the product of this matrix and the provided matrix m
    *
    * @param     m         The matrix to multiply this matrix with
    *
-   * @return    Mat3x3    The product of this matrix and the matrix provided as the first parameter
+   * @return    Mat3x3    The product of this matrix and the provided matrix m
    */
   public Mat3x3 mul ( final Mat3x3 m ) {
     return new Mat3x3 (
@@ -99,6 +99,20 @@ public class Mat3x3 {
         m31 * m.m12 + m32 * m.m22 + m33 * m.m32,
         m31 * m.m13 + m32 * m.m23 + m33 * m.m33
         );
+  }
+
+  /**
+   * Returns the product of this matrix and the provided vector v
+   *
+   * @param     v         The vector to multiply this matrix with
+   * @return              The product of this matrix and the provided vector v
+   */
+  public Vector3 mul ( final Vector3 v ) {
+    return new Vector3(
+        m11 * v.x + m12 * v.y + m13 * v.z,
+        m21 * v.x + m22 * v.y + m23 * v.z,
+        m31 * v.x + m32 * v.y + m33 * v.z
+    );
   }
 
   /**

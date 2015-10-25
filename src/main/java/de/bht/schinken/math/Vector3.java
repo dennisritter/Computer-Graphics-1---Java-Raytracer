@@ -36,7 +36,7 @@ public class Vector3 {
   /**
    * Creates a new vector which represents the sum of this vector and the provided vector v
    *
-   * @param     v   The vector to add to this value
+   * @param     v   The vector to add to this vector
    * @return        The new vector which represents the sum of the two vectors
    */
   public Vector3 add ( final Vector3 v ) {
@@ -47,7 +47,7 @@ public class Vector3 {
    * Creates a new vector which represents the product of this vector and the provided vector v
    *
    * @param     v   The vector to multiply with this vector
-   * @return        The new vector which represents the sum of the two vectors
+   * @return        The new vector which represents the product of the two vectors
    */
   public Vector3 mul ( final Vector3 v ) {
     return new Vector3( x * v.x, y * v.y, z * v.z );
@@ -61,6 +61,19 @@ public class Vector3 {
    */
   public double dot ( final Vector3 v ) {
     return Math.sqrt( x * v.x + y * v.y + z * v.z );
+  }
+
+  /**
+   * Creates a new vector that is the normalized version of this vector.
+   * It will have the same direction but a magnitude of exactly 1.0
+   *
+   * @return        The normalized unit vector
+   */
+  public Vector3 normalized () {
+    if ( magnitude == 1.0 )
+      return this;
+
+    return new Vector3( x / magnitude, y / magnitude, z / magnitude );
   }
 
   @Override
