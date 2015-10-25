@@ -1,7 +1,8 @@
 package de.bht.schinken.math;
 
 /**
- * Represents a 3x3 Matrix and offers multiplication operations
+ * Represents a 3x3 Matrix and offers multiplication operations and methods to exchange column separately.
+ * This class is immutable so all methods return new Mat3x3 instances and you won't be able to change any attributes after construction.
  *
  * @author      Jannik Portz
  */
@@ -98,6 +99,51 @@ public class Mat3x3 {
         m31 * m.m12 + m32 * m.m22 + m33 * m.m32,
         m31 * m.m13 + m32 * m.m23 + m33 * m.m33
         );
+  }
+
+  /**
+   * Constructs a new matrix with the values of this matrix except for the first column,
+   * which is replaced with the values of the provided vector
+   *
+   * @param     v   The vector to insert into the first column
+   * @return        The new matrix
+   */
+  public Mat3x3 changeCol1 ( final Vector3 v ) {
+    return new Mat3x3(
+        v.x, m12, m13,
+        v.y, m22, m23,
+        v.z, m32, m33
+    );
+  }
+
+  /**
+   * Constructs a new matrix with the values of this matrix except for the second column,
+   * which is replaced with the values of the provided vector
+   *
+   * @param     v   The vector to insert into the first column
+   * @return        The new matrix
+   */
+  public Mat3x3 changeCol2 ( final Vector3 v ) {
+    return new Mat3x3(
+        m11, v.x, m13,
+        m21, v.y, m23,
+        m31, v.z, m33
+    );
+  }
+
+  /**
+   * Constructs a new matrix with the values of this matrix except for the second column,
+   * which is replaced with the values of the provided vector
+   *
+   * @param     v   The vector to insert into the first column
+   * @return        The new matrix
+   */
+  public Mat3x3 changeCol3 ( final Vector3 v ) {
+    return new Mat3x3(
+        m11, m12, v.x,
+        m21, m22, v.y,
+        m31, m32, v.z
+    );
   }
 
   @Override

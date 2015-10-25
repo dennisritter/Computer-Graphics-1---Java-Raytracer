@@ -1,6 +1,7 @@
 package de.bht.schinken.unit.math;
 
 import de.bht.schinken.math.Mat3x3;
+import de.bht.schinken.math.Vector3;
 import junit.framework.Assert;
 import org.junit.Test;
 
@@ -38,9 +39,65 @@ public class Mat3x3Test {
     );
 
     final Mat3x3 result = m1.mul( m2 );
-    System.err.println( result );
 
     Assert.assertEquals( result, expected );
+  }
+
+  @Test
+  public void testChangeCol1 () {
+    final Mat3x3 m = new Mat3x3(
+        1, 1, 1,
+        1, 1, 1,
+        1, 1, 1
+    );
+
+    final Vector3 v = new Vector3( 2, 2, 2 );
+
+    final Mat3x3 expected = new Mat3x3(
+        2, 1, 1,
+        2, 1, 1,
+        2, 1, 1
+    );
+
+    Assert.assertEquals( m.changeCol1( v ), expected );
+  }
+
+  @Test
+  public void testChangeCol2 () {
+    final Mat3x3 m = new Mat3x3(
+        1, 1, 1,
+        1, 1, 1,
+        1, 1, 1
+    );
+
+    final Vector3 v = new Vector3( 2, 2, 2 );
+
+    final Mat3x3 expected = new Mat3x3(
+        1, 2, 1,
+        1, 2, 1,
+        1, 2, 1
+    );
+
+    Assert.assertEquals( m.changeCol2( v ), expected );
+  }
+
+  @Test
+  public void testChangeCol3 () {
+    final Mat3x3 m = new Mat3x3(
+        1, 1, 1,
+        1, 1, 1,
+        1, 1, 1
+    );
+
+    final Vector3 v = new Vector3( 2, 2, 2 );
+
+    final Mat3x3 expected = new Mat3x3(
+        1, 1, 2,
+        1, 1, 2,
+        1, 1, 2
+    );
+
+    Assert.assertEquals( m.changeCol3( v ), expected );
   }
 
 }
