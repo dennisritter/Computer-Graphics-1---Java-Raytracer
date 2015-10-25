@@ -5,6 +5,8 @@ package de.bht.schinken.math;
  * This class is immutable so all methods return new Mat3x3 instances and you won't be able to change any attributes after construction.
  *
  * @author      Jannik Portz
+ *
+ * TODO: mul( Point3 p ) : Point3
  */
 public class Mat3x3 {
 

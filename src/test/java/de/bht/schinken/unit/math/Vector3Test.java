@@ -31,9 +31,7 @@ public class Vector3Test {
   @Test
   public void testMul () {
     final Vector3 v1 = new Vector3( 1, 2, 3 );
-    final Vector3 v2 = new Vector3( 4, 5, 6 );
-
-    Assert.assertEquals( v1.mul(v2), new Vector3( 4, 10, 18 ) );
+    Assert.assertEquals( v1.mul( 2.0 ), new Vector3( 2, 4, 6 ) );
   }
 
   @Test

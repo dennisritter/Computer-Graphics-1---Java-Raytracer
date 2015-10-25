@@ -4,6 +4,13 @@ package de.bht.schinken.math;
  * Represents a 3 element vector
  *
  * @author      Jannik Portz
+ *
+ * TODO: add( Normal3 n ): Vector3
+ * TODO: sub( Normal3 n ): Vector3
+ * TODO: dot( Normal3 n ): Vector3
+ * TODO: asNormal(): Normal3
+ * TODO: reflectedOn( Normal3 n ): Vector3
+ * TODO: x( Vector3 v ): Vector 3
  */
 public class Vector3 {
 
@@ -44,13 +51,13 @@ public class Vector3 {
   }
 
   /**
-   * Creates a new vector which represents the product of this vector and the provided vector v
+   * Creates a new vector which represents the product of this vector and the provided double c
    *
-   * @param     v   The vector to multiply with this vector
-   * @return        The new vector which represents the product of the two vectors
+   * @param     c     The scalar value to multiply this vector with
+   * @return          The new vector which represents the product of this vector and c
    */
-  public Vector3 mul ( final Vector3 v ) {
-    return new Vector3( x * v.x, y * v.y, z * v.z );
+  public Vector3 mul ( final double c ) {
+    return new Vector3( x * c, y * c, z * c );
   }
 
   /**
