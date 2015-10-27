@@ -1,6 +1,6 @@
-package de.bht.schinken.unit.math;
+package de.bht.bobross.unit.math;
 
-import de.bht.schinken.math.Vector3;
+import de.bht.bobross.math.Vector3;
 import junit.framework.Assert;
 import org.junit.Test;
 

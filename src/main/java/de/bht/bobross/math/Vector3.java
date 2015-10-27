@@ -1,4 +1,4 @@
-package de.bht.schinken.math;
+package de.bht.bobross.math;
 
 /**
  * Represents a 3 element vector

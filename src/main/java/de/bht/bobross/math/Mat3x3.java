@@ -1,4 +1,4 @@
-package de.bht.schinken.math;
+package de.bht.bobross.math;
 
 /**
  * Represents a 3x3 Matrix and offers multiplication operations and methods to exchange column separately.

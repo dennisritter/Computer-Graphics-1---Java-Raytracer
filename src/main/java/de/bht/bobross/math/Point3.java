@@ -1,4 +1,4 @@
-package de.bht.schinken.math;
+package de.bht.bobross.math;
 
 /**
  * Represents a point in a three-dimensional room with its x, y and z coordinates

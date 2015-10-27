@@ -1,11 +1,9 @@
-package de.bht.schinken.unit.math;
+package de.bht.bobross.unit.math;
 
-import de.bht.schinken.math.Mat3x3;
-import de.bht.schinken.math.Vector3;
+import de.bht.bobross.math.Mat3x3;
+import de.bht.bobross.math.Vector3;
 import junit.framework.Assert;
 import org.junit.Test;
-
-import java.util.Vector;
 
 public class Mat3x3Test {
 
