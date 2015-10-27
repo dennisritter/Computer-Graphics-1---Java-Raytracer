@@ -1,6 +1,6 @@
 *.iml
 target/
-.idea
+.idea/*
 
 out/
 *.class
