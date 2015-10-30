@@ -15,7 +15,7 @@ public class Mat3x3Test {
         1, 2, 1
     );
 
-    Assert.assertEquals( m.determinant, 0.0 );
+    Assert.assertEquals( 0.0, m.determinant );
   }
 
   @Test
@@ -40,7 +40,7 @@ public class Mat3x3Test {
 
     final Mat3x3 result = m1.mul( m2 );
 
-    Assert.assertEquals( result, expected );
+    Assert.assertEquals( expected , result );
   }
 
   @Test
@@ -53,7 +53,7 @@ public class Mat3x3Test {
 
     final Vector3 v = new Vector3( 1, 2, 3 );
 
-    Assert.assertEquals( m.mul( v ), new Vector3( 14, 32, 50 ) );
+    Assert.assertEquals( new Vector3( 14, 32, 50 ), m.mul( v ) );
   }
 
   @Test
@@ -72,7 +72,7 @@ public class Mat3x3Test {
         2, 1, 1
     );
 
-    Assert.assertEquals( m.changeCol1( v ), expected );
+    Assert.assertEquals( expected, m.changeCol1( v ) );
   }
 
   @Test
@@ -91,7 +91,7 @@ public class Mat3x3Test {
         1, 2, 1
     );
 
-    Assert.assertEquals( m.changeCol2(v), expected );
+    Assert.assertEquals( expected, m.changeCol2(v) );
   }
 
   @Test
@@ -110,7 +110,7 @@ public class Mat3x3Test {
         1, 1, 2
     );
 
-    Assert.assertEquals( m.changeCol3(v), expected );
+    Assert.assertEquals( expected, m.changeCol3(v) );
   }
 
 }

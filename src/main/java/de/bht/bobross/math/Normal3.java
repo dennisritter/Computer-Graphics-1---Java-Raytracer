@@ -16,9 +16,7 @@ public class Normal3 {
     return new Normal3( x * n, y * n, z * n );
   }
 
-  public Normal3 add ( final Normal3 n ) {
-    return new Normal3( x + n.x, y + n.y, z + n.z );
-  }
+  public Normal3 add ( final Normal3 n ) { return new Normal3( x + n.x, y + n.y, z + n.z ); }
 
   public double dot ( final Vector3 v ) {
     return x * v.x + y * v.y + z * v.z;
