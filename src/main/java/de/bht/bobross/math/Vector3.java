@@ -8,7 +8,6 @@ package de.bht.bobross.math;
  * TODO: add( Normal3 n ): Vector3
  * TODO: sub( Normal3 n ): Vector3
  * TODO: dot( Normal3 n ): Vector3
- * TODO: asNormal(): Normal3
  * TODO: reflectedOn( Normal3 n ): Vector3
  * TODO: x( Vector3 v ): Vector 3
  */
@@ -81,6 +80,15 @@ public class Vector3 {
       return this;
 
     return new Vector3( x / magnitude, y / magnitude, z / magnitude );
+  }
+
+  /**
+   * Creates a new normal with the direction of this vector
+   *
+   * @return        The new normal with the direction of this vector
+   */
+  public Normal3 asNormal () {
+    return new Normal3( x / magnitude, y / magnitude, z / magnitude );
   }
 
   @Override
