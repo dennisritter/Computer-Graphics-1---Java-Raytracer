@@ -38,6 +38,7 @@ public class Point3Test {
     comparePoints(new Point3(-3, -2, -1), p1.sub(v1));
   }
 
+  @Test
   public void testAddVector() {
     final Point3 p1 = new Point3( 1, 1, 1 );
     final Vector3 v1 = new Vector3( 4, 3, 2 );
