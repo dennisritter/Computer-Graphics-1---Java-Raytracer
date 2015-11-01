@@ -4,8 +4,6 @@ package de.bht.bobross.math;
  * Represents a 3 element vector
  *
  * @author      Jannik Portz
- *
- * TODO: reflectedOn( Normal3 n ): Vector3
  */
 public class Vector3 {
 
@@ -130,6 +128,16 @@ public class Vector3 {
         z * v.x - x * v.z,
         x * v.y - y * v.x
     );
+  }
+
+  /**
+   * Reflects this vector on the provided normal n and returns the resulting vector
+   *
+   * @param     n   The normal to reflect this vector on
+   * @return        The vector representing the reflection
+   */
+  public Vector3 reflectedOn ( Normal3 n ) {
+    return add( n.mul( dot( n ) * 2.0 ) );
   }
 
   @Override
