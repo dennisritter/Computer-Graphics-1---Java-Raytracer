@@ -16,30 +16,32 @@ public class Vector3Test {
 
   @Test
   public void testMagnitude () {
-    final Vector3 v = new Vector3( 1, 2, 3 );
-    Assert.assertEquals( Math.sqrt( 14 ), v.magnitude, EPSILON );
+    final Vector3 v = new Vector3( 1, 1, 1 );
+    Assert.assertEquals( Math.sqrt( 3 ), v.magnitude, EPSILON );
   }
 
   @Test
   public void testAdd () {
-    final Vector3 v1 = new Vector3( 1, 2, 3 );
-    final Vector3 v2 = new Vector3( 4, 5, 6 );
+    final Vector3 v1 = new Vector3( 1, 1, 1 );
+    final Vector3 v2 = new Vector3( 4, 3, 2 );
 
-    Assert.assertEquals( new Vector3( 5, 7, 9 ), v1.add(v2) );
+    Assert.assertEquals( new Vector3( 5, 4, 3 ), v1.add(v2) );
   }
 
   @Test
   public void testMul () {
     final Vector3 v1 = new Vector3( 1, 2, 3 );
-    Assert.assertEquals( new Vector3( 2, 4, 6 ), v1.mul( 2.0 ) );
+    Assert.assertEquals( new Vector3( 0.5, 1.0, 1.5 ), v1.mul( 0.5 ) );
   }
 
   @Test
   public void testDot () {
-    final Vector3 v1 = new Vector3( 1, 2, 3 );
-    final Vector3 v2 = new Vector3( 4, 5, 6 );
+    final Vector3 v1 = new Vector3( 1, 0, 0 );
+    final Vector3 v2 = new Vector3( 1, 0, 0 );
+    final Vector3 v3 = new Vector3( 0, 1, 0 );
 
-    Assert.assertEquals( 5.656854249, v1.dot(v2), EPSILON );
+    Assert.assertEqualsxs( 1.0, v1.dot(v2) );
+    Assert.assertEquals( 0.0, v1.dot(v3) );
   }
 
   @Test
