@@ -40,7 +40,7 @@ public class Vector3Test {
     final Vector3 v2 = new Vector3( 1, 0, 0 );
     final Vector3 v3 = new Vector3( 0, 1, 0 );
 
-    Assert.assertEqualsxs( 1.0, v1.dot(v2) );
+    Assert.assertEquals( 1.0, v1.dot(v2) );
     Assert.assertEquals( 0.0, v1.dot(v3) );
   }
 
