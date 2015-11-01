@@ -135,6 +135,8 @@ public class Vector3 {
    *
    * @param     n   The normal to reflect this vector on
    * @return        The vector representing the reflection
+   *
+   * TODO: fix Algorithm
    */
   public Vector3 reflectedOn ( Normal3 n ) {
     return add( n.mul( dot( n ) * 2.0 ) );
