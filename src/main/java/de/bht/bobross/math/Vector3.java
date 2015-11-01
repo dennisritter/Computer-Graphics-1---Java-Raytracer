@@ -5,8 +5,6 @@ package de.bht.bobross.math;
  *
  * @author      Jannik Portz
  *
- * TODO: add( Normal3 n ): Vector3
- * TODO: sub( Normal3 n ): Vector3
  * TODO: dot( Normal3 n ): Vector3
  * TODO: reflectedOn( Normal3 n ): Vector3
  * TODO: x( Vector3 v ): Vector 3
@@ -47,6 +45,26 @@ public class Vector3 {
    */
   public Vector3 add ( final Vector3 v ) {
     return new Vector3( x + v.x, y + v.y, z + v.z );
+  }
+
+  /**
+   * Creates a new vector which represents the sum of this vector and the provided normal n
+   *
+   * @param     n   The normal to add to this vector
+   * @return        The new vector which represents the sum of this vector and the normal n
+   */
+  public Vector3 add ( final Normal3 n ) {
+    return new Vector3( x + n.x, y + n.y, z + n.z );
+  }
+
+  /**
+   * Subtracts the provided normal n from this vector and returns the result as a new vector
+   *
+   * @param     n   The normal to subtract from this vector
+   * @return        A new vector representing this vector minus the normal n
+   */
+  public Vector3 sub ( final Normal3 n ) {
+    return new Vector3( x - n.x, y - n.y, z - n.z );
   }
 
   /**
