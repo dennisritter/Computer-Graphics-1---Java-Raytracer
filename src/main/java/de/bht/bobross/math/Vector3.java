@@ -51,6 +51,26 @@ public class Vector3 {
   }
 
   /**
+   * Creates a new vector which represents the sum of this vector and the provided normal n
+   *
+   * @param     n   The normal to add to this vector
+   * @return        The new vector which represents the sum of this vector and the provided normal n
+   */
+  public Vector3 add ( final Normal3 n ) {
+    return new Vector3( x + n.x, y + n.y, z + n.z );
+  }
+
+  /**
+   * Creates a new vector which represents the difference of this vector and the provided normal n
+   *
+   * @param     n   The normal to subtract from this vector
+   * @return        The new vector which represents the difference of this vector and the provided normal n
+   */
+  public Vector3 sub ( final Normal3 n ) {
+    return new Vector3( x - n.x, y - n.y, z - n.z );
+  }
+
+  /**
    * Creates a new vector which represents the product of this vector and the provided double c
    *
    * @param     c     The scalar value to multiply this vector with
@@ -71,6 +91,16 @@ public class Vector3 {
   }
 
   /**
+   * Calculates the dot product of this vector and the provided normal n
+   *
+   * @param     n   The normal to use for the dot product
+   * @return        The dot product of this vector and the provided normal n
+   */
+  public double dot ( final Normal3 n ) {
+    return Math.sqrt( x * n.x + y * n.y + z * n.z );
+  }
+
+  /**
    * Creates a new vector that is the normalized version of this vector.
    * It will have the same direction but a magnitude of exactly 1.0
    *
@@ -81,6 +111,21 @@ public class Vector3 {
       return this;
 
     return new Vector3( x / magnitude, y / magnitude, z / magnitude );
+  }
+
+  /**
+   * Reflects this vector on the provided normal
+   *
+   * @param     n   The normal to reflect this vector on
+   * @return        A new vector that represents the reflecion of the old vector on the provided normal
+   */
+  public Vector3 reflectOn( Normal3 n ){
+    //d-2(d*n)n
+    //return this.sub( n.mul( this.dot( n ) ).mul( 2.0 ) );
+    Double d = this.dot( n );
+    Double d2 = d * 2;
+    Normal3 n2 = n.mul(d2);
+    return this.sub( n2 );
   }
 
   @Override
