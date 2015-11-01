@@ -1,23 +1,58 @@
 package de.bht.bobross.math;
 
+/**
+ * Represents a normal in a three-dimensional room with x, y and z coordinates.
+ *
+ * @author      Jannik Portz
+ */
 public class Normal3 {
 
+  /** The first normal component */
   public final double x;
+
+  /** The second normal component */
   public final double y;
+
+  /** The third normal component */
   public final double z;
 
+  /**
+   * Constructs a new normal with its x, y and z coordinates
+   *
+   * @param     x   The x coordinate
+   * @param     y   The y coordinate
+   * @param     z   The z coordinate
+   */
   public Normal3 ( final double x, final double y, final double z ) {
     this.x = x;
     this.y = y;
     this.z = z;
   }
 
+  /**
+   * Multiplies this normal with a scalar and returns the result as a new normal
+   *
+   * @param     n   The scalar value to multiply this normal with
+   * @return        The normal representing the product of this vector and the scalar value n
+   */
   public Normal3 mul ( final double n ) {
     return new Normal3( x * n, y * n, z * n );
   }
 
+  /**
+   * Adds the provided normal n to this normal and returns the result as a new normal
+   *
+   * @param     n   The normal to add to this normal
+   * @return        The product of this normal and the provided normal n
+   */
   public Normal3 add ( final Normal3 n ) { return new Normal3( x + n.x, y + n.y, z + n.z ); }
 
+  /**
+   * Calculates the dot product of this normal and the provided vector v
+   *
+   * @param     v   The vector to calculate the dot product with
+   * @return        The dot product of this normal and the vector v
+   */
   public double dot ( final Vector3 v ) {
     return x * v.x + y * v.y + z * v.z;
   }
