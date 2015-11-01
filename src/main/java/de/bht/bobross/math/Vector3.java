@@ -5,7 +5,6 @@ package de.bht.bobross.math;
  *
  * @author      Jannik Portz
  *
- * TODO: dot( Normal3 n ): Vector3
  * TODO: reflectedOn( Normal3 n ): Vector3
  * TODO: x( Vector3 v ): Vector 3
  */
@@ -85,6 +84,16 @@ public class Vector3 {
    */
   public double dot ( final Vector3 v ) {
     return Math.sqrt( x * v.x + y * v.y + z * v.z );
+  }
+
+  /**
+   * Calculates the dot product of this vector and the provided normal n
+   *
+   * @param     n   The normal to use for the dot product
+   * @return        The dot product of this vector and the provided normal n
+   */
+  public double dot ( final Normal3 n ) {
+    return Math.sqrt( x * n.x + y * n.y + z * n.z );
   }
 
   /**
