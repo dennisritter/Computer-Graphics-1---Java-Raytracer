@@ -4,13 +4,6 @@ package de.bht.bobross.math;
  * Represents a 3 element vector
  *
  * @author      Jannik Portz
- *
- * TODO: add( Normal3 n ): Vector3
- * TODO: sub( Normal3 n ): Vector3
- * TODO: dot( Normal3 n ): Vector3
- * TODO: asNormal(): Normal3
- * TODO: reflectedOn( Normal3 n ): Vector3
- * TODO: x( Vector3 v ): Vector 3
  */
 public class Vector3 {
 
@@ -114,18 +107,37 @@ public class Vector3 {
   }
 
   /**
-   * Reflects this vector on the provided normal
+   * Creates a new normal with the direction of this vector
+   *
+   * @return        The new normal with the direction of this vector
+   */
+  public Normal3 asNormal () { return new Normal3( x / magnitude, y / magnitude, z / magnitude ); }
+
+  /**
+   * Calculates the cross product of this vector and the provided vector v
+   * and returns the result as a new vector
+   *
+   * @param     v   The other vector to use for cross product
+   * @return        The new vector representing the cross product of this vector and v
+   */
+  public Vector3 x ( Vector3 v ) {
+    return new Vector3 (
+        y * v.z - z * v.y,
+        z * v.x - x * v.z,
+        x * v.y - y * v.x
+    );
+  }
+
+  /**
+   * Reflects this vector on the provided normal n and returns the resulting vector
    *
    * @param     n   The normal to reflect this vector on
-   * @return        A new vector that represents the reflecion of the old vector on the provided normal
+   * @return        The vector representing the reflection
+   *
+   * TODO: fix Algorithm
    */
-  public Vector3 reflectOn( Normal3 n ){
-    //d-2(d*n)n
-    //return this.sub( n.mul( this.dot( n ) ).mul( 2.0 ) );
-    Double d = this.dot( n );
-    Double d2 = d * 2;
-    Normal3 n2 = n.mul(d2);
-    return this.sub( n2 );
+  public Vector3 reflectedOn ( Normal3 n ) {
+    return add( n.mul( dot( n ) * 2.0 ) );
   }
 
   @Override

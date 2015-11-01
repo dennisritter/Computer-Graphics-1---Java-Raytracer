@@ -5,8 +5,6 @@ package de.bht.bobross.math;
  * This class is immutable so all methods return new Mat3x3 instances and you won't be able to change any attributes after construction.
  *
  * @author      Jannik Portz
- *
- * TODO: mul( Point3 p ) : Point3
  */
 public class Mat3x3 {
 
@@ -114,6 +112,20 @@ public class Mat3x3 {
         m11 * v.x + m12 * v.y + m13 * v.z,
         m21 * v.x + m22 * v.y + m23 * v.z,
         m31 * v.x + m32 * v.y + m33 * v.z
+    );
+  }
+
+  /**
+   * Multiplies this matrix with a Point3 and returns the resulting Point3 instance
+   *
+   * @param     p         The Point3 to multiply this matrix with
+   * @return              The resulting Point3
+   */
+  public Point3 mul ( final Point3 p ) {
+    return new Point3 (
+        m11 * p.x + m12 * p.y + m13 * p.z,
+        m21 * p.x + m22 * p.y + m23 * p.z,
+        m31 * p.x + m32 * p.y + m33 * p.z
     );
   }
 
