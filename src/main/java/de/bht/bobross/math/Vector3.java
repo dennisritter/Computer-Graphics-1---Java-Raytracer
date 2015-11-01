@@ -6,7 +6,6 @@ package de.bht.bobross.math;
  * @author      Jannik Portz
  *
  * TODO: reflectedOn( Normal3 n ): Vector3
- * TODO: x( Vector3 v ): Vector 3
  */
 public class Vector3 {
 
@@ -116,6 +115,21 @@ public class Vector3 {
    */
   public Normal3 asNormal () {
     return new Normal3( x / magnitude, y / magnitude, z / magnitude );
+  }
+
+  /**
+   * Calculates the cross product of this vector and the provided vector v
+   * and returns the result as a new vector
+   *
+   * @param     v   The other vector to use for cross product
+   * @return        The new vector representing the cross product of this vector and v
+   */
+  public Vector3 x ( Vector3 v ) {
+    return new Vector3 (
+        y * v.z - z * v.y,
+        z * v.x - x * v.z,
+        x * v.y - y * v.x
+    );
   }
 
   @Override
