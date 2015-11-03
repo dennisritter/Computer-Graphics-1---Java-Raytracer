@@ -20,14 +20,15 @@ public class CreateImage {
   static BufferedImage image;
 
   public static void main (String[] args){
-    createImage();
 
     JFrame frame = new JFrame();
     Container c = frame.getContentPane();
     JPanel panel = new JPanel();
 
     c.add(panel);
-    panel.add(createImage());
+    
+    BufferedImage image = createImage();
+    panel.add(image);
   }
 
   public static BufferedImage createImage(){
