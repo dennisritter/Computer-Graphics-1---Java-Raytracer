@@ -1,5 +1,7 @@
 package de.bht.bobross.math;
 
+import de.bht.bobross.exception.ParameterNullException;
+
 /**
  * Represents a 3 element vector
  *
@@ -40,6 +42,9 @@ public class Vector3 {
    * @return        The new vector which represents the sum of the two vectors
    */
   public Vector3 add ( final Vector3 v ) {
+    if ( v == null ) {
+      throw new ParameterNullException("v");
+    }
     return new Vector3( x + v.x, y + v.y, z + v.z );
   }
 
@@ -50,6 +55,9 @@ public class Vector3 {
    * @return        The new vector which represents the sum of this vector and the provided normal n
    */
   public Vector3 add ( final Normal3 n ) {
+    if ( n == null ) {
+      throw new ParameterNullException("n");
+    }
     return new Vector3( x + n.x, y + n.y, z + n.z );
   }
 
@@ -60,6 +68,9 @@ public class Vector3 {
    * @return        The new vector which represents the difference of this vector and the provided normal n
    */
   public Vector3 sub ( final Normal3 n ) {
+    if ( n == null ) {
+      throw new ParameterNullException("n");
+    }
     return new Vector3( x - n.x, y - n.y, z - n.z );
   }
 
@@ -80,6 +91,9 @@ public class Vector3 {
    * @return        The dot product of this vector and the provided vector v
    */
   public double dot ( final Vector3 v ) {
+    if ( v == null ) {
+      throw new ParameterNullException("v");
+    }
     return Math.sqrt( x * v.x + y * v.y + z * v.z );
   }
 
@@ -90,6 +104,9 @@ public class Vector3 {
    * @return        The dot product of this vector and the provided normal n
    */
   public double dot ( final Normal3 n ) {
+    if ( n == null ) {
+      throw new ParameterNullException("n");
+    }
     return Math.sqrt( x * n.x + y * n.y + z * n.z );
   }
 
@@ -121,6 +138,9 @@ public class Vector3 {
    * @return        The new vector representing the cross product of this vector and v
    */
   public Vector3 x ( Vector3 v ) {
+    if ( v == null ) {
+      throw new ParameterNullException("v");
+    }
     return new Vector3 (
         y * v.z - z * v.y,
         z * v.x - x * v.z,
@@ -137,6 +157,9 @@ public class Vector3 {
    * TODO: fix Algorithm
    */
   public Vector3 reflectedOn ( Normal3 n ) {
+    if ( n == null ) {
+      throw new ParameterNullException("n");
+    }
     return add( n.mul( dot( n ) * 2.0 ) );
   }
 

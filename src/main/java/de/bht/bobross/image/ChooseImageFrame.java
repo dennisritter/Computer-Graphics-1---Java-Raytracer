@@ -50,7 +50,7 @@ public class ChooseImageFrame extends JFrame{
   /**
    * FileFilter for a JFileChooser, which accepts JPG and PNG files and directories.
    */
-  public class ImageFileFilter extends FileFilter {
+  protected class ImageFileFilter extends FileFilter {
 
     /**
      * Accept file with .png or .jpg extensions and directories

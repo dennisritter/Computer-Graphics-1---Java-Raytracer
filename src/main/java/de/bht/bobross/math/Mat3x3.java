@@ -1,5 +1,7 @@
 package de.bht.bobross.math;
 
+import de.bht.bobross.exception.ParameterNullException;
+
 /**
  * Represents a 3x3 Matrix and offers multiplication operations and methods to exchange column separately.
  * This class is immutable so all methods return new Mat3x3 instances and you won't be able to change any attributes after construction.
@@ -88,6 +90,9 @@ public class Mat3x3 {
    * @return    Mat3x3    The product of this matrix and the provided matrix m
    */
   public Mat3x3 mul ( final Mat3x3 m ) {
+    if ( m == null ) {
+      throw new ParameterNullException("m");
+    }
     return new Mat3x3 (
         m11 * m.m11 + m12 * m.m21 + m13 * m.m31,
         m11 * m.m12 + m12 * m.m22 + m13 * m.m32,
@@ -108,6 +113,9 @@ public class Mat3x3 {
    * @return              The product of this matrix and the provided vector v
    */
   public Vector3 mul ( final Vector3 v ) {
+    if ( v == null ) {
+      throw new ParameterNullException("v");
+    }
     return new Vector3(
         m11 * v.x + m12 * v.y + m13 * v.z,
         m21 * v.x + m22 * v.y + m23 * v.z,
@@ -122,6 +130,9 @@ public class Mat3x3 {
    * @return              The resulting Point3
    */
   public Point3 mul ( final Point3 p ) {
+    if ( p == null ) {
+      throw new ParameterNullException("p");
+    }
     return new Point3 (
         m11 * p.x + m12 * p.y + m13 * p.z,
         m21 * p.x + m22 * p.y + m23 * p.z,
@@ -137,6 +148,9 @@ public class Mat3x3 {
    * @return        The new matrix
    */
   public Mat3x3 changeCol1 ( final Vector3 v ) {
+    if ( v == null ) {
+      throw new ParameterNullException("v");
+    }
     return new Mat3x3(
         v.x, m12, m13,
         v.y, m22, m23,
@@ -152,6 +166,9 @@ public class Mat3x3 {
    * @return        The new matrix
    */
   public Mat3x3 changeCol2 ( final Vector3 v ) {
+    if ( v == null ) {
+      throw new ParameterNullException("v");
+    }
     return new Mat3x3(
         m11, v.x, m13,
         m21, v.y, m23,
@@ -167,6 +184,9 @@ public class Mat3x3 {
    * @return        The new matrix
    */
   public Mat3x3 changeCol3 ( final Vector3 v ) {
+    if ( v == null ) {
+      throw new ParameterNullException("v");
+    }
     return new Mat3x3(
         m11, m12, v.x,
         m21, m22, v.y,

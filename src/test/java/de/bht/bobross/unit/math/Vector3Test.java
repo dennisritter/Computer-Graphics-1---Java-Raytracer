@@ -58,7 +58,7 @@ public class Vector3Test {
   }
 
   @Test
-  public void testReflectOn () {
+  public void testReflectedOn () {
     final Vector3 v1 = new Vector3( -0.707, 0.707, 0 );
     final Normal3 n1 = new Normal3( 0, 1, 0 );
 
