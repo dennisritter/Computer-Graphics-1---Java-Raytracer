@@ -1,0 +1,46 @@
+package de.bht.bobross.image;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.WritableRaster;
+
+/**
+ *
+ *
+ * @author      Nathalie Junker
+ */
+public class CreateImage {
+
+  final static int WIDTH = 640;
+  final static int HEIGHT = 480;
+  final static Color RED = Color.red;
+
+  static BufferedImage image;
+
+  public static void main (String[] args){
+    createImage();
+
+    JFrame frame = new JFrame();
+    Container c = frame.getContentPane();
+    JPanel panel = new JPanel();
+
+    c.add(panel);
+    panel.add(createImage());
+  }
+
+  public static BufferedImage createImage(){
+    image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
+
+    for (int i = 0; i < WIDTH; i++){
+      for(int j = 0; j < HEIGHT; j++) {
+        image.setRGB(i, j, 0x000000);
+      }
+    }
+
+    return image;
+
+  }
+
+}
