@@ -6,6 +6,7 @@ import javax.swing.JFileChooser;
 import java.awt.Container;
 import java.awt.Image;
 import java.awt.BorderLayout;
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -36,21 +37,27 @@ public class ChooseImage {
     /** The image panel */
     final ImagePanel panel;
 
+    /** The file to be displayed */
+    File file;
+
+
     frame.setVisible(true);
     container.setLayout(new BorderLayout());
 
     chooser.setFileFilter(filter);
-    chooser.showOpenDialog(container);
+    chooser.showOpenDialog(null);
+    file = chooser.getSelectedFile();
 
-   /**tries to read the selected file, stores it in variable img and adds it to the ImagePanel. */
+    /**tries to read the selected file, stores it in variable img and adds it to the ImagePanel. */
     try {
-      img = ImageIO.read(chooser.getSelectedFile());
+      img = ImageIO.read(file);
       panel = new ImagePanel(img);
       container.add(panel);
       frame.setSize(panel.getImgSize(img));
     } catch (IOException io) {
-      io.printStackTrace();
+      System.out.println("can't read " + file.getName());
     }
+
   }
 
 }

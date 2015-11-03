@@ -26,7 +26,7 @@ public class ImageFileFilter extends FileFilter {
 
   @Override
   public String getDescription() {
-    return "Grafiken";
+    return "JPG and PNG";
   }
 
 }
