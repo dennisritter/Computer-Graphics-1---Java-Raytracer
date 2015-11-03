@@ -1,5 +1,7 @@
 package de.bht.bobross.math;
 
+import de.bht.bobross.exception.ParameterNullException;
+
 /**
  * Represents a normal in a three-dimensional room with x, y and z coordinates.
  *
@@ -45,7 +47,12 @@ public class Normal3 {
    * @param     n   The normal to add to this normal
    * @return        The product of this normal and the provided normal n
    */
-  public Normal3 add ( final Normal3 n ) { return new Normal3( x + n.x, y + n.y, z + n.z ); }
+  public Normal3 add ( final Normal3 n ) {
+    if ( n == null ) {
+      throw new ParameterNullException("n");
+    }
+    return new Normal3( x + n.x, y + n.y, z + n.z );
+  }
 
   /**
    * Calculates the dot product of this normal and the provided vector v
@@ -54,6 +61,9 @@ public class Normal3 {
    * @return        The dot product of this normal and the vector v
    */
   public double dot ( final Vector3 v ) {
+    if ( v == null ) {
+      throw new ParameterNullException("v");
+    }
     return x * v.x + y * v.y + z * v.z;
   }
 

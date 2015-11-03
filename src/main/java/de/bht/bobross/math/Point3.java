@@ -1,5 +1,7 @@
 package de.bht.bobross.math;
 
+import de.bht.bobross.exception.ParameterNullException;
+
 /**
  * Represents a point in a three-dimensional room with its x, y and z coordinates
  *
@@ -36,7 +38,10 @@ public class Point3 {
    * @return        The vector which represents the distance between this point and the provided point p
    */
   public Vector3 sub ( final Point3 p ) {
-    return new Vector3( x - p.x, y - p.y, z - p.z );
+    if ( p == null ) {
+      throw new ParameterNullException("p");
+    }
+    return new Vector3(x - p.x, y - p.y, z - p.z);
   }
 
   /**
@@ -46,7 +51,10 @@ public class Point3 {
    * @return        The point representing the difference between this point and the provided vector v
    */
   public Point3 sub ( final Vector3 v ) {
-    return new Point3( x - v.x, y - v.y, z - v.z );
+    if ( v == null ) {
+      throw new ParameterNullException("v");
+    }
+    return new Point3(x - v.x, y - v.y, z - v.z);
   }
 
   /**
@@ -56,6 +64,9 @@ public class Point3 {
    * @return        A new point that represents the sum of this point and the provided vecotr v
    */
   public Point3 add ( final Vector3 v ) {
+    if ( v == null ) {
+      throw new ParameterNullException("v");
+    }
     return new Point3( x + v.x, y + v.y, z + v.z );
   }
 
