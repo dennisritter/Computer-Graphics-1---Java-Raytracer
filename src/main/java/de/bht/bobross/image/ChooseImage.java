@@ -40,13 +40,12 @@ public class ChooseImage {
     /** The file to be displayed */
     File file;
 
-
-    frame.setVisible(true);
     container.setLayout(new BorderLayout());
 
     chooser.setFileFilter(filter);
     chooser.showOpenDialog(null);
     file = chooser.getSelectedFile();
+    frame.setVisible(true);
 
     /**tries to read the selected file, stores it in variable img and adds it to the ImagePanel. */
     try {
