@@ -47,17 +47,17 @@ public class Vector3 {
    * Creates a new vector which represents the sum of this vector and the provided normal n
    *
    * @param     n   The normal to add to this vector
-   * @return        The new vector which represents the sum of this vector and the normal n
+   * @return        The new vector which represents the sum of this vector and the provided normal n
    */
   public Vector3 add ( final Normal3 n ) {
     return new Vector3( x + n.x, y + n.y, z + n.z );
   }
 
   /**
-   * Subtracts the provided normal n from this vector and returns the result as a new vector
+   * Creates a new vector which represents the difference of this vector and the provided normal n
    *
    * @param     n   The normal to subtract from this vector
-   * @return        A new vector representing this vector minus the normal n
+   * @return        The new vector which represents the difference of this vector and the provided normal n
    */
   public Vector3 sub ( final Normal3 n ) {
     return new Vector3( x - n.x, y - n.y, z - n.z );
@@ -111,9 +111,7 @@ public class Vector3 {
    *
    * @return        The new normal with the direction of this vector
    */
-  public Normal3 asNormal () {
-    return new Normal3( x / magnitude, y / magnitude, z / magnitude );
-  }
+  public Normal3 asNormal () { return new Normal3( x / magnitude, y / magnitude, z / magnitude ); }
 
   /**
    * Calculates the cross product of this vector and the provided vector v
