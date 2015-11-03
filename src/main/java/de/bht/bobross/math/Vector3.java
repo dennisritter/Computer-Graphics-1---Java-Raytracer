@@ -94,7 +94,7 @@ public class Vector3 {
     if ( v == null ) {
       throw new ParameterNullException("v");
     }
-    return Math.sqrt( x * v.x + y * v.y + z * v.z );
+    return x * v.x + y * v.y + z * v.z;
   }
 
   /**
@@ -107,7 +107,7 @@ public class Vector3 {
     if ( n == null ) {
       throw new ParameterNullException("n");
     }
-    return Math.sqrt( x * n.x + y * n.y + z * n.z );
+    return x * n.x + y * n.y + z * n.z;
   }
 
   /**
@@ -160,7 +160,9 @@ public class Vector3 {
     if ( n == null ) {
       throw new ParameterNullException("n");
     }
-    return add( n.mul( dot( n ) * 2.0 ) );
+    Vector3 v = this.normalized();
+    //Formel: r = -v * n( n * v ) * 2
+    return v.mul( -1 ).add( n.mul( dot( n ) ).mul( 2.0 ) );
   }
 
   @Override
