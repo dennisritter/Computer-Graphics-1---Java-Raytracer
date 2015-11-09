@@ -18,7 +18,6 @@ import java.io.IOException;
  */
 public class CreateImageFrame extends JFrame{
 
-  private BufferedImage img;
   private CreateImageCanvas canvas;
 
   /**
