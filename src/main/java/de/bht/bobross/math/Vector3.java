@@ -159,7 +159,6 @@ public class Vector3 {
       throw new ParameterNullException("n");
     }
     Vector3 v = this.normalized();
-    //Formel: r = -v * n( n * v ) * 2
     return v.mul( -1 ).add( n.mul( dot( n ) ).mul( 2.0 ) );
   }
 

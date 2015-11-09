@@ -14,6 +14,12 @@ public class AcceptanceCriteriaTest {
 
   public static final double EPSILON = 10e-3;
 
+  public void compareVectorsEpsilon ( Vector3 v1, Vector3 v2 ) {
+    Assert.assertEquals( v1.x, v2.x, EPSILON );
+    Assert.assertEquals( v1.y, v2.y, EPSILON );
+    Assert.assertEquals( v1.z, v2.z, EPSILON );
+  }
+
   @Test
   public void testCriterion1 () {
     final Normal3 n = new Normal3( 1, 2, 3 );
@@ -88,24 +94,51 @@ public class AcceptanceCriteriaTest {
     Assert.assertEquals( Math.sqrt( 3 ), v.magnitude, EPSILON );
   }
 
-  /**
-   * TODO: criterion 8
-   */
+  @Test
+  public void testCriterion8addVector () {
+    final Vector3 v1 = new Vector3( 1, 2, 3 );
+    final Vector3 v2 = new Vector3( 4, 5, 6 );
+    final Vector3 e = new Vector3( 5, 7, 9 );
+    Assert.assertEquals( e, v1.add( v2 ) );
+  }
 
-  // TODO: add Test Annotation
+  @Test
+  public void testCriterion8addNormal () {
+    final Vector3 v1 = new Vector3( 1, 2, 3 );
+    final Normal3 n2 = new Normal3( 4, 5, 6 );
+    final Vector3 e = new Vector3( 5, 7, 9 );
+    Assert.assertEquals( e, v1.add( n2 ) );
+  }
+
+  @Test
+  public void testCriterion8subNormal () {
+    final Vector3 v1 = new Vector3( 1, 2, 3 );
+    final Normal3 n2 = new Normal3( 4, 5, 6 );
+    final Vector3 e = new Vector3( -3, -3, -3 );
+    Assert.assertEquals( e, v1.sub(n2) );
+  }
+
+  @Test
+  public void testCriterion8mulWithDouble () {
+    final Vector3 v = new Vector3( 1, 2, 3 );
+    final Vector3 e = new Vector3( 3, 6, 9 );
+    Assert.assertEquals( e, v.mul( 3 ) );
+  }
+
+  @Test
   public void testCriterion9 () {
     final Vector3 v = new Vector3( -.707, .707, 0 );
     final Normal3 n = new Normal3( 0, 1, 0 );
     final Vector3 e = new Vector3( .707, .707, 0 );
-    Assert.assertEquals( e, v.reflectedOn( n ) );
+    compareVectorsEpsilon(e, v.reflectedOn(n));
   }
 
-  // TODO: add Test Annotation
+  @Test
   public void testCriterion10 () {
     final Vector3 v = new Vector3( .707, .707, 0 );
     final Normal3 n = new Normal3( 1, 0, 0 );
     final Vector3 e = new Vector3( .707, -.707, 0 );
-    Assert.assertEquals( e, v.reflectedOn( n ) );
+    compareVectorsEpsilon(e, v.reflectedOn(n));
   }
 
   @Test
