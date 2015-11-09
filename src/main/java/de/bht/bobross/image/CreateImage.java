@@ -1,47 +1,28 @@
 package de.bht.bobross.image;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.ColorModel;
-import java.awt.image.WritableRaster;
-
 /**
- *
+ * Creates an image with a black background, a diagonal red line
+ * and the size of WIDTH and HEIGHT
  *
  * @author      Nathalie Junker
  */
 public class CreateImage {
 
+  /** The width of the image   */
   final static int WIDTH = 640;
-  final static int HEIGHT = 480;
-  final static Color RED = Color.red;
 
-  static BufferedImage image;
+  /** The height of the image   */
+  final static int HEIGHT = 480;
+
 
   public static void main (String[] args){
 
-    JFrame frame = new JFrame();
-    Container c = frame.getContentPane();
-    JPanel panel = new JPanel();
-
-    c.add(panel);
-    
-    BufferedImage image = createImage();
-    panel.add(image);
-  }
-
-  public static BufferedImage createImage(){
-    image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_ARGB);
-
-    for (int i = 0; i < WIDTH; i++){
-      for(int j = 0; j < HEIGHT; j++) {
-        image.setRGB(i, j, 0x000000);
-      }
-    }
-
-    return image;
+    final CreateImageFrame frame = new CreateImageFrame();
+    frame.setSize(WIDTH,HEIGHT);
+    frame.setVisible(true);
 
   }
+
+
 
 }
