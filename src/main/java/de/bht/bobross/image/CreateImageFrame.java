@@ -6,8 +6,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import java.awt.Container;
-import java.awt.BorderLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -20,25 +19,26 @@ import java.io.IOException;
 public class CreateImageFrame extends JFrame{
 
   private BufferedImage img;
+  private CreateImageCanvas canvas;
 
   /**
-   * The constructor.
+   * The constructor. Initializes the Frame, the CreateImageCanvas and a container.
    */
   public CreateImageFrame(){
+
     final Container container = this.getContentPane();
-    final CreateImageCanvas canvas = new CreateImageCanvas();
+
+    this.canvas = new CreateImageCanvas();
 
     container.setLayout(new BorderLayout());
     container.add(canvas);
 
     canvas.repaint();
-    System.out.println(canvas.getWidth());
+    createMenu();
 
     setSize(this.getWidth(), this.getHeight());
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setResizable(true);
-
-    createMenu();
 
   }
 
@@ -57,9 +57,11 @@ public class CreateImageFrame extends JFrame{
         final JFileChooser chooser = new JFileChooser();
         chooser.showSaveDialog(null);
 
+        final BufferedImage image = new BufferedImage(canvas.getWidth(), canvas.getHeight(), BufferedImage.TYPE_INT_RGB);
+
         try {
           final File outfile = chooser.getSelectedFile();
-          ImageIO.write(img, "png", outfile);
+          ImageIO.write(image, "png", new File (outfile.toString() + ".png"));
         } catch (IOException ex){
           System.out.println("Ungültiges Dateiformat.");
         }
