@@ -1,5 +1,12 @@
 package de.bht.bobross.image;
 
+<<<<<<< HEAD
+=======
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+
+>>>>>>> a4be4ff1c991f107a0b72a8925aef5abb8f8ca70
 /**
  * Creates an image with a black background, a diagonal red line
  * and the size of WIDTH and HEIGHT
