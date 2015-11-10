@@ -169,9 +169,9 @@ public class Vector3 {
 
     Vector3 vector3 = (Vector3) o;
 
-    if (Double.compare(vector3.x, x) != 0) return false;
-    if (Double.compare(vector3.y, y) != 0) return false;
-    return Double.compare(vector3.z, z) == 0;
+    if (!Helpers.compareDouble(vector3.x, x)) return false;
+    if (!Helpers.compareDouble(vector3.y, y)) return false;
+    return Helpers.compareDouble(vector3.z, z);
   }
 
   @Override
