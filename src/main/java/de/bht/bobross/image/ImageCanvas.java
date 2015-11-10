@@ -13,13 +13,18 @@ import java.awt.image.WritableRaster;
 public class ImageCanvas extends Canvas {
 
   /**
+   * The image to draw in
+   */
+  protected BufferedImage image;
+
+  /**
    * Initialises a new BufferedImage with black as background-color and draws a red diagonal line.
    *
    * @param     g         The Graphics object to draw with
    */
   public void paint ( Graphics g ) {
     super.paint(g);
-    final BufferedImage image = new BufferedImage(getWidth(),getHeight(),BufferedImage.TYPE_INT_ARGB);
+    image = new BufferedImage(getWidth(),getHeight(),BufferedImage.TYPE_INT_ARGB);
     final WritableRaster raster = image.getRaster();
     final ColorModel m = image.getColorModel();
 
@@ -34,4 +39,10 @@ public class ImageCanvas extends Canvas {
     g.drawImage( image, 0, 0, this );
   }
 
+  /**
+   * @return    The BufferedImage with black background and a red diagonal line
+   */
+  public BufferedImage getImage() {
+    return image;
+  }
 }

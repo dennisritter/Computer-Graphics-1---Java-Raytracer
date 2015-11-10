@@ -11,7 +11,6 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -61,11 +60,9 @@ public class CreateImageFrame extends JFrame {
         final JFileChooser chooser = new JFileChooser();
         chooser.showSaveDialog(null);
 
-        final BufferedImage image = new BufferedImage(canvas.getWidth(), canvas.getHeight(), BufferedImage.TYPE_INT_RGB);
-
         try {
           final File outfile = chooser.getSelectedFile();
-          ImageIO.write(image, "png", new File (outfile.toString() + ".png"));
+          ImageIO.write( canvas.getImage() , "png", new File (outfile.toString() + ".png"));
         } catch (IOException ex){
           System.out.println("Ungültiges Dateiformat.");
         }
