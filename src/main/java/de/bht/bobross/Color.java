@@ -25,7 +25,7 @@ public class Color {
    * @param   g   The amount of green light the color will contain
    * @param   b   The amount of blue light the color will contain
    */
-  public Color(double r, double g, double b) {
+  public Color(final double r, final double g, final double b) {
     this.r = r;
     this.g = g;
     this.b = b;
@@ -36,7 +36,7 @@ public class Color {
    * @param   c    The Color to add to this Color
    * @return       The new Color representing the sum of this Color and the Color c
    */
-  public Color add(Color c){
+  public Color add(final Color c){
     return new Color(r + c.r, g + c.g, b + c.b);
   }
 
@@ -45,7 +45,7 @@ public class Color {
    * @param   c     The Color to subtract from this Color
    * @return        The new Color representing the difference of this Color and the Color c
    */
-  public Color sub(Color c){
+  public Color sub(final Color c){
     return new Color(r - c.r, g - c.g, b - c.b);
   }
 
@@ -54,7 +54,7 @@ public class Color {
    * @param    c    The Color to multiply this Color with
    * @return        The new Color representing the product of this Color and the Color c
    */
-  public Color mul(Color c){
+  public Color mul(final Color c){
     return new Color(r * c.r, g * c.g, b * c.b);
   }
 
@@ -63,7 +63,7 @@ public class Color {
    * @param   v     The Scalar to multiply this Color with
    * @return        The new Color representing the product of this Color and the Scalar v
    */
-  public Color mul(Double v){
+  public Color mul(final Double v){
     return new Color(r * v, g * v, b * v);
   }
 
@@ -76,7 +76,7 @@ public class Color {
 
     if (Double.compare(color.r, r) != 0) return false;
     if (Double.compare(color.g, g) != 0) return false;
-    return Double.compare(color.b, b) == 0;
+    return (Double.compare(color.b, b) == 0);
 
   }
 
