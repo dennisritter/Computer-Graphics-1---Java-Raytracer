@@ -23,13 +23,13 @@ public class OrthographicCamera extends Camera {
     final Vector3 d = this.w.mul(-1);
     final int a = w / h;
 
-    double doub1 = (x-(w-1)/2)/(w-1);
-    double doub2 = (y-(h-1)/2)/(h-1);
-    double produkt1 = doub1*s*a;
-    double produkt2 = doub2*s;
+    double d1 = (x-(w-1)/2)/(w-1);
+    double d2 = (y-(h-1)/2)/(h-1);
+    double p1 = d1*s*a;
+    double p2 = d2*s;
 
-    Vector3 vec1 = u.mul(produkt1);
-    Vector3 vec2 = v.mul(produkt2);
+    Vector3 vec1 = u.mul(p1);
+    Vector3 vec2 = v.mul(p2);
 
     final Point3 o = (e.add(vec1)).add(vec2);
 
