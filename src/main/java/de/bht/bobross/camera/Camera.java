@@ -1,5 +1,6 @@
 package de.bht.bobross.camera;
 
+import de.bht.bobross.Ray;
 import de.bht.bobross.math.Point3;
 import de.bht.bobross.math.Vector3;
 
@@ -40,7 +41,5 @@ public abstract class Camera {
    * @param y the y-coordinate of the pixel.
    * @return
    */
-  public Ray rayFor(final int w, final int h, final int x, final int y){
-
-  }
+  public abstract Ray rayFor(final int w, final int h, final int x, final int y);
 }
