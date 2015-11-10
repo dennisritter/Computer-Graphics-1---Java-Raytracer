@@ -5,14 +5,24 @@ import de.bht.bobross.math.Point3;
 import de.bht.bobross.math.Vector3;
 
 /**
+ * Represents a perspective camera
  *
  * @author      Nathalie Junker
  */
 public class PerspectiveCamera extends Camera {
 
+  /** The camera's angular aperture */
   public final double angle;
 
-  public PerspectiveCamera(Point3 e, Vector3 g, Vector3 t, double angle){
+  /**
+   * Constructs a new perspective camera with all attributes
+   *
+   * @param     e     The camera's eye-position
+   * @param     g     The camera's gaze direction
+   * @param     t     The camera's up-vector
+   * @param     angle The camera's angular aperture
+   */
+  public PerspectiveCamera (Point3 e, Vector3 g, Vector3 t, double angle) {
     super(e, g, t);
     this.angle = angle;
   }
