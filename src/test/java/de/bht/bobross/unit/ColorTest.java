@@ -1,4 +1,4 @@
-package de.bht.bobross.unit.math.de.bht.bobross.unit;
+package de.bht.bobross.unit;
 
 import de.bht.bobross.Color;
 import junit.framework.Assert;
