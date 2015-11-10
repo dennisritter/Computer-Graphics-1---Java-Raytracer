@@ -5,7 +5,7 @@ import junit.framework.Assert;
 import org.junit.Test;
 
 /**
- * Created by dennisritter on 10.11.15.
+ * @author Dennis Ritter
  */
 public class ColorTest {
 

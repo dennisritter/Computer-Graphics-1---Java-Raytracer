@@ -22,10 +22,10 @@ public class PerspectiveCamera extends Camera {
     final Point3 o = this.e;
     final double tan = Math.tan(angle);
 
-    double doub1 = x-((w-1)/2);
-    double doub2 = y-((h-1)/2);
-    Vector3 vec1 = u.mul(doub1);
-    Vector3 vec2 = v.mul(doub2);
+    double d1 = x-((w-1)/2);
+    double d2 = y-((h-1)/2);
+    Vector3 vec1 = u.mul(d1);
+    Vector3 vec2 = v.mul(d2);
     Vector3 vec3 = this.w.mul((-1)*(h/2)/tan);
 
     final Vector3 d = vec1.add(vec2).add(vec3);
