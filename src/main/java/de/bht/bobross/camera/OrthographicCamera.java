@@ -5,21 +5,30 @@ import de.bht.bobross.math.Point3;
 import de.bht.bobross.math.Vector3;
 
 /**
- *
+ * Represents an orthographic camera
  *
  * @author      Nathalie Junker
  */
 public class OrthographicCamera extends Camera {
 
+  /** The camera's scaling factor */
   public final double s;
 
-  public OrthographicCamera(final Point3 e, final Vector3 g, final Vector3 t, final double s){
+  /**
+   * Constructs a new orthographic camera with all attributes
+   *
+   * @param     e   The camera's eye-position
+   * @param     g   The camera's gaze direction
+   * @param     t   The camera's up-vector
+   * @param     s   The camera's scaling factor
+   */
+  public OrthographicCamera (final Point3 e, final Vector3 g, final Vector3 t, final double s) {
     super(e, g, t);
     this.s = s;
   }
 
   @Override
-  public Ray rayFor(int w, int h, int x, int y) {
+  public Ray rayFor (int w, int h, int x, int y) {
     final Vector3 d = this.w.mul(-1);
     final int a = w / h;
 
