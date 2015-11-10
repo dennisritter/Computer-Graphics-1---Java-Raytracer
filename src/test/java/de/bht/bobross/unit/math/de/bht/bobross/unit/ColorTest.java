@@ -9,11 +9,9 @@ import org.junit.Test;
  */
 public class ColorTest {
 
-  public static final double EPSILON = 0.001;
-
   @Test
   public void testConstructor(){
-    Color c1 = new Color(0.5, 0.6, 0.7);
+    final Color c1 = new Color(0.5, 0.6, 0.7);
 
     Assert.assertEquals(0.5, c1.r);
     Assert.assertEquals(0.6, c1.g);
@@ -21,37 +19,33 @@ public class ColorTest {
   }
 
   @Test
-  public void testAdd(){
-    Color c1 = new Color(0.5, 0.6, 0.7);
-    Color c2 = new Color(0.3, 0.2, 0.1);
+  public void testAdd() {
+    final Color c1 = new Color(0.5, 0.6, 0.7);
+    final Color c2 = new Color(0.3, 0.2, 0.1);
+    final Color expected = new Color(0.8, 0.8, 0.8);
 
-    Assert.assertEquals(0.8, c1.add(c2).r, EPSILON);
-    Assert.assertEquals(0.8, c1.add(c2).g, EPSILON);
-    Assert.assertEquals(0.8, c1.add(c2).b, EPSILON);
+    Assert.assertEquals(expected, c1.add(c2));
   }
 
   @Test
   public void testSub(){
-    Color c1 = new Color(0.5, 0.6, 0.7);
-    Color c2 = new Color(0.3, 0.2, 0.1);
+    final Color c1 = new Color(0.5, 0.6, 0.7);
+    final Color c2 = new Color(0.3, 0.2, 0.1);
+    final Color expected = new Color(0.2, 0.4, 0.6);
 
-    Assert.assertEquals(0.2, c1.sub(c2).r, EPSILON);
-    Assert.assertEquals(0.4, c1.sub(c2).g, EPSILON);
-    Assert.assertEquals(0.6, c1.sub(c2).b, EPSILON);
+    Assert.assertEquals(expected, c1.sub(c2));
   }
 
   @Test
   public void testMul(){
-    Color c1 = new Color(0.5, 0.6, 0.7);
-    Color c2 = new Color(0.5, 0.6, 0.7);
+    final Color c1 = new Color(0.5, 0.6, 0.7);
+    final Color c2 = new Color(0.5, 0.6, 0.7);
+    final Color expected1 = new Color(0.25, 0.36, 0.49);
+    final Color expected2 = new Color(0.25, 0.30, 0.35);
 
-    Assert.assertEquals(0.25, c1.mul(c2).r, EPSILON);
-    Assert.assertEquals(0.36, c1.mul(c2).g, EPSILON);
-    Assert.assertEquals(0.49, c1.mul(c2).b, EPSILON);
+    Assert.assertEquals(expected1, c1.mul(c2));
 
-    double v1 = 0.5;
-    Assert.assertEquals(0.25, c1.mul(v1).r, EPSILON);
-    Assert.assertEquals(0.30, c1.mul(v1).g, EPSILON);
-    Assert.assertEquals(0.35, c1.mul(v1).b, EPSILON);
+    final double v1 = 0.5;
+    Assert.assertEquals(expected2, c1.mul(v1));
   }
 }

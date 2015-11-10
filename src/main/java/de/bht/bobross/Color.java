@@ -1,5 +1,7 @@
 package de.bht.bobross;
 
+import de.bht.bobross.math.Helpers;
+
 /**
  * Represents a Color in the RGB color model
  * @author Dennis Ritter
@@ -74,9 +76,9 @@ public class Color {
 
     Color color = (Color) o;
 
-    if (Double.compare(color.r, r) != 0) return false;
-    if (Double.compare(color.g, g) != 0) return false;
-    return (Double.compare(color.b, b) == 0);
+    if (!Helpers.compareDouble(color.r, r)) return false;
+    if (!Helpers.compareDouble(color.g, g)) return false;
+    return Helpers.compareDouble(color.b, b);
 
   }
 
