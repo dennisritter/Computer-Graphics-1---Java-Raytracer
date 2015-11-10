@@ -9,11 +9,14 @@ import de.bht.bobross.Ray;
  */
 public abstract class Geometry {
 
+  /**
+   * The Color of this Geometry
+   */
   public final Color color;
 
   /**
    * The constructor
-   * @param   color   The color of this Geometry
+   * @param   color   The Color of this Geometry
    */
   public Geometry(Color color){
     this.color = color;
