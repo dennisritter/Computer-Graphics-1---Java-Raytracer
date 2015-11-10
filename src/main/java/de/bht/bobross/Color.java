@@ -1,11 +1,8 @@
 package de.bht.bobross;
 
 /**
- * Created by dennisritter on 10.11.15.
- */
-
-/**
  * Represents a Color in the RGB color model
+ * @author Dennis Ritter
  */
 public class Color {
 
@@ -68,6 +65,32 @@ public class Color {
    */
   public Color mul(Double v){
     return new Color(r * v, g * v, b * v);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    Color color = (Color) o;
+
+    if (Double.compare(color.r, r) != 0) return false;
+    if (Double.compare(color.g, g) != 0) return false;
+    return Double.compare(color.b, b) == 0;
+
+  }
+
+  @Override
+  public int hashCode() {
+    int result;
+    long temp;
+    temp = Double.doubleToLongBits(r);
+    result = (int) (temp ^ (temp >>> 32));
+    temp = Double.doubleToLongBits(g);
+    result = 31 * result + (int) (temp ^ (temp >>> 32));
+    temp = Double.doubleToLongBits(b);
+    result = 31 * result + (int) (temp ^ (temp >>> 32));
+    return result;
   }
 }
 
