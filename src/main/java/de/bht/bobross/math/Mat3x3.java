@@ -201,14 +201,14 @@ public class Mat3x3 {
 
     Mat3x3 mat3x3 = (Mat3x3) o;
 
-    if (Helpers.compareDouble(mat3x3.m11, m11)) return false;
-    if (Helpers.compareDouble(mat3x3.m12, m12)) return false;
-    if (Helpers.compareDouble(mat3x3.m13, m13)) return false;
-    if (Helpers.compareDouble(mat3x3.m21, m21)) return false;
-    if (Helpers.compareDouble(mat3x3.m22, m22)) return false;
-    if (Helpers.compareDouble(mat3x3.m23, m23)) return false;
-    if (Helpers.compareDouble(mat3x3.m31, m31)) return false;
-    if (Helpers.compareDouble(mat3x3.m32, m32)) return false;
+    if (!Helpers.compareDouble(mat3x3.m11, m11)) return false;
+    if (!Helpers.compareDouble(mat3x3.m12, m12)) return false;
+    if (!Helpers.compareDouble(mat3x3.m13, m13)) return false;
+    if (!Helpers.compareDouble(mat3x3.m21, m21)) return false;
+    if (!Helpers.compareDouble(mat3x3.m22, m22)) return false;
+    if (!Helpers.compareDouble(mat3x3.m23, m23)) return false;
+    if (!Helpers.compareDouble(mat3x3.m31, m31)) return false;
+    if (!Helpers.compareDouble(mat3x3.m32, m32)) return false;
     return Helpers.compareDouble(mat3x3.m33, m33);
 
   }

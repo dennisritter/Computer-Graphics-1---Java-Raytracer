@@ -77,8 +77,8 @@ public class Point3 {
 
     Point3 point3 = (Point3) o;
 
-    if (Helpers.compareDouble(point3.x, x)) return false;
-    if (Helpers.compareDouble(point3.y, y)) return false;
+    if (!Helpers.compareDouble(point3.x, x)) return false;
+    if (!Helpers.compareDouble(point3.y, y)) return false;
     return Helpers.compareDouble(point3.z, z);
 
   }

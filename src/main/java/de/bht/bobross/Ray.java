@@ -46,4 +46,22 @@ public class Ray {
   public double tOf ( final Point3 p ) {
     return ( p.x - o.x ) / d.x;
   }
+
+  @Override
+  public boolean equals(Object o1) {
+    if (this == o1) return true;
+    if (o1 == null || getClass() != o1.getClass()) return false;
+
+    Ray ray = (Ray) o1;
+
+    if (!o.equals(ray.o)) return false;
+    return d.equals(ray.d);
+  }
+
+  @Override
+  public int hashCode() {
+    int result = o.hashCode();
+    result = 31 * result + d.hashCode();
+    return result;
+  }
 }
