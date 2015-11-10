@@ -74,10 +74,9 @@ public class Normal3 {
 
     Normal3 normal3 = (Normal3) o;
 
-    if (Double.compare(normal3.x, x) != 0) return false;
-    if (Double.compare(normal3.y, y) != 0) return false;
-    return Double.compare(normal3.z, z) == 0;
-
+    if (Helpers.compareDouble(normal3.x, x)) return false;
+    if (Helpers.compareDouble(normal3.y, y)) return false;
+    return Helpers.compareDouble(normal3.z, z);
   }
 
   @Override
