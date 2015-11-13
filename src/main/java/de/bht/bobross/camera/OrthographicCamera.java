@@ -44,4 +44,37 @@ public class OrthographicCamera extends Camera {
 
     return new Ray(o, d);
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    if (!super.equals(o)) return false;
+
+    OrthographicCamera that = (OrthographicCamera) o;
+
+    return Double.compare(that.s, s) == 0;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = super.hashCode();
+    long temp;
+    temp = Double.doubleToLongBits(s);
+    result = 31 * result + (int) (temp ^ (temp >>> 32));
+    return result;
+  }
+
+  @Override
+  public String toString() {
+    return "PerspectiveCamera{" +
+        "e=" + e +
+        "g=" + g +
+        "t=" + t +
+        "u=" + u +
+        "v=" + v +
+        "w=" + w +
+        "s=" + s +
+        "} ";
+  }
 }
