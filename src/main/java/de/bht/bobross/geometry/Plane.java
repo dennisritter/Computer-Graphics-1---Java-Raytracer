@@ -6,18 +6,23 @@ import de.bht.bobross.math.Normal3;
 import de.bht.bobross.math.Point3;
 
 /**
+ * Represents a plane in three-dimensional room
+ *
  * @author      Nathalie Junker
  */
 public class Plane extends Geometry {
 
+  /** An arbitrary point on the plane */
   public final Point3 a;
+
+  /** The plane's normal */
   public final Normal3 n;
 
   /**
    * Constructs a new plane
-   * @param a
-   * @param n
-   * @param color
+   * @param     a         An arbitrary point on the plane
+   * @param     n         The plane's normal
+   * @param     color     The plane's color
    */
   public Plane(final Point3 a, final Normal3 n, final Color color){
     super(color);
