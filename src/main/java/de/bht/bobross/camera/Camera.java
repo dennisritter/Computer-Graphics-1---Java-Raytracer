@@ -56,4 +56,31 @@ public abstract class Camera {
    * @return        the ray for the pixel
    */
   public abstract Ray rayFor (final int w, final int h, final int x, final int y);
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    Camera camera = (Camera) o;
+
+    if (!e.equals(camera.e)) return false;
+    if (!g.equals(camera.g)) return false;
+    if (!t.equals(camera.t)) return false;
+    if (!u.equals(camera.u)) return false;
+    if (!v.equals(camera.v)) return false;
+    return w.equals(camera.w);
+
+  }
+
+  @Override
+  public int hashCode() {
+    int result = e.hashCode();
+    result = 31 * result + g.hashCode();
+    result = 31 * result + t.hashCode();
+    result = 31 * result + u.hashCode();
+    result = 31 * result + v.hashCode();
+    result = 31 * result + w.hashCode();
+    return result;
+  }
 }

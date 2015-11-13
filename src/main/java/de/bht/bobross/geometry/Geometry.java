@@ -27,6 +27,6 @@ public abstract class Geometry {
    * @param   r   The Ray that hit a Geometry
    * @return      A Hit Object representing the intersection between the Ray and the Geometry
    */
-  public abstract Hit hit(Ray r);
+  public abstract Hit hit (Ray r);
 
 }
