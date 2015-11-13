@@ -29,4 +29,19 @@ public abstract class Geometry {
    */
   public abstract Hit hit (Ray r);
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    Geometry geometry = (Geometry) o;
+
+    return color.equals(geometry.color);
+
+  }
+
+  @Override
+  public int hashCode() {
+    return color.hashCode();
+  }
 }
