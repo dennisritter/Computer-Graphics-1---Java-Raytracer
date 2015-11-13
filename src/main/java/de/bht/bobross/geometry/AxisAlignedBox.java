@@ -46,14 +46,17 @@ public class AxisAlignedBox extends Geometry {
 
   @Override
   public Hit hit(Ray r) {
-    double minT = 0;
+    double minT = -1;
     for ( Plane p : planes ) {
       if ( r.d.dot( p.n ) < 0 ) {
-        minT = Math.min( minT, p.hit( r ).t );
+        final Hit hit = p.hit( r );
+        if ( hit != null ) {
+          minT = Math.min( minT, hit.t );
+        }
       }
     }
 
-    if ( minT == 0 )
+    if ( minT < 0 )
       return null;
 
     final Point3 p = r.at( minT );
