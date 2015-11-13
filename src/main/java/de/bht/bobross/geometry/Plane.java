@@ -26,7 +26,7 @@ public class Plane extends Geometry {
     if(n.dot(r.d) == 0){
       return null;
     }
-    
+
     double t = n.dot(a.sub(r.o))/n.dot(r.d);
 
     return new Hit(t, r, this);
