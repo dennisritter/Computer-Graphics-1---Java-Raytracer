@@ -18,7 +18,7 @@ public abstract class Geometry {
    * The constructor
    * @param   color   The Color of this Geometry
    */
-  public Geometry(Color color){
+  public Geometry (Color color) {
     this.color = color;
   }
 
