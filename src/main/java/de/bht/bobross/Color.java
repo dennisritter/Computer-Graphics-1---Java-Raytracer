@@ -12,10 +12,12 @@ public class Color {
    * Represents the amount of red light
    */
   public final double r;
+
   /**
    * Represents the amount of green light
    */
   public final double g;
+
   /**
    * Represents the amount of blue light
    */
@@ -69,6 +71,19 @@ public class Color {
     return new Color(r * v, g * v, b * v);
   }
 
+  /**
+   * Returns the integer representation of the color
+   *
+   * @return        The color's integer representation
+   */
+  public int asInt () {
+    int i = 0;
+    i += (int) ( r * 0xff ) << 16;
+    i += (int) ( g * 0xff ) << 8;
+    i += (int) ( b * 0xff );
+    return i;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -79,7 +94,6 @@ public class Color {
     if (!Helpers.compareDouble(color.r, r)) return false;
     if (!Helpers.compareDouble(color.g, g)) return false;
     return Helpers.compareDouble(color.b, b);
-
   }
 
   @Override
