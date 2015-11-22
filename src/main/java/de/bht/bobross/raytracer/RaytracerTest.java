@@ -22,26 +22,7 @@ import java.awt.Frame;
 
 public class RaytracerTest {
 
-<<<<<<< HEAD:src/main/java/de/bht/bobross/RaytracerFrame.java
-  protected Raytracer raytracer;
-
-  public RaytracerFrame(Raytracer raytracer) {
-    this.raytracer = raytracer;
-
-    setSize(raytracer.image.getWidth(), raytracer.image.getHeight());
-    setLayout(new BorderLayout());
-    add(new RaytracerCanvas(), BorderLayout.CENTER);
-    setDefaultCloseOperation( WindowConstants.EXIT_ON_CLOSE );
-  }
-
-  public RaytracerFrame(int width, int height, World world, Camera camera) {
-    this(new Raytracer(camera, world, new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB)));
-  }
-
-  public static void main ( String[] args ) {
-=======
   public static void main ( final String[] args ) {
->>>>>>> 2d7537ff4f8c7d81eba494385b3f02455bd73541:src/main/java/de/bht/bobross/raytracer/RaytracerTest.java
     showSphere();
   }
 
@@ -59,11 +40,7 @@ public class RaytracerTest {
         new Sphere( new Point3(-1,-1,-3), 1, new Color(1, 0, 0) )
     }, new Color(0, 0, 0) );
     final Camera c = new PerspectiveCamera( new Point3(0, 0, 0), new Vector3(0, 0, -1), new Vector3(0, 1, 0), Math.PI / 4 );
-<<<<<<< HEAD:src/main/java/de/bht/bobross/RaytracerFrame.java
-    final Frame frame = new RaytracerFrame( 500, 500, w, c );
-=======
     final Frame frame = createRaytracerFrame( w, c, 640, 480 );
->>>>>>> 2d7537ff4f8c7d81eba494385b3f02455bd73541:src/main/java/de/bht/bobross/raytracer/RaytracerTest.java
     frame.setVisible( true );
   }
 
