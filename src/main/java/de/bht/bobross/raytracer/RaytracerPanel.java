@@ -18,7 +18,7 @@ public class RaytracerPanel extends JPanel {
   }
 
   @Override
-  protected void paintComponent(Graphics g) {
+  protected void paintComponent( Graphics g ) {
     super.paintComponent(g);
 
     final DataBufferInt dataBuffer = (DataBufferInt) image.getRaster().getDataBuffer();
