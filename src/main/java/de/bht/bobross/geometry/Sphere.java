@@ -55,6 +55,7 @@ public class Sphere extends Geometry
     if(t2 < 0){
       return new Hit(t1, r, this);
     }
+
     return new Hit(Math.min(t1 ,t2), r, this);
   }
 

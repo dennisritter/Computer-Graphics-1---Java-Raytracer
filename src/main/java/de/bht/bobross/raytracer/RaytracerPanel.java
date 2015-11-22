@@ -26,9 +26,9 @@ public class RaytracerPanel extends JPanel {
     final int w = image.getWidth();
     final int h = image.getHeight();
 
-    for ( int x = 0; x < w; x++ ) {
-      for ( int y = 0; y < h; y++ ) {
-        pixels[ (h-y-1) * w + x ] = raytracer.traceRay( x, y, image.getWidth(), image.getHeight() ).asInt();
+    for ( int y = 0; y < h; y++ ) {
+      for ( int x = 0; x < w; x++ ) {
+        pixels[ y * w + x ] = raytracer.traceRay( x, y, image.getWidth(), image.getHeight() ).asInt();
       }
     }
 
