@@ -32,7 +32,6 @@ public class Plane extends Geometry {
 
   @Override
   public Hit hit(Ray r) {
-
     if(n.dot(r.d) == 0){
       return null;
     }
