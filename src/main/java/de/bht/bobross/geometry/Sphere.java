@@ -35,10 +35,10 @@ public class Sphere extends Geometry
 
   @Override
   public Hit hit(Ray r) {
-    double aHelp = r.d.dot(r.d);
-    double bHelp = r.d.dot((r.o.sub(c)).mul(2));
-    double cHelp = (r.o.sub(c).dot(r.o.sub(c))) - this.r * this.r;
-    double dHelp = bHelp * bHelp - 4 * aHelp * cHelp;
+    final double aHelp = r.d.dot(r.d);
+    final double bHelp = r.d.dot((r.o.sub(c)).mul(2));
+    final double cHelp = (r.o.sub(c).dot(r.o.sub(c))) - this.r * this.r;
+    final double dHelp = bHelp * bHelp - 4 * aHelp * cHelp;
 
     if(aHelp == 0){
       return null;
@@ -46,8 +46,8 @@ public class Sphere extends Geometry
     if(dHelp < 0){
       return null;
     }
-    double t1 = ( -1 * bHelp + Math.sqrt(dHelp) ) / 2 * aHelp;
-    double t2 = ( -1 * bHelp - Math.sqrt(dHelp) ) / 2 * aHelp;
+    final double t1 = ( -1 * bHelp + Math.sqrt(dHelp) ) / 2 * aHelp;
+    final double t2 = ( -1 * bHelp - Math.sqrt(dHelp) ) / 2 * aHelp;
 
     if(t1 < 0){
       return new Hit(t2, r, this);
