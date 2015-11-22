@@ -33,7 +33,7 @@ public class RaytracerFrame extends JFrame {
   }
 
   public static void main ( String[] args ) {
-    showSpheresSmallBig();
+    showSphere();
   }
 
   public static void showPlane(){
@@ -47,10 +47,10 @@ public class RaytracerFrame extends JFrame {
 
   public static void showSphere(){
     final World w = new World( new Geometry[] {
-        new Sphere( new Point3(0,0,-3), 0.5, new Color(1, 0, 0) )
+        new Sphere( new Point3(-1,-1,-3), 1, new Color(1, 0, 0) )
     }, new Color(0, 0, 0) );
     final Camera c = new PerspectiveCamera( new Point3(0, 0, 0), new Vector3(0, 0, -1), new Vector3(0, 1, 0), Math.PI / 4 );
-    final Frame frame = new RaytracerFrame( 640, 480, w, c );
+    final Frame frame = new RaytracerFrame( 500, 500, w, c );
     frame.setVisible( true );
   }
 
