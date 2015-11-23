@@ -83,4 +83,16 @@ public abstract class Camera {
     result = 31 * result + w.hashCode();
     return result;
   }
+
+  @Override
+  public String toString() {
+    return "Camera{" +
+        "e=" + e +
+        ", g=" + g +
+        ", t=" + t +
+        ", u=" + u +
+        ", v=" + v +
+        ", w=" + w +
+        '}';
+  }
 }
