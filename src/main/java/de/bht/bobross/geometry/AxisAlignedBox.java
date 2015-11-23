@@ -48,10 +48,14 @@ public class AxisAlignedBox extends Geometry {
   public Hit hit(Ray r) {
     double minT = -1;
     for ( Plane p : planes ) {
-      if ( r.d.dot( p.n ) < 0 ) {
+      if ( r.d.dot( p.n ) >= 0 ) {
         final Hit hit = p.hit( r );
-        if ( hit != null ) {
-          minT = Math.min( minT, hit.t );
+        if ( hit != null && hit.t > 0 ) {
+          if ( minT > 0 ) {
+            minT = Math.min( minT, hit.t );
+          } else {
+            minT = hit.t;
+          }
         }
       }
     }
@@ -67,7 +71,7 @@ public class AxisAlignedBox extends Geometry {
     if ( lbf.y > p.y || p.y > run.y )
       return null;
 
-    if ( lbf.y > p.y || p.y > run.y )
+    if ( lbf.z > p.z || p.z > run.z )
       return null;
 
     return new Hit ( minT, r, this );

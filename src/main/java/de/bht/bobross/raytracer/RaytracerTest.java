@@ -24,7 +24,7 @@ import java.awt.Frame;
 public class RaytracerTest {
 
   public static void main ( final String[] args ) {
-    showTriangle();
+    showBox();
   }
 
   public static void showPlane(){
@@ -72,7 +72,7 @@ public class RaytracerTest {
     frame.setVisible( true );
   }
 
-  public static void showSpehresSmallBigOrthographic () {
+  public static void showSpheresSmallBigOrthographic () {
     final World w = new World( new Geometry[] {
         new Sphere( new Point3(-1, 0, -3), 0.5, new Color(1, 0, 0) ), new Sphere( new Point3(1, 0, -6), 0.5, new Color(1, 0, 0) )
     }, new Color(0, 0, 0) );

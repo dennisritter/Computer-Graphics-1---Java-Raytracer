@@ -31,7 +31,7 @@ public class Raytracer {
     final Ray r = camera.rayFor( width, height, x, y );
     final Hit h = world.hit( r );
 
-    if ( h == null )
+    if ( h == null || h.t <= 0 )
       return world.backgroundColor;
 
     return h.geo.color;
