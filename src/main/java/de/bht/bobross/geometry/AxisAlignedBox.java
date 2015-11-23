@@ -61,7 +61,6 @@ public class AxisAlignedBox extends Geometry {
         minT = hit.t;
         mp = p;
       }
-
     }
 
     if ( minT < 0 )
