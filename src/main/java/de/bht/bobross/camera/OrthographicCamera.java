@@ -40,11 +40,11 @@ public class OrthographicCamera extends Camera {
     final double f1 = (dx-((dw-1.0)/2.0))/(dw-1.0);
     final double f2 = (dy-((dh-1.0)/2.0))/(dh-1.0);
 
-    double p1 = f1*s*a;
-    double p2 = f2*s;
+    final double p1 = f1*s*a;
+    final double p2 = f2*s;
 
-    Vector3 vec1 = u.mul(p1);
-    Vector3 vec2 = v.mul(p2);
+    final Vector3 vec1 = u.mul(p1);
+    final Vector3 vec2 = v.mul(p2);
 
     final Point3 o = (e.add(vec1)).add(vec2);
 
@@ -52,7 +52,7 @@ public class OrthographicCamera extends Camera {
   }
 
   @Override
-  public boolean equals(Object o) {
+  public boolean equals(final Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     if (!super.equals(o)) return false;
@@ -65,7 +65,7 @@ public class OrthographicCamera extends Camera {
   @Override
   public int hashCode() {
     int result = super.hashCode();
-    long temp;
+    final long temp;
     temp = Double.doubleToLongBits(s);
     result = 31 * result + (int) (temp ^ (temp >>> 32));
     return result;
