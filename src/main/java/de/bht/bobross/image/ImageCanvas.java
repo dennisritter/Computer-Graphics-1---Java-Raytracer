@@ -45,4 +45,27 @@ public class ImageCanvas extends Canvas {
   public BufferedImage getImage() {
     return image;
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    ImageCanvas that = (ImageCanvas) o;
+
+    return !(image != null ? !image.equals(that.image) : that.image != null);
+
+  }
+
+  @Override
+  public int hashCode() {
+    return image != null ? image.hashCode() : 0;
+  }
+
+  @Override
+  public String toString() {
+    return "ImageCanvas{" +
+        "image=" + image +
+        '}';
+  }
 }

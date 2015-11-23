@@ -21,6 +21,10 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Frame;
 
+/**
+ * @author    Jannik Portz
+ * TODO: Add Comments
+ */
 public class RaytracerTest {
 
   public static void main ( final String[] args ) {

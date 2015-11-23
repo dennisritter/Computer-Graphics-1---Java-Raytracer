@@ -10,6 +10,7 @@ import java.awt.image.DataBufferInt;
 
 /**
  * @author      Jannik Portz
+ * TODO: Add Comments
  */
 public class Raytracer {
 
@@ -37,4 +38,30 @@ public class Raytracer {
     return h.geo.color;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    Raytracer raytracer = (Raytracer) o;
+
+    if (camera != null ? !camera.equals(raytracer.camera) : raytracer.camera != null) return false;
+    return !(world != null ? !world.equals(raytracer.world) : raytracer.world != null);
+
+  }
+
+  @Override
+  public int hashCode() {
+    int result = camera != null ? camera.hashCode() : 0;
+    result = 31 * result + (world != null ? world.hashCode() : 0);
+    return result;
+  }
+
+  @Override
+  public String toString() {
+    return "Raytracer{" +
+        "camera=" + camera +
+        ", world=" + world +
+        '}';
+  }
 }
