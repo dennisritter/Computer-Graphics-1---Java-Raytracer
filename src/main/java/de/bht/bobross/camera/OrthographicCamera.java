@@ -28,14 +28,20 @@ public class OrthographicCamera extends Camera {
   }
 
   @Override
-  public Ray rayFor (int w, int h, int x, int y) {
+  public Ray rayFor (final int w, final int h, final int x, final int y) {
     final Vector3 d = this.w.mul(-1);
-    final int a = w / h;
 
-    double d1 = ((x-(w-1))/2)/(w-1);
-    double d2 = ((y-(h-1))/2)/(h-1);
-    double p1 = d1*s*a;
-    double p2 = d2*s;
+    final double dw = w*1.0;
+    final double dh = h*1.0;
+    final double dx = x*1.0;
+    final double dy = y*1.0;
+    final double a = dw / dh;
+
+    final double f1 = (dx-((dw-1.0)/2.0))/(dw-1.0);
+    final double f2 = (dy-((dh-1.0)/2.0))/(dh-1.0);
+
+    double p1 = f1*s*a;
+    double p2 = f2*s;
 
     Vector3 vec1 = u.mul(p1);
     Vector3 vec2 = v.mul(p2);

@@ -64,4 +64,12 @@ public class Ray {
     result = 31 * result + d.hashCode();
     return result;
   }
+
+  @Override
+  public String toString() {
+    return "Ray{" +
+        "o=" + o +
+        ", d=" + d +
+        '}';
+  }
 }

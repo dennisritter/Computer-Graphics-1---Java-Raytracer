@@ -24,7 +24,8 @@ import java.awt.Frame;
 public class RaytracerTest {
 
   public static void main ( final String[] args ) {
-    showSpheresSmallBig();
+    //showBox();
+    showSpheresSmallBigOrthographic();
   }
 
   public static void showPlane(){
