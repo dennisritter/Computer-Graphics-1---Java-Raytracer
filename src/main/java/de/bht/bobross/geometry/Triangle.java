@@ -6,6 +6,12 @@ import de.bht.bobross.math.Mat3x3;
 import de.bht.bobross.math.Point3;
 import de.bht.bobross.math.Vector3;
 
+/**
+ * Represents a triangle in three-dimensional room
+ *
+ * @author      Jannik Portz
+ */
+
 public class Triangle extends Geometry {
 
   /** The triangle's first vertex */

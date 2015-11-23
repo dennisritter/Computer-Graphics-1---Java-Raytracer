@@ -23,8 +23,8 @@ public abstract class Geometry {
   }
 
   /**
-   * Tests whether a ray hit a Geometry and returns a Hit Object representing this hit
-   * @param   r   The Ray that hit a Geometry
+   * Tests whether a ray hits a Geometry and returns an Hit Object representing this hit
+   * @param   r   The Ray that hits a Geometry
    * @return      A Hit Object representing the intersection between the Ray and the Geometry
    */
   public abstract Hit hit (Ray r);

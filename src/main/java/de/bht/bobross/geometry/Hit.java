@@ -14,7 +14,7 @@ public class Hit {
   public final double t;
 
   /**
-   * The Ray that hit the Geometry
+   * The Ray that hits the Geometry
    */
   public final Ray ray;
 
@@ -25,8 +25,8 @@ public class Hit {
 
   /**
    * The constructor
-   * @param   t     The scalar when the direction Vector hit the Geometry
-   * @param   ray   The Ray that hit the Geometry
+   * @param   t     The scalar when the direction Vector hits the Geometry
+   * @param   ray   The Ray that hits the Geometry
    * @param   geo   The Geometry that has been hit
    */
   public Hit(final double t, final Ray ray, final Geometry geo){
