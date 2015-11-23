@@ -75,4 +75,26 @@ public class CreateImageFrame extends JFrame {
     setJMenuBar(menu);
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    CreateImageFrame that = (CreateImageFrame) o;
+
+    return !(canvas != null ? !canvas.equals(that.canvas) : that.canvas != null);
+
+  }
+
+  @Override
+  public int hashCode() {
+    return canvas != null ? canvas.hashCode() : 0;
+  }
+
+  @Override
+  public String toString() {
+    return "CreateImageFrame{" +
+        "canvas=" + canvas +
+        '}';
+  }
 }

@@ -108,5 +108,14 @@ public class Color {
     result = 31 * result + (int) (temp ^ (temp >>> 32));
     return result;
   }
+
+  @Override
+  public String toString() {
+    return "Color{" +
+        "r=" + r +
+        ", g=" + g +
+        ", b=" + b +
+        '}';
+  }
 }
 

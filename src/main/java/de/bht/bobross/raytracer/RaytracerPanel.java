@@ -5,6 +5,10 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
+/**
+ * @author    Jannik Portz
+ * TODO: Add Comments
+ */
 public class RaytracerPanel extends JPanel {
 
   protected final Raytracer raytracer;

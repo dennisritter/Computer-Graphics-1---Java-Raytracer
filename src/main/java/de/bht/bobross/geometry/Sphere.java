@@ -81,6 +81,7 @@ public class Sphere extends Geometry
     return result;
   }
 
+  @Override
   public String toString(){
     return "Sphere{" +
         "c=" + c +

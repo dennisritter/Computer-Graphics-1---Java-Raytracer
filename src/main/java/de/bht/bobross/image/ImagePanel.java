@@ -46,4 +46,27 @@ public class ImagePanel extends JPanel {
   public Dimension getImgSize(Image img){
     return new Dimension(img.getWidth(this), img.getHeight(this));
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    ImagePanel that = (ImagePanel) o;
+
+    return !(img != null ? !img.equals(that.img) : that.img != null);
+
+  }
+
+  @Override
+  public int hashCode() {
+    return img != null ? img.hashCode() : 0;
+  }
+
+  @Override
+  public String toString() {
+    return "ImagePanel{" +
+        "img=" + img +
+        '}';
+  }
 }
