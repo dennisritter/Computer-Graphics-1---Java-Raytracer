@@ -29,7 +29,6 @@ public class PerspectiveCamera extends Camera {
 
   @Override
   public Ray rayFor(int w, int h, int x, int y) {
-    final Point3 o = this.e;
     final double tan = Math.tan(angle);
 
     double d1 = x-((w-1)/2);
@@ -39,7 +38,7 @@ public class PerspectiveCamera extends Camera {
     Vector3 vec3 = this.w.mul((-1)*(h/2)/tan);
 
     final Vector3 d = vec1.add(vec2).add(vec3);
-    return new Ray(o, d);
+    return new Ray(e, d.normalized());
   }
 
   @Override

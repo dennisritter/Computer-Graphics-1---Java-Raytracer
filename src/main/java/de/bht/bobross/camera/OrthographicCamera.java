@@ -32,8 +32,8 @@ public class OrthographicCamera extends Camera {
     final Vector3 d = this.w.mul(-1);
     final int a = w / h;
 
-    double d1 = (x-(w-1)/2)/(w-1);
-    double d2 = (y-(h-1)/2)/(h-1);
+    double d1 = ((x-(w-1))/2)/(w-1);
+    double d2 = ((y-(h-1))/2)/(h-1);
     double p1 = d1*s*a;
     double p2 = d2*s;
 

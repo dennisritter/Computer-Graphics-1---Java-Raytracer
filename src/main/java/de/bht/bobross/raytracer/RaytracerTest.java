@@ -24,7 +24,7 @@ import java.awt.Frame;
 public class RaytracerTest {
 
   public static void main ( final String[] args ) {
-    showSphere();
+    showSpheresSmallBig();
   }
 
   public static void showPlane(){
@@ -68,7 +68,7 @@ public class RaytracerTest {
         new Sphere( new Point3(-1, 0, -3), 0.5, new Color(1, 0, 0) ), new Sphere( new Point3(1, 0, -6), 0.5, new Color(1, 0, 0) )
     }, new Color(0, 0, 0) );
     final Camera c = new PerspectiveCamera( new Point3(0, 0, 0), new Vector3(0, 0, -1), new Vector3(0, 1, 0), Math.PI / 4 );
-    final Frame frame = createRaytracerFrame( w, c, 640, 480 );
+    final Frame frame = createRaytracerFrame( w, c, 640,480 );
     frame.setVisible( true );
   }
 
