@@ -29,7 +29,7 @@ public class AxisAlignedBox extends Geometry {
    * @param     run     The right-upper-near corner of the box
    * @param     color   The box' color
    */
-  public AxisAlignedBox ( Point3 lbf, Point3 run, Color color ) {
+  public AxisAlignedBox ( final Point3 lbf, final Point3 run, final Color color ) {
     super( color );
     this.lbf = lbf;
     this.run = run;

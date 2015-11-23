@@ -20,6 +20,7 @@ public class Plane extends Geometry {
 
   /**
    * Constructs a new plane
+   *
    * @param     a         An arbitrary point on the plane
    * @param     n         The plane's normal
    * @param     color     The plane's color

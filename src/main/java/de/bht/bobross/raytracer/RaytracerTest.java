@@ -22,8 +22,9 @@ import java.awt.Container;
 import java.awt.Frame;
 
 /**
+ * Test class displaying various geometries in a raytracer
+ *
  * @author    Jannik Portz
- * TODO: Add Comments
  */
 public class RaytracerTest {
 

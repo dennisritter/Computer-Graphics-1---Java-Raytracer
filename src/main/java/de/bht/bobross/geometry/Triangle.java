@@ -31,7 +31,7 @@ public class Triangle extends Geometry {
    * @param     c     The triangle's third vertex
    * @param     color The triangle's color
    */
-  public Triangle (final Point3 a, final Point3 b, final Point3 c, final Color color) {
+  public Triangle ( final Point3 a, final Point3 b, final Point3 c, final Color color ) {
     super(color);
     this.a = a;
     this.b = b;
@@ -39,7 +39,7 @@ public class Triangle extends Geometry {
   }
 
   @Override
-  public Hit hit (Ray r) {
+  public Hit hit ( final Ray r ) {
     final Mat3x3 m = new Mat3x3(
         a.x-b.x, a.x-c.x, r.d.x,
         a.y-b.y, a.y-c.y, r.d.y,

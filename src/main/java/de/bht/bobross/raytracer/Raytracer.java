@@ -6,23 +6,40 @@ import de.bht.bobross.World;
 import de.bht.bobross.camera.Camera;
 import de.bht.bobross.geometry.Hit;
 
-import java.awt.image.DataBufferInt;
-
 /**
+ * A Raytracer traces rays coming from a camera and returns the closest hit with a Geometry.
+ *
  * @author      Jannik Portz
- * TODO: Add Comments
  */
 public class Raytracer {
 
+  /** The camera whose rays to hit against the geometries */
   public final Camera camera;
+
+  /** The world containing all geometries in the scene */
   public final World world;
 
+  /**
+   * Constructs a new Raytracer with a camera and a world
+   *
+   * @param     camera    The camera whose rays to hit against the geometries
+   * @param     world     The world containing all geometries in the scene
+   */
   public Raytracer ( Camera camera, World world ) {
     this.camera = camera;
     this.world = world;
   }
 
-  public Color traceRay (final int x, final int y, final int width, final int height ) {
+  /**
+   * Traces a ray representing the specified pixel and determines the color of the pixel
+   *
+   * @param     x         The pixel's x coordinate
+   * @param     y         The pixel's y coordinate
+   * @param     width     The image's width
+   * @param     height    The image's height
+   * @return              The color in which the specified pixel shall be displayed
+   */
+  public Color traceRay ( final int x, final int y, final int width, final int height ) {
     if ( x < 0 || x >= width )
       throw new IllegalArgumentException( "Parameter x must be in the range of the image's width." );
 

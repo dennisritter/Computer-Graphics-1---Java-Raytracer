@@ -4,27 +4,23 @@ import de.bht.bobross.Ray;
 
 /**
  * Represents a intersection between a Ray and Geometry
+ *
  * @author Dennis Ritter
  */
 public class Hit {
 
-  /**
-   * The scalar when the direction Vector hit the Geometry
-   */
+  /** The scalar when the direction Vector hit the Geometry */
   public final double t;
 
-  /**
-   * The Ray that hits the Geometry
-   */
+  /** The Ray that hits the Geometry */
   public final Ray ray;
 
-  /**
-   * The Geometry that has been hit
-   */
+  /** The Geometry that has been hit */
   public final Geometry geo;
 
   /**
-   * The constructor
+   * Constructs a new Hit instance with the factor t, the Ray and the Geometry
+   *
    * @param   t     The scalar when the direction Vector hits the Geometry
    * @param   ray   The Ray that hits the Geometry
    * @param   geo   The Geometry that has been hit

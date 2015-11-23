@@ -27,14 +27,14 @@ public class Sphere extends Geometry
    * @param   r       The radius of the new Sphere
    * @param   color   The color of the new Sphere
    */
-  public Sphere(final Point3 c, final double r, Color color){
+  public Sphere( final Point3 c, final double r, final Color color ){
     super(color);
     this.c = c;
     this.r = r;
   }
 
   @Override
-  public Hit hit(Ray r) {
+  public Hit hit( final Ray r ) {
     final double aHelp = r.d.dot(r.d);
     final double bHelp = r.d.dot((r.o.sub(c)).mul(2));
     final double cHelp = (r.o.sub(c).dot(r.o.sub(c))) - this.r * this.r;
