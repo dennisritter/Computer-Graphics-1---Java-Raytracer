@@ -24,7 +24,7 @@ import java.awt.Frame;
 public class RaytracerTest {
 
   public static void main ( final String[] args ) {
-    showTriangle();
+    showSphere();
   }
 
   public static void showPlane(){
@@ -38,7 +38,7 @@ public class RaytracerTest {
 
   public static void showSphere(){
     final World w = new World( new Geometry[] {
-        new Sphere( new Point3(-1,-1,-3), 1, new Color(1, 0, 0) )
+        new Sphere( new Point3(-2.5,-2.5,4), 1, new Color(1, 0, 0) )
     }, new Color(0, 0, 0) );
     final Camera c = new PerspectiveCamera( new Point3(0, 0, 0), new Vector3(0, 0, -1), new Vector3(0, 1, 0), Math.PI / 4 );
     final Frame frame = createRaytracerFrame( w, c, 640, 480 );
