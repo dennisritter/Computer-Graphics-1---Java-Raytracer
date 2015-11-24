@@ -1,6 +1,7 @@
 package de.bht.bobross.geometry;
 
 import de.bht.bobross.Ray;
+import de.bht.bobross.math.Normal3;
 
 /**
  * Represents a intersection between a Ray and Geometry
@@ -18,6 +19,9 @@ public class Hit {
   /** The Geometry that has been hit */
   public final Geometry geo;
 
+  /** The Normal of the intersection */
+  public final Normal3 normal;
+
   /**
    * Constructs a new Hit instance with the factor t, the Ray and the Geometry
    *
@@ -25,10 +29,11 @@ public class Hit {
    * @param   ray   The Ray that hits the Geometry
    * @param   geo   The Geometry that has been hit
    */
-  public Hit(final double t, final Ray ray, final Geometry geo){
+  public Hit(final double t, final Ray ray, final Geometry geo, final Normal3 normal){
     this.t = t;
     this.ray = ray;
     this.geo = geo;
+    this.normal = normal;
   }
 
   @Override
