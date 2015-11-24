@@ -2,7 +2,11 @@ package de.bht.bobross.geometry;
 
 import de.bht.bobross.Color;
 import de.bht.bobross.Ray;
+import de.bht.bobross.math.Normal3;
 import de.bht.bobross.math.Point3;
+import de.bht.bobross.math.Vector3;
+
+import java.util.Vector;
 
 /**
  * Represents a circle in a three-dimensional room.
@@ -49,14 +53,21 @@ public class Sphere extends Geometry
     final double t1 = ( -1 * bHelp + Math.sqrt(dHelp) ) / 2 * aHelp;
     final double t2 = ( -1 * bHelp - Math.sqrt(dHelp) ) / 2 * aHelp;
 
-    if(t1 < 0){
-      return new Hit(t2, r, this);
-    }
-    if(t2 < 0){
-      return new Hit(t1, r, this);
+    double t;
+
+    if (t1 < 0) {
+      t = t2;
+    } else if (t2 < 0){
+      t = t1;
+    } else {
+      t = Math.min(t1,t2);
     }
 
-    return new Hit(Math.min(t1 ,t2), r, this);
+    final Point3 pr = r.at(t);
+    final Vector3 prc = pr.sub(c);
+    final Normal3 n = prc.asNormal();
+
+    return new Hit(t, r, this, n);
   }
 
   @Override
