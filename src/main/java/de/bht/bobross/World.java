@@ -2,6 +2,7 @@ package de.bht.bobross;
 
 import de.bht.bobross.geometry.Geometry;
 import de.bht.bobross.geometry.Hit;
+import de.bht.bobross.light.Light;
 
 import java.util.Arrays;
 
@@ -11,6 +12,9 @@ import java.util.Arrays;
  * @author      Jannik Portz
  */
 public class World {
+
+  /** Collection of all light sources in the world */
+  public final Light[] lights;
 
   /** Collection of geometries in the world */
   public final Geometry[] objects;
@@ -24,8 +28,9 @@ public class World {
    * @param     objects     Array of geometries that this world contains
    * @param     backgroundColor The world's background color
    */
-  public World ( Geometry[] objects, Color backgroundColor ) {
+  public World ( final Geometry[] objects, final Light[] lights, final Color backgroundColor ) {
     this.objects = objects;
+    this.lights = lights;
     this.backgroundColor = backgroundColor;
   }
 
@@ -57,7 +62,6 @@ public class World {
     // Probably incorrect - comparing Object[] arrays with Arrays.equals
     if (!Arrays.equals(objects, world.objects)) return false;
     return !(backgroundColor != null ? !backgroundColor.equals(world.backgroundColor) : world.backgroundColor != null);
-
   }
 
   @Override
