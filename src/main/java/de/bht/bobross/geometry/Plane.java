@@ -25,7 +25,7 @@ public class Plane extends Geometry {
    * @param     n         The plane's normal
    * @param     color     The plane's color
    */
-  public Plane(final Point3 a, final Normal3 n, final Color color){
+  public Plane ( final Point3 a, final Normal3 n, final Color color ) {
     super(color);
     this.a = a;
     this.n = n;
@@ -39,7 +39,7 @@ public class Plane extends Geometry {
 
     double t = n.dot(a.sub(r.o))/n.dot(r.d);
 
-    return new Hit(t, r, this);
+    return new Hit(t, r, this, n);
   }
 
   @Override
