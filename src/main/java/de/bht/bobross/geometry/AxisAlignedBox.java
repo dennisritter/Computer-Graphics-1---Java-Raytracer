@@ -2,6 +2,7 @@ package de.bht.bobross.geometry;
 
 import de.bht.bobross.Color;
 import de.bht.bobross.Ray;
+import de.bht.bobross.material.Material;
 import de.bht.bobross.math.Normal3;
 import de.bht.bobross.math.Point3;
 
@@ -25,12 +26,12 @@ public class AxisAlignedBox extends Geometry {
 
   /**
    * Constructs a new axis-aligned-box
-   * @param     lbf     The low-bottom-far corner of the box
-   * @param     run     The right-upper-near corner of the box
-   * @param     color   The box' color
+   * @param     lbf        The low-bottom-far corner of the box
+   * @param     run        The right-upper-near corner of the box
+   * @param     material   The box' Material
    */
-  public AxisAlignedBox ( final Point3 lbf, final Point3 run, final Color color ) {
-    super( color );
+  public AxisAlignedBox ( final Point3 lbf, final Point3 run, final Material material) {
+    super( material );
     this.lbf = lbf;
     this.run = run;
 
