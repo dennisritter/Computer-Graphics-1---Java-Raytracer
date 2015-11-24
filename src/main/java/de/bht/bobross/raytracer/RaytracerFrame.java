@@ -14,10 +14,23 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * JFrame containing a RaytracerPanel and save functionality
+ *
+ * @author      Jannik Portz
+ */
 public class RaytracerFrame extends JFrame {
 
+  /** The RaytracerPanel containing the raytraced image */
   protected final RaytracerPanel panel;
 
+  /**
+   * Constructs a new RaytracerFrame with a raytracer and image dimensions
+   *
+   * @param     r         The raytracer used to trace the scene
+   * @param     width     The image's width
+   * @param     height    The image's height
+   */
   public RaytracerFrame ( final Raytracer r, final int width, final int height ) {
     this.panel = new RaytracerPanel( r, width, height );
 
@@ -31,6 +44,9 @@ public class RaytracerFrame extends JFrame {
     createMenu();
   }
 
+  /**
+   * Creates a JMenu providing save functionality
+   */
   public void createMenu(){
     final JMenuBar menu = new JMenuBar();
     final JMenu file = new JMenu ("Datei");
