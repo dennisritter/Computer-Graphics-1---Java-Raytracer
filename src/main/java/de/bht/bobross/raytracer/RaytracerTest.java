@@ -15,10 +15,6 @@ import de.bht.bobross.math.Point3;
 import de.bht.bobross.math.Vector3;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
-import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.Frame;
 
 /**
@@ -92,17 +88,7 @@ public class RaytracerTest {
   }
 
   public static JFrame createRaytracerFrame (final World w, final Camera c, final int width, final int height ) {
-    final JFrame f = new JFrame();
-    f.setSize( width, height );
-    f.setDefaultCloseOperation( WindowConstants.EXIT_ON_CLOSE );
-    f.setTitle( "Bob Ross Raytracer" );
-    final Container container = f.getContentPane();
-    container.setLayout( new BorderLayout() );
-
-    final JPanel panel = new RaytracerPanel( new Raytracer( c, w ), width, height );
-    container.add( panel, BorderLayout.CENTER );
-
-    return f;
+    return new RaytracerFrame( new Raytracer( c, w ), width, height );
   }
 
 }

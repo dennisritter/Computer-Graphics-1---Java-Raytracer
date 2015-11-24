@@ -55,4 +55,13 @@ public class RaytracerPanel extends JPanel {
 
     g.drawImage( image, 0, 0, this );
   }
+
+  /**
+   * Returns the image containing the pixels
+   *
+   * @return    The image to draw on
+   */
+  public BufferedImage getImage () {
+    return image;
+  }
 }
