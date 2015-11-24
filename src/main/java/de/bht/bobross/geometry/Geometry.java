@@ -2,6 +2,7 @@ package de.bht.bobross.geometry;
 
 import de.bht.bobross.Color;
 import de.bht.bobross.Ray;
+import de.bht.bobross.material.Material;
 
 /**
  * Abstraction of a geometric object
@@ -10,15 +11,15 @@ import de.bht.bobross.Ray;
  */
 public abstract class Geometry {
 
-  /** The Geometrie's color  */
-  public final Color color;
+  /** The Geometrie's material   */
+  public final Material material;
 
   /**
    * The constructor
-   * @param   color   The Color of this Geometry
+   * @param   material  The Material of this Geometry
    */
-  public Geometry ( final Color color ) {
-    this.color = color;
+  public Geometry ( final Material material ) {
+    this.material = material;
   }
 
   /**
@@ -37,12 +38,12 @@ public abstract class Geometry {
 
     Geometry geometry = (Geometry) o;
 
-    return color.equals(geometry.color);
+    return material.equals(geometry.material);
 
   }
 
   @Override
   public int hashCode() {
-    return color.hashCode();
+    return material.hashCode();
   }
 }
