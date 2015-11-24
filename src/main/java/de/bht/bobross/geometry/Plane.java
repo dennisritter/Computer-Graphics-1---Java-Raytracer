@@ -39,7 +39,7 @@ public class Plane extends Geometry {
 
     double t = n.dot(a.sub(r.o))/n.dot(r.d);
 
-    return new Hit(t, r, this);
+    return new Hit(t, r, this, n);
   }
 
   @Override
