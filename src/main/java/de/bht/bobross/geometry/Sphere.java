@@ -2,6 +2,7 @@ package de.bht.bobross.geometry;
 
 import de.bht.bobross.Color;
 import de.bht.bobross.Ray;
+import de.bht.bobross.material.Material;
 import de.bht.bobross.math.Normal3;
 import de.bht.bobross.math.Point3;
 import de.bht.bobross.math.Vector3;
@@ -27,12 +28,12 @@ public class Sphere extends Geometry
 
   /**
    * Constructs a new Sphere
-   * @param   c       The center of the new Sphere
-   * @param   r       The radius of the new Sphere
-   * @param   color   The color of the new Sphere
+   * @param   c          The center of the new Sphere
+   * @param   r          The radius of the new Sphere
+   * @param   material   The color of the new Sphere
    */
-  public Sphere( final Point3 c, final double r, final Color color ){
-    super(color);
+  public Sphere( final Point3 c, final double r, final Material material ){
+    super(material);
     this.c = c;
     this.r = r;
   }
@@ -97,7 +98,7 @@ public class Sphere extends Geometry
     return "Sphere{" +
         "c=" + c +
         ", r=" + r +
-        ", color=" + color +
+        ", material=" + material +
         "} " + super.toString();
   }
 }

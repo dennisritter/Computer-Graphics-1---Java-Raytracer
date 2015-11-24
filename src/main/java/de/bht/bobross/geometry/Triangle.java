@@ -2,6 +2,7 @@ package de.bht.bobross.geometry;
 
 import de.bht.bobross.Color;
 import de.bht.bobross.Ray;
+import de.bht.bobross.material.Material;
 import de.bht.bobross.math.Mat3x3;
 import de.bht.bobross.math.Normal3;
 import de.bht.bobross.math.Point3;
@@ -36,18 +37,18 @@ public class Triangle extends Geometry {
   /**
    * Constructs a new triangle with its vertices and color
    *
-   * @param     a       The triangle's first vertex
-   * @param     b       The triangle's second vertex
-   * @param     c       The triangle's third vertex
-   * @param     color   The triangle's color
-   * @param     aNormal The Normal of the triangle's first vertex
-   * @param     bNormal The Normal of the triangle's second vertex
-   * @param     cNormal The Normal of the triangle's third vertex
+   * @param     a         The triangle's first vertex
+   * @param     b         The triangle's second vertex
+   * @param     c         The triangle's third vertex
+   * @param     material  The material of the triangle
+   * @param     aNormal   The Normal of the triangle's first vertex
+   * @param     bNormal   The Normal of the triangle's second vertex
+   * @param     cNormal   The Normal of the triangle's third vertex
    */
   public Triangle ( final Point3 a, final Point3 b, final Point3 c,
                     final Normal3 aNormal, final Normal3 bNormal, final Normal3 cNormal,
-                    final Color color ) {
-    super(color);
+                    final Material material ) {
+    super(material);
     this.a = a;
     this.b = b;
     this.c = c;
@@ -55,6 +56,15 @@ public class Triangle extends Geometry {
     this.bNormal = bNormal;
     this.cNormal = aNormal;
   }
+
+  public Triangle ( final Point3 a, final Point3 b, final Point3 c, final Material material) {
+    super(material);
+    this.a = a;
+    this.b = b;
+    this.c = c;
+    aNormal = bNormal = cNormal = (b.sub(a).x(c.sub(a))).asNormal();
+  }
+
 
   @Override
   public Hit hit ( final Ray r ) {
@@ -90,6 +100,18 @@ public class Triangle extends Geometry {
   }
 
   @Override
+  public String toString() {
+    return "Triangle{" +
+        "a=" + a +
+        ", b=" + b +
+        ", c=" + c +
+        ", aNormal=" + aNormal +
+        ", bNormal=" + bNormal +
+        ", cNormal=" + cNormal +
+        '}';
+  }
+
+  @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
@@ -99,7 +121,10 @@ public class Triangle extends Geometry {
 
     if (a != null ? !a.equals(triangle.a) : triangle.a != null) return false;
     if (b != null ? !b.equals(triangle.b) : triangle.b != null) return false;
-    return !(c != null ? !c.equals(triangle.c) : triangle.c != null);
+    if (c != null ? !c.equals(triangle.c) : triangle.c != null) return false;
+    if (aNormal != null ? !aNormal.equals(triangle.aNormal) : triangle.aNormal != null) return false;
+    if (bNormal != null ? !bNormal.equals(triangle.bNormal) : triangle.bNormal != null) return false;
+    return !(cNormal != null ? !cNormal.equals(triangle.cNormal) : triangle.cNormal != null);
 
   }
 
@@ -109,16 +134,9 @@ public class Triangle extends Geometry {
     result = 31 * result + (a != null ? a.hashCode() : 0);
     result = 31 * result + (b != null ? b.hashCode() : 0);
     result = 31 * result + (c != null ? c.hashCode() : 0);
+    result = 31 * result + (aNormal != null ? aNormal.hashCode() : 0);
+    result = 31 * result + (bNormal != null ? bNormal.hashCode() : 0);
+    result = 31 * result + (cNormal != null ? cNormal.hashCode() : 0);
     return result;
-  }
-
-  @Override
-  public String toString() {
-    return "Triangle{" +
-        "a=" + a +
-        ", b=" + b +
-        ", c=" + c +
-        ", color=" + color +
-        "} " + super.toString();
   }
 }
