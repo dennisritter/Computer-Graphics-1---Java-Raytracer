@@ -5,6 +5,7 @@ import de.bht.bobross.Ray;
 import de.bht.bobross.World;
 import de.bht.bobross.camera.Camera;
 import de.bht.bobross.geometry.Hit;
+import de.bht.bobross.material.Material;
 
 /**
  * A Raytracer traces rays coming from a camera and returns the closest hit with a Geometry.
@@ -52,7 +53,7 @@ public class Raytracer {
     if ( h == null || h.t <= 0 )
       return world.backgroundColor;
 
-    return h.geo.color;
+    return h.geo.material.colorFor(h, world);
   }
 
   @Override
