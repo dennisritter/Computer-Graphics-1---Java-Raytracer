@@ -10,6 +10,7 @@ import de.bht.bobross.geometry.Geometry;
 import de.bht.bobross.geometry.Plane;
 import de.bht.bobross.geometry.Sphere;
 import de.bht.bobross.geometry.Triangle;
+import de.bht.bobross.material.SingleColorMaterial;
 import de.bht.bobross.math.Normal3;
 import de.bht.bobross.math.Point3;
 import de.bht.bobross.math.Vector3;
@@ -35,7 +36,7 @@ public class RaytracerTest {
 
   public static void showPlane(){
     final World w = new World( new Geometry[] {
-        new Plane( new Point3(0, -1, 0), new Normal3(0, 1, 0), new Color(0, 1, 0) )
+        new Plane( new Point3(0, -1, 0), new Normal3(0, 1, 0), new SingleColorMaterial (new Color(0, 1, 0)) )
     }, new Color(0, 0, 0) );
     final Camera c = new PerspectiveCamera( new Point3(0, 0, 0), new Vector3(0, 0, -1), new Vector3(0, 1, 0), Math.PI / 4 );
     final Frame frame = createRaytracerFrame( w, c, 640, 480 );
@@ -44,7 +45,7 @@ public class RaytracerTest {
 
   public static void showSphere(){
     final World w = new World( new Geometry[] {
-        new Sphere( new Point3(0,0,-3), 0.5, new Color(1, 0, 0) )
+        new Sphere( new Point3(0,0,-3), 0.5, new SingleColorMaterial (new Color(1, 0, 0)) )
     }, new Color(0, 0, 0) );
     final Camera c = new PerspectiveCamera( new Point3(0, 0, 0), new Vector3(0, 0, -1), new Vector3(0, 1, 0), Math.PI / 4 );
     final Frame frame = createRaytracerFrame( w, c, 640, 480 );
@@ -53,7 +54,7 @@ public class RaytracerTest {
 
   public static void showBox(){
     final World w = new World( new Geometry[] {
-        new AxisAlignedBox( new Point3(-0.5, 0, -0.5), new Point3(0.5, 1, 0.5), new Color(0, 0, 1) )
+        new AxisAlignedBox( new Point3(-0.5, 0, -0.5), new Point3(0.5, 1, 0.5), new SingleColorMaterial (new Color(0, 0, 1)) )
     }, new Color(0, 0, 0) );
     final Camera c = new PerspectiveCamera( new Point3(3, 3, 3), new Vector3(-3, -3, -3), new Vector3(0, 1, 0), Math.PI / 4 );
     final Frame frame = createRaytracerFrame( w, c, 640, 480 );
@@ -62,7 +63,7 @@ public class RaytracerTest {
 
   public static void showTriangle(){
     final World w = new World( new Geometry[] {
-        new Triangle( new Point3(-.5, .5, -3), new Point3(.5, .5, -3), new Point3(.5, -.5, -3), new Color(1, 0, 1) )
+        new Triangle( new Point3(-.5, .5, -3), new Point3(.5, .5, -3), new Point3(.5, -.5, -3), new SingleColorMaterial (new Color(1, 0, 1)) )
     }, new Color(0, 0, 0) );
     final Camera c = new PerspectiveCamera( new Point3(0, 0, 0), new Vector3(0, 0, -1), new Vector3(0, 1, 0), Math.PI / 4 );
     final Frame frame = createRaytracerFrame( w, c, 640, 480 );
@@ -71,7 +72,7 @@ public class RaytracerTest {
 
   public static void showSpheresSmallBig(){
     final World w = new World( new Geometry[] {
-        new Sphere( new Point3(-1, 0, -3), 0.5, new Color(1, 0, 0) ), new Sphere( new Point3(1, 0, -6), 0.5, new Color(1, 0, 0) )
+        new Sphere( new Point3(-1, 0, -3), 0.5, new SingleColorMaterial (new Color(1, 0, 0)) ), new Sphere( new Point3(1, 0, -6), 0.5, new SingleColorMaterial (new Color(1, 0, 0)) )
     }, new Color(0, 0, 0) );
     final Camera c = new PerspectiveCamera( new Point3(0, 0, 0), new Vector3(0, 0, -1), new Vector3(0, 1, 0), Math.PI / 4 );
     final Frame frame = createRaytracerFrame( w, c, 640,480 );
@@ -80,7 +81,7 @@ public class RaytracerTest {
 
   public static void showSpheresSmallBigOrthographic () {
     final World w = new World( new Geometry[] {
-        new Sphere( new Point3(-1, 0, -3), 0.5, new Color(1, 0, 0) ), new Sphere( new Point3(1, 0, -6), 0.5, new Color(1, 0, 0) )
+        new Sphere( new Point3(-1, 0, -3), 0.5, new SingleColorMaterial (new Color(1, 0, 0)) ), new Sphere( new Point3(1, 0, -6), 0.5, new SingleColorMaterial (new  Color(1, 0, 0)) )
     }, new Color(0, 0, 0) );
     final Camera c = new OrthographicCamera( new Point3(0,0,0), new Vector3(0,0,-1), new Vector3(0,1,0), 3 );
     final Frame frame = createRaytracerFrame( w, c, 640, 480 );
