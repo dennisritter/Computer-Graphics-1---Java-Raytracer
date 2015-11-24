@@ -22,16 +22,22 @@ public class World {
   /** The world's background color */
   public final Color backgroundColor;
 
+  /** The world's ambient light color */
+  public final Color ambientLightColor;
+
   /**
    * Constructs a new world
    *
-   * @param     objects     Array of geometries that this world contains
+   * @param     objects         Array of geometries that this world contains
+   * @param     lights          Array of lights that this world contains
    * @param     backgroundColor The world's background color
+   * @param     ambientLightColor The color of the ambient light
    */
-  public World ( final Geometry[] objects, final Light[] lights, final Color backgroundColor ) {
+  public World ( final Geometry[] objects, final Light[] lights, final Color backgroundColor, final Color ambientLightColor ) {
     this.objects = objects;
     this.lights = lights;
     this.backgroundColor = backgroundColor;
+    this.ambientLightColor = ambientLightColor;
   }
 
   /**
