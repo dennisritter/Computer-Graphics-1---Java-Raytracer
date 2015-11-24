@@ -3,6 +3,7 @@ package de.bht.bobross.geometry;
 import de.bht.bobross.Color;
 import de.bht.bobross.Ray;
 import de.bht.bobross.material.Material;
+import de.bht.bobross.material.SingleColorMaterial;
 import de.bht.bobross.math.Normal3;
 import de.bht.bobross.math.Point3;
 
@@ -35,15 +36,13 @@ public class AxisAlignedBox extends Geometry {
     this.lbf = lbf;
     this.run = run;
 
-    final Color c = new Color( 0, 0, 0 );
-
     this.planes = new Plane[] {
-        new Plane( run, new Normal3( 0, 1, 0 ), c ),
-        new Plane( run, new Normal3( 1, 0, 0 ), c ),
-        new Plane( lbf, new Normal3( 0, -1, 0 ), c ),
-        new Plane( lbf, new Normal3( -1, 0, 0 ), c ),
-        new Plane( run, new Normal3( 0, 0, 1 ), c ),
-        new Plane( lbf, new Normal3( 0, 0, -1 ), c ),
+        new Plane( run, new Normal3( 0, 1, 0 ), this.material ),
+        new Plane( run, new Normal3( 1, 0, 0 ), this.material ),
+        new Plane( lbf, new Normal3( 0, -1, 0 ), this.material ),
+        new Plane( lbf, new Normal3( -1, 0, 0 ), this.material ),
+        new Plane( run, new Normal3( 0, 0, 1 ), this.material ),
+        new Plane( lbf, new Normal3( 0, 0, -1 ), this.material ),
     };
   }
 
