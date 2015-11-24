@@ -2,6 +2,7 @@ package de.bht.bobross.geometry;
 
 import de.bht.bobross.Ray;
 import de.bht.bobross.math.Normal3;
+import de.bht.bobross.math.Point3;
 
 /**
  * Represents a intersection between a Ray and Geometry
@@ -36,6 +37,15 @@ public class Hit {
     this.normal = normal;
   }
 
+  /**
+   * Returns the point at which the ray has hit the geometry
+   *
+   * @return    The point at which the ray has hit the geometry
+   */
+  public Point3 getPoint () {
+    return ray.at( t );
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -46,7 +56,6 @@ public class Hit {
     if (Double.compare(hit.t, t) != 0) return false;
     if (!ray.equals(hit.ray)) return false;
     return geo.equals(hit.geo);
-
   }
 
   @Override
