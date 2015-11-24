@@ -2,6 +2,7 @@ package de.bht.bobross.geometry;
 
 import de.bht.bobross.Color;
 import de.bht.bobross.Ray;
+import de.bht.bobross.material.Material;
 import de.bht.bobross.math.Normal3;
 import de.bht.bobross.math.Point3;
 
@@ -21,12 +22,12 @@ public class Plane extends Geometry {
   /**
    * Constructs a new plane
    *
-   * @param     a         An arbitrary point on the plane
-   * @param     n         The plane's normal
-   * @param     color     The plane's color
+   * @param     a           An arbitrary point on the plane
+   * @param     n           The plane's normal
+   * @param     material    The plane's material
    */
-  public Plane ( final Point3 a, final Normal3 n, final Color color ) {
-    super(color);
+  public Plane ( final Point3 a, final Normal3 n, final Material material ) {
+    super(material);
     this.a = a;
     this.n = n;
   }
@@ -67,7 +68,7 @@ public class Plane extends Geometry {
     return "Plane{" +
         "a=" + a +
         ", n=" + n +
-        ", color=" + color +
+        ", material=" + material +
         "} " + super.toString();
   }
 }
