@@ -79,7 +79,7 @@ public class AxisAlignedBox extends Geometry {
     if ( mp.n.z == 0 && lbf.z > p.z || p.z > run.z )
       return null;
 
-    return new Hit ( minT, r, this );
+    return new Hit ( minT, r, this, mp.n );
   }
 
   @Override
