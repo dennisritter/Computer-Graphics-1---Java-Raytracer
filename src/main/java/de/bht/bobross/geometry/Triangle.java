@@ -3,6 +3,7 @@ package de.bht.bobross.geometry;
 import de.bht.bobross.Color;
 import de.bht.bobross.Ray;
 import de.bht.bobross.math.Mat3x3;
+import de.bht.bobross.math.Normal3;
 import de.bht.bobross.math.Point3;
 import de.bht.bobross.math.Vector3;
 
@@ -23,19 +24,36 @@ public class Triangle extends Geometry {
   /** The triangle's third vertex */
   public final Point3 c;
 
+  /** The Normal of the triangle's first vertex */
+  public final Normal3 aNormal;
+
+  /** The Normal of the triangle's second vertex */
+  public final Normal3 bNormal;
+
+  /** The Normal of the triangle's third vertex */
+  public final Normal3 cNormal;
+
   /**
    * Constructs a new triangle with its vertices and color
    *
-   * @param     a     The triangle's first vertex
-   * @param     b     The triangle's second vertex
-   * @param     c     The triangle's third vertex
-   * @param     color The triangle's color
+   * @param     a       The triangle's first vertex
+   * @param     b       The triangle's second vertex
+   * @param     c       The triangle's third vertex
+   * @param     color   The triangle's color
+   * @param     aNormal The Normal of the triangle's first vertex
+   * @param     bNormal The Normal of the triangle's second vertex
+   * @param     cNormal The Normal of the triangle's third vertex
    */
-  public Triangle ( final Point3 a, final Point3 b, final Point3 c, final Color color ) {
+  public Triangle ( final Point3 a, final Point3 b, final Point3 c,
+                    final Normal3 aNormal, final Normal3 bNormal, final Normal3 cNormal,
+                    final Color color ) {
     super(color);
     this.a = a;
     this.b = b;
     this.c = c;
+    this.aNormal = aNormal;
+    this.bNormal = bNormal;
+    this.cNormal = aNormal;
   }
 
   @Override
@@ -65,7 +83,10 @@ public class Triangle extends Geometry {
     if ( gamma + beta > 1 )
       return null;
 
-    return new Hit( t, r, this );
+    final double alpha = 1 - gamma + beta;
+    final Normal3 normal = aNormal.mul(alpha).add(bNormal.mul(beta)).add(cNormal.mul(gamma));
+
+    return new Hit( t, r, this, normal );
   }
 
   @Override
