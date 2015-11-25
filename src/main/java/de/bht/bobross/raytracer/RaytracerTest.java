@@ -36,7 +36,7 @@ public class RaytracerTest {
   static final Color RED = new Color (1, 0, 0);
   static final Color BLUE = new Color (0, 0, 1);
   static final Color GREEN = new Color (0, 1, 0);
-  static final Color YELLOW = new Color (0, 0, 0); // wie geht yellow??
+  static final Color YELLOW = new Color (1, 1, 0);
   static final Color WHITE = new Color (1, 1, 1);
 
   static final Point3 CAM_POSITION = new Point3(4,4,4);
