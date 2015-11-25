@@ -47,9 +47,6 @@ public class RaytracerTest {
 
   public static void main ( final String[] args ) {
     singleColor();
-    pointLightLambert();
-    pointLightPhong();
-    dirLightPhong();
   }
 
   public static void singleColor(){
