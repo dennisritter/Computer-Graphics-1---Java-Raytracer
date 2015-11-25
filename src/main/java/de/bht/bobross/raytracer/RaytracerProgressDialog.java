@@ -13,6 +13,7 @@ import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -73,8 +74,8 @@ public class RaytracerProgressDialog extends JDialog implements ActionListener {
     final Raytracer.RaytracerProgressEvent e = (Raytracer.RaytracerProgressEvent) ae;
     final Raytracer.RaytracerCommands cmd = Raytracer.RaytracerCommands.valueOf( e.getActionCommand() );
 
-    //if ( cmd == Raytracer.RaytracerCommands.FINISHED )
-    //  dispatchEvent( new WindowEvent( this, WindowEvent.WINDOW_CLOSING ) );
+    if ( cmd == Raytracer.RaytracerCommands.FINISHED )
+      dispatchEvent( new WindowEvent( this, WindowEvent.WINDOW_CLOSING ) );
 
     handleProgress( e.progress );
   }
