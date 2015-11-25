@@ -19,8 +19,13 @@ public class SpotLight extends Light {
 
   @Override
   public boolean illuminates(Point3 point) {
+    double angle = Math.cos(direction.dot(directionFrom(point)));
+    System.out.println(halfAngle);
+    System.out.println(angle);
+    if (angle > halfAngle){
+      return false;
+    }
     return true;
-    //TODO: Implement...
   }
 
   @Override
