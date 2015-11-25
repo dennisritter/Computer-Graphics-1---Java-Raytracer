@@ -97,6 +97,13 @@ public class Raytracer {
         if ( i % progressInterval == 0 ) {
           notifyActionListeners( new RaytracerProgress( i, totalPixels ), RaytracerCommands.PROGRESS );
         }
+        try {
+          if ( i % 50 == 0 ) {
+            Thread.sleep(1);
+          }
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
       }
     }
 
