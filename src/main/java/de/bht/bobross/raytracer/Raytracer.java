@@ -166,14 +166,27 @@ public class Raytracer {
 
     Raytracer raytracer = (Raytracer) o;
 
-    if (camera != null ? !camera.equals(raytracer.camera) : raytracer.camera != null) return false;
-    return !(world != null ? !world.equals(raytracer.world) : raytracer.world != null);
+    if (width != raytracer.width) return false;
+    if (height != raytracer.height) return false;
+    if (progressInterval != raytracer.progressInterval) return false;
+    if (started != raytracer.started) return false;
+    if (!camera.equals(raytracer.camera)) return false;
+    if (!world.equals(raytracer.world)) return false;
+    if (!image.equals(raytracer.image)) return false;
+    return actionListeners.equals(raytracer.actionListeners);
+
   }
 
   @Override
   public int hashCode() {
-    int result = camera != null ? camera.hashCode() : 0;
-    result = 31 * result + (world != null ? world.hashCode() : 0);
+    int result = camera.hashCode();
+    result = 31 * result + world.hashCode();
+    result = 31 * result + image.hashCode();
+    result = 31 * result + width;
+    result = 31 * result + height;
+    result = 31 * result + actionListeners.hashCode();
+    result = 31 * result + progressInterval;
+    result = 31 * result + (int) (started ^ (started >>> 32));
     return result;
   }
 
@@ -182,6 +195,12 @@ public class Raytracer {
     return "Raytracer{" +
         "camera=" + camera +
         ", world=" + world +
+        ", image=" + image +
+        ", width=" + width +
+        ", height=" + height +
+        ", actionListeners=" + actionListeners +
+        ", progressInterval=" + progressInterval +
+        ", started=" + started +
         '}';
   }
 
