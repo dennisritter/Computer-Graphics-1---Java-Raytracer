@@ -44,6 +44,7 @@ public class RaytracerTest {
     pointLightPhong();
     dirLightPhong();
     SpotLightPhong();
+  }
 
   public static void singleColor(){
 
