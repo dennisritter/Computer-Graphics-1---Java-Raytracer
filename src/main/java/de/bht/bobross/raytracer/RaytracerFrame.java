@@ -28,19 +28,16 @@ public class RaytracerFrame extends JFrame {
    * Constructs a new RaytracerFrame with a raytracer and image dimensions
    *
    * @param     r         The raytracer used to trace the scene
-   * @param     width     The image's width
-   * @param     height    The image's height
    */
-  public RaytracerFrame ( final Raytracer r, final int width, final int height ) {
-    this.panel = new RaytracerPanel( r, width, height );
+  public RaytracerFrame ( final Raytracer r ) {
+    this.panel = new RaytracerPanel( r );
 
-    setSize( width, height );
-    setDefaultCloseOperation( WindowConstants.DISPOSE_ON_CLOSE );
+    setSize( r.width, r.height );
+    setDefaultCloseOperation( WindowConstants.EXIT_ON_CLOSE );
     setTitle( "Bob Ross Raytracer" );
     final Container container = getContentPane();
     container.setLayout( new BorderLayout() );
     container.add( panel, BorderLayout.CENTER );
-
     createMenu();
   }
 
@@ -73,4 +70,7 @@ public class RaytracerFrame extends JFrame {
     setJMenuBar(menu);
   }
 
+  public void drawImage () {
+    panel.drawImage();
+  }
 }

@@ -1,13 +1,10 @@
 package de.bht.bobross.geometry;
 
-import de.bht.bobross.Color;
 import de.bht.bobross.Ray;
 import de.bht.bobross.material.Material;
 import de.bht.bobross.math.Normal3;
 import de.bht.bobross.math.Point3;
 import de.bht.bobross.math.Vector3;
-
-import java.util.Vector;
 
 /**
  * Represents a circle in a three-dimensional room.

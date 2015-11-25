@@ -20,14 +20,6 @@ import de.bht.bobross.math.Normal3;
 import de.bht.bobross.math.Point3;
 import de.bht.bobross.math.Vector3;
 
-import javax.swing.JFrame;
-import java.awt.Frame;
-
-/**
- * Test class displaying various geometries in a raytracer
- *
- * @author    Jannik Portz
- */
 public class RaytracerTest {
 
   static final int WIDTH = 640;
@@ -44,10 +36,14 @@ public class RaytracerTest {
 
   static final PointLight POINTLIGHT = new PointLight(WHITE, CAM_POSITION);
   static final DirectionalLight DIRLIGHT = new DirectionalLight(WHITE, CAM_DIRECTION);
+  static final SpotLight SPOTLIGHT = new SpotLight(WHITE, CAM_POSITION, CAM_DIRECTION, Math.PI/14);
 
   public static void main ( final String[] args ) {
     singleColor();
-  }
+    pointLightLambert();
+    pointLightPhong();
+    dirLightPhong();
+    SpotLightPhong();
 
   public static void singleColor(){
 
@@ -59,8 +55,9 @@ public class RaytracerTest {
     final Camera c = new PerspectiveCamera( CAM_POSITION, new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI/4);
     final World w = new World( new Geometry[] {aab, plane, sphere, triangle}, new Light[] { POINTLIGHT }, WHITE, WHITE);
 
-    final Frame frame = createRaytracerFrame(w, c, WIDTH, HEIGHT);
+    final RaytracerFrame frame = createRaytracerFrame(w, c, WIDTH, HEIGHT);
     frame.setVisible(true);
+    frame.drawImage();
   }
 
   public static void pointLightLambert(){
@@ -73,8 +70,9 @@ public class RaytracerTest {
     final Camera c = new PerspectiveCamera( CAM_POSITION, new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI/4);
     final World w = new World( new Geometry[] {aab, plane, sphere, triangle}, new Light[] { POINTLIGHT }, WHITE, WHITE);
 
-    final Frame frame = createRaytracerFrame(w, c, WIDTH, HEIGHT);
+    final RaytracerFrame frame = createRaytracerFrame(w, c, WIDTH, HEIGHT);
     frame.setVisible(true);
+    frame.drawImage();
   }
 
   public static void pointLightPhong(){
@@ -87,8 +85,9 @@ public class RaytracerTest {
     final Camera c = new PerspectiveCamera( CAM_POSITION, new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI/4);
     final World w = new World( new Geometry[] {aab, plane, sphere, triangle}, new Light[] { POINTLIGHT }, WHITE, WHITE);
 
-    final Frame frame = createRaytracerFrame(w, c, WIDTH, HEIGHT);
+    final RaytracerFrame frame = createRaytracerFrame(w, c, WIDTH, HEIGHT);
     frame.setVisible(true);
+    frame.drawImage();
   }
 
   public static void dirLightPhong(){
@@ -101,12 +100,27 @@ public class RaytracerTest {
     final Camera c = new PerspectiveCamera( CAM_POSITION, new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI/4);
     final World w = new World( new Geometry[] {aab, plane, sphere, triangle}, new Light[] { DIRLIGHT }, WHITE, WHITE);
 
-    final Frame frame = createRaytracerFrame(w, c, WIDTH, HEIGHT);
+    final RaytracerFrame frame = createRaytracerFrame(w, c, WIDTH, HEIGHT);
     frame.setVisible(true);
+    frame.drawImage();
   }
 
-  public static JFrame createRaytracerFrame (final World w, final Camera c, final int width, final int height ) {
-    return new RaytracerFrame( new Raytracer( c, w ), width, height );
+  public static void SpotLightPhong(){
+
+    final AxisAlignedBox aab = new AxisAlignedBox( new Point3(-1.5, 0.5, 0.5), new Point3(-0.5, 1.5, 1.5), new PhongMaterial(BLUE, WHITE, 64) );
+    final Plane plane =  new Plane( new Point3(0, 0, 0), new Normal3(0, 1, 0), new PhongMaterial(RED, WHITE, 64));
+    final Sphere sphere = new Sphere( new Point3(1,1,1), 0.5, new PhongMaterial(GREEN, WHITE, 64) );
+    final Triangle triangle = new Triangle( new Point3(0,0,-1), new Point3(1,0,-1), new Point3(1,1,-1), new PhongMaterial(YELLOW, WHITE, 64) );
+
+    final Camera c = new PerspectiveCamera( CAM_POSITION, new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI/4);
+    final World w = new World( new Geometry[] {aab, plane, sphere, triangle}, new Light[] { SPOTLIGHT }, WHITE, WHITE);
+
+    final RaytracerFrame frame = createRaytracerFrame(w, c, WIDTH, HEIGHT);
+    frame.setVisible(true);
+    frame.drawImage();
   }
 
+  public static RaytracerFrame createRaytracerFrame (final World w, final Camera c, final int width, final int height ) {
+    return new RaytracerFrame( new Raytracer( c, w, width, height ) );
+  }
 }
