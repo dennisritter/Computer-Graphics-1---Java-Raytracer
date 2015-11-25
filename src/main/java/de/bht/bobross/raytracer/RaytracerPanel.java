@@ -55,9 +55,16 @@ public class RaytracerPanel extends JPanel implements ActionListener {
 
   /**
    * Initiates the raytracer to draw the image
+   * and opens the progress dialog
    */
   public void drawImage () {
+    final RaytracerProgressDialog dialog = new RaytracerProgressDialog();
+    raytracer.addActionListener( dialog );
+    dialog.setVisible( true );
+
     raytracer.loadImage();
+
+    raytracer.removeActionListener( dialog );
   }
 
   /**
