@@ -21,16 +21,24 @@ import java.net.URISyntaxException;
 import java.time.Duration;
 
 /**
- * Dialog displaying the current raytracing progress
+ * Dialog displaying the current raytracing progress.
  *
  * @author      Jannik Portz
  */
 public class RaytracerProgressDialog extends JDialog implements ActionListener {
 
+  /** The progress bar indicating how many pixels have already been traces */
   protected final JProgressBar progressBar;
+
+  /** Duration representing the elapsed time */
   protected Duration elapsed;
+
+  /** Duration representing the estimated time */
   protected Duration estimated;
 
+  /**
+   * Constructs a new RaytracerProgressDialog
+   */
   public RaytracerProgressDialog () {
     setSize( 350, 400 );
     setLayout( new BoxLayout( getContentPane(), BoxLayout.Y_AXIS ) );
@@ -56,6 +64,11 @@ public class RaytracerProgressDialog extends JDialog implements ActionListener {
     setDefaultCloseOperation( HIDE_ON_CLOSE );
   }
 
+  /**
+   * Updates the attributes based on the provided progress object
+   *
+   * @param     progress  The object representing the current progress
+   */
   protected void handleProgress ( final Raytracer.RaytracerProgress progress ) {
     progressBar.setValue( (int) progress.percentage );
     elapsed = Duration.ofMillis( progress.elapsed );
@@ -67,6 +80,12 @@ public class RaytracerProgressDialog extends JDialog implements ActionListener {
     repaint();
   }
 
+  /**
+   * Handles the RaytracerProgressEvents.
+   * Closes the Dialog when the image has fully been rendered
+   *
+   * @param     ae        The RaytracerProgressEvent containing the progress information
+   */
   public void actionPerformed( final ActionEvent ae ) {
     if ( !(ae instanceof Raytracer.RaytracerProgressEvent) )
       return;
@@ -80,11 +99,20 @@ public class RaytracerProgressDialog extends JDialog implements ActionListener {
     handleProgress( e.progress );
   }
 
+  /**
+   * Panel displaying the durations
+   */
   protected class DurationPanel extends JPanel {
 
+    /** Label containing the elapsed time */
     protected final JLabel elapsedLabel;
+
+    /** Label containing the estimated time */
     protected final JLabel estimatedLabel;
 
+    /**
+     * Constructs a new DurationPanel
+     */
     public DurationPanel () {
       setLayout( new FlowLayout() );
 
@@ -112,16 +140,34 @@ public class RaytracerProgressDialog extends JDialog implements ActionListener {
       super.paintComponent(g);
     }
 
+    /**
+     * Creates a String representing the specified Duration object with hours, minutes and seconds
+     *
+     * @param     duration    The Duration to convert to a string
+     * @return                The String representing the duration
+     */
     public String createDurationString ( Duration duration ) {
       return String.format( "%02d:%02d:%02d", duration.toHours(), duration.toMinutes(), duration.toMillis() / 1000 );
     }
   }
 
+  /**
+   * Panel containing the image of our idol.
+   */
   protected class ImagePanel extends JPanel {
 
+    /** The Bob Ross image */
     protected BufferedImage image;
+
+    /** The resource path to the image */
     public static final String BOBROSS_IMAGE = "/images/bobross.jpg";
 
+    /**
+     * Constructs a new ImagePanel and loads the image resource
+     *
+     * @throws    IOException     If the file could not be read
+     * @throws    URISyntaxException
+     */
     public ImagePanel () throws IOException, URISyntaxException {
       final File imageFile = new File( this.getClass().getResource( BOBROSS_IMAGE ).toURI() );
       final ImageInputStream stream = new FileImageInputStream( imageFile );
