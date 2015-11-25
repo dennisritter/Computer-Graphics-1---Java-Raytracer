@@ -5,7 +5,7 @@ import de.bht.bobross.math.Point3;
 import de.bht.bobross.math.Vector3;
 
 /**
- * This Class represents the directional light
+ * Represents the directional light
  *
  * @author      Nathalie Junker
  */
@@ -15,7 +15,7 @@ public class DirectionalLight extends Light {
 
   public DirectionalLight(Color color, Vector3 direction){
     super(color);
-    this.direction = direction;
+    this.direction = direction.mul(-1);
   }
 
   @Override
