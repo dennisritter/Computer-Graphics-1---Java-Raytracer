@@ -42,7 +42,7 @@ public class PhongMaterial extends Material {
     final Point3 p = hit.getPoint();
 
     for ( Light light : world.lights ) {
-      final Vector3 l = light.directionFrom( p ).normalized();
+      final Vector3 l = light.directionFrom( p );
       final Vector3 e = p.sub( hit.ray.o ).normalized();
       final Vector3 r = l.mul( -1 ).add( hit.normal.mul( hit.normal.dot( l ) ).mul( 2 ) );
       final Color nc = diffuse.mul( light.color ).mul( Math.max( 0, hit.normal.dot( l ) ) )
