@@ -39,6 +39,7 @@ public class RaytracerTest {
   static final SpotLight SPOTLIGHT = new SpotLight(WHITE, CAM_POSITION, CAM_DIRECTION, Math.PI/14);
 
   public static void main ( final String[] args ) {
+
 //    singleColor();
 //    pointLightLambert();
 //    pointLightPhong();
