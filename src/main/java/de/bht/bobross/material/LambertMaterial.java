@@ -29,14 +29,19 @@ public class LambertMaterial extends Material {
   @Override
   public Color colorFor( final Hit hit, final World world ) {
     Color c = color.mul( world.ambientLightColor );
+
     final Point3 p = hit.getPoint();
+    final Color black = new Color(0, 0, 0);
 
     for ( Light light : world.lights ) {
-      final Vector3 l = light.directionFrom( p ).normalized();
-      final Color nc = color.mul( light.color ).mul( Math.max( 0, hit.normal.dot( l ) ) );
-      c = c.add( nc );
+      if(light.illuminates(p)) {
+        final Vector3 l = light.directionFrom(p);
+        final Color nc = color.mul(light.color).mul(Math.max(0, hit.normal.dot(l)));
+        c = c.add(nc);
+      }else{
+        c = black;
+      }
     }
-
     return c;
   }
 }
