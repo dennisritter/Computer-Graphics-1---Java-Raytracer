@@ -26,6 +26,7 @@ public class LambertMaterial extends Material {
     this.color = color;
   }
 
+  //TODO: integrate AmbientLight calculation
   @Override
   public Color colorFor( final Hit hit, final World world ) {
     Color c = color.mul( world.ambientLightColor );
@@ -34,13 +35,12 @@ public class LambertMaterial extends Material {
     final Color black = new Color(0, 0, 0);
 
     for ( Light light : world.lights ) {
-      if(light.illuminates(p)) {
-        final Vector3 l = light.directionFrom(p);
-        final Color nc = color.mul(light.color).mul(Math.max(0, hit.normal.dot(l)));
-        c = c.add(nc);
-      }else{
-        c = black;
+      if(!light.illuminates(p)) {
+        return black;
       }
+      final Vector3 l = light.directionFrom(p);
+      final Color nc = color.mul(light.color).mul(Math.max(0, hit.normal.dot(l)));
+      c = c.add(nc);
     }
     return c;
   }
