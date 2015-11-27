@@ -3,6 +3,8 @@ package de.bht.bobross.material;
 import de.bht.bobross.Color;
 import de.bht.bobross.World;
 import de.bht.bobross.geometry.Hit;
+import de.bht.bobross.light.Light;
+import de.bht.bobross.math.Point3;
 
 /**
  * Represents a Material that always has the same static color regardless of the lighting in the scene
@@ -23,8 +25,19 @@ public class SingleColorMaterial extends Material {
     this.color = color;
   }
 
+  //TODO: integrate AmbientLight calculation
   @Override
   public Color colorFor( final Hit hit, final World world ) {
-    return color;
+    final Point3 p = hit.getPoint();
+    final Color black = new Color(0, 0, 0);
+
+    for ( Light light : world.lights ) {
+      if (!light.illuminates(p)) {
+        return black;
+      }
+      final Color nc = light.color;
+      color.add(nc);
+    }
+      return color;
   }
 }

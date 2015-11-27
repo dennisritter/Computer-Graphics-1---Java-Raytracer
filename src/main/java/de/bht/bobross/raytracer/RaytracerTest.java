@@ -44,8 +44,10 @@ public class RaytracerTest {
 //    pointLightLambert();
 //    pointLightPhong();
 //    dirLightPhong();
-//    SpotLightPhong();
-//    SpotLightLambert();
+//    spotLightPhong();
+
+//    spotLightLambert();
+//    spotLightSingleColor();
   }
 
   public static void singleColor(){
@@ -108,7 +110,7 @@ public class RaytracerTest {
     frame.drawImage();
   }
 
-  public static void SpotLightPhong(){
+  public static void spotLightPhong(){
 
     final AxisAlignedBox aab = new AxisAlignedBox( new Point3(-1.5, 0.5, 0.5), new Point3(-0.5, 1.5, 1.5), new PhongMaterial(BLUE, WHITE, 64) );
     final Plane plane =  new Plane( new Point3(0, 0, 0), new Normal3(0, 1, 0), new PhongMaterial(RED, WHITE, 64));
@@ -123,12 +125,27 @@ public class RaytracerTest {
     frame.drawImage();
   }
 
-  public static void SpotLightLambert(){
+  public static void spotLightLambert(){
 
     final AxisAlignedBox aab = new AxisAlignedBox( new Point3(-1.5, 0.5, 0.5), new Point3(-0.5, 1.5, 1.5), new LambertMaterial(BLUE) );
     final Plane plane =  new Plane( new Point3(0, 0, 0), new Normal3(0, 1, 0), new LambertMaterial(RED));
     final Sphere sphere = new Sphere( new Point3(1,1,1), 0.5, new LambertMaterial(GREEN));
     final Triangle triangle = new Triangle( new Point3(0,0,-1), new Point3(1,0,-1), new Point3(1,1,-1), new LambertMaterial(YELLOW) );
+
+    final Camera c = new PerspectiveCamera( CAM_POSITION, new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI/4);
+    final World w = new World( new Geometry[] {aab, plane, sphere, triangle}, new Light[] { SPOTLIGHT }, WHITE, WHITE);
+
+    final RaytracerFrame frame = createRaytracerFrame(w, c, WIDTH, HEIGHT);
+    frame.setVisible(true);
+    frame.drawImage();
+  }
+
+  public static void spotLightSingleColor(){
+
+    final AxisAlignedBox aab = new AxisAlignedBox( new Point3(-1.5, 0.5, 0.5), new Point3(-0.5, 1.5, 1.5), new SingleColorMaterial(BLUE) );
+    final Plane plane =  new Plane( new Point3(0, 0, 0), new Normal3(0, 1, 0), new SingleColorMaterial(RED));
+    final Sphere sphere = new Sphere( new Point3(1,1,1), 0.5, new SingleColorMaterial(GREEN));
+    final Triangle triangle = new Triangle( new Point3(0,0,-1), new Point3(1,0,-1), new Point3(1,1,-1), new SingleColorMaterial(YELLOW) );
 
     final Camera c = new PerspectiveCamera( CAM_POSITION, new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI/4);
     final World w = new World( new Geometry[] {aab, plane, sphere, triangle}, new Light[] { SPOTLIGHT }, WHITE, WHITE);
