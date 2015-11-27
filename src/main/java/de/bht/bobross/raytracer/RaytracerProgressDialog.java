@@ -147,7 +147,7 @@ public class RaytracerProgressDialog extends JDialog implements ActionListener {
      * @return                The String representing the duration
      */
     public String createDurationString ( Duration duration ) {
-      return String.format( "%02d:%02d:%02d", duration.toHours(), duration.toMinutes(), duration.toMillis() / 1000 );
+      return String.format( "%02d:%02d:%02d", duration.toHours(), duration.toMinutes(), ( duration.toMillis() / 1000 ) % 60 );
     }
   }
 

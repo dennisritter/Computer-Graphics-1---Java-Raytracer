@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * A Raytracer traces rays coming from a camera and returns the closest hit with a Geometry.
@@ -83,20 +84,28 @@ public class Raytracer {
   public void loadImage () {
     started = System.currentTimeMillis();
 
-    final DataBufferInt dataBuffer = (DataBufferInt) image.getRaster().getDataBuffer();
-    final int[] pixels = dataBuffer.getData();
-    final int w = image.getWidth();
-    final int h = image.getHeight();
-    final int totalPixels = w * h;
+    final int height = image.getHeight();
+    final int totalPixels = height * image.getWidth();
+    final int numberProcessors = Runtime.getRuntime().availableProcessors();
+    final int linesPerThread = height / numberProcessors;
+    final AtomicInteger c = new AtomicInteger( 0 );
 
-    int i = 0;
-    for ( int y = 0; y < h; y++ ) {
-      for ( int x = 0; x < w; x++ ) {
-        pixels[ (h-y-1) * w + x ] = traceRay( x, y, image.getWidth(), image.getHeight() ).asInt();
-        ++i;
-        if ( i % progressInterval == 0 ) {
-          notifyActionListeners( new RaytracerProgress( i, totalPixels ), RaytracerCommands.PROGRESS );
-        }
+    final Thread[] threads = new Thread[ numberProcessors ];
+
+    for ( int i = 0; i < numberProcessors; ++i ) {
+      final int minY = i * linesPerThread;
+      final int maxY = (i+1) * linesPerThread;
+      final RaytracerRunnable runnable = new RaytracerRunnable( minY, Math.min( maxY, height ), c );
+      final Thread t = new Thread( runnable );
+      t.start();
+      threads[ i ] = t;
+    }
+
+    for ( Thread t : threads ) {
+      try {
+        t.join();
+      } catch (InterruptedException e) {
+        e.printStackTrace();
       }
     }
 
@@ -268,6 +277,36 @@ public class Raytracer {
      */
     public Raytracer getRaytracer () {
       return (Raytracer) source;
+    }
+  }
+
+  protected class RaytracerRunnable implements Runnable {
+    public final int minY;
+    public final int maxY;
+    public final AtomicInteger counter;
+
+    public RaytracerRunnable ( final int minY, final int maxY, final AtomicInteger counter ) {
+      this.minY = minY;
+      this.maxY = maxY;
+      this.counter = counter;
+    }
+
+    public void run () {
+      final DataBufferInt dataBuffer = (DataBufferInt) image.getRaster().getDataBuffer();
+      final int[] pixels = dataBuffer.getData();
+      final int w = image.getWidth();
+      final int h = image.getHeight();
+      final int totalPixels = w * h;
+
+      for ( int y = minY; y < maxY; y++ ) {
+        for ( int x = 0; x < w; x++ ) {
+          pixels[ (h-y-1) * w + x ] = traceRay( x, y, image.getWidth(), image.getHeight() ).asInt();
+          counter.incrementAndGet();
+          if ( counter.get() % progressInterval == 0 ) {
+            notifyActionListeners( new RaytracerProgress( counter.get(), totalPixels ), RaytracerCommands.PROGRESS );
+          }
+        }
+      }
     }
   }
 }
