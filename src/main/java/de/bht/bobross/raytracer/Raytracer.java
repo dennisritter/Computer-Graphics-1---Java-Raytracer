@@ -78,8 +78,8 @@ public class Raytracer {
   }
 
   /**
-   * Iterates through all pixels in the image and fills the image's DataBuffer.
-   * Sends a RaytracerProgressEvent every 1000 pixels.
+   * Spawn a new Thread for every available processor on the machine and dedicates a line range.
+   * Sends a RaytracerProgressEvent when all Threads have finished with action command FINISHED
    */
   public void loadImage () {
     started = System.currentTimeMillis();
@@ -214,7 +214,7 @@ public class Raytracer {
   }
 
   /**
-   * Enumeration representing ratracing states
+   * Enumeration representing raytracing states
    */
   public enum RaytracerCommands {
     /** Raytracing is still in progress */
@@ -280,17 +280,35 @@ public class Raytracer {
     }
   }
 
+  /**
+   * Runnable raytracing a specific part of the image
+   */
   protected class RaytracerRunnable implements Runnable {
+    /** Index of the first line to trace (inclusive) */
     public final int minY;
+
+    /** Index of the last line to trace (exclusive) */
     public final int maxY;
+
+    /** Shared counter representing the number of pixels that have been drawn in the whole image */
     public final AtomicInteger counter;
 
+    /**
+     * Constructs a new RaytracerRunnable
+     *
+     * @param     minY      Index of the first line to trace (inclusive)
+     * @param     maxY      Index of the last line to trace (exclusive)
+     * @param     counter   Shared counter representing the number of pixels that have been drawn in the whole image
+     */
     public RaytracerRunnable ( final int minY, final int maxY, final AtomicInteger counter ) {
       this.minY = minY;
       this.maxY = maxY;
       this.counter = counter;
     }
 
+    /**
+     * Iterates through all pixels in the dedicated line range and saves them in the image's DataBuffer
+     */
     public void run () {
       final DataBufferInt dataBuffer = (DataBufferInt) image.getRaster().getDataBuffer();
       final int[] pixels = dataBuffer.getData();
