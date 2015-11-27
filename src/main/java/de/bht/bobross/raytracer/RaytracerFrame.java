@@ -7,8 +7,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.WindowConstants;
-import java.awt.BorderLayout;
-import java.awt.Container;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -32,13 +31,14 @@ public class RaytracerFrame extends JFrame {
   public RaytracerFrame ( final Raytracer r ) {
     this.panel = new RaytracerPanel( r );
 
-    setSize( r.width, r.height );
     setDefaultCloseOperation( WindowConstants.EXIT_ON_CLOSE );
     setTitle( "Bob Ross Raytracer" );
     final Container container = getContentPane();
+    createMenu();
+    container.setPreferredSize( new Dimension( r.width, r.height ) );
     container.setLayout( new BorderLayout() );
     container.add( panel, BorderLayout.CENTER );
-    createMenu();
+    this.pack();
   }
 
   /**

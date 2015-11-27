@@ -42,11 +42,11 @@ public class RaytracerTest {
 
 //    singleColor();
 //    pointLightLambert();
-    pointLightPhong();
+//    pointLightPhong();
 //    dirLightPhong();
 //    spotLightPhong();
 
-//    spotLightLambert();
+    spotLightLambert();
 //    spotLightSingleColor();
   }
 

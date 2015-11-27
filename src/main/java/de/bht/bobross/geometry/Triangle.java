@@ -14,6 +14,7 @@ import de.bht.bobross.math.Vector3;
  * @author      Jannik Portz
  */
 
+//TODO: Fix wrong lightning when using LamertMaterial / PhongMaterial
 public class Triangle extends Geometry {
 
   /** The triangle's first vertex */
