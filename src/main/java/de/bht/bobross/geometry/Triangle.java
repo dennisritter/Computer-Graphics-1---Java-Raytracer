@@ -55,7 +55,7 @@ public class Triangle extends Geometry {
     this.c = c;
     this.aNormal = aNormal;
     this.bNormal = bNormal;
-    this.cNormal = aNormal;
+    this.cNormal = cNormal;
   }
 
   public Triangle ( final Point3 a, final Point3 b, final Point3 c, final Material material) {
@@ -94,7 +94,7 @@ public class Triangle extends Geometry {
     if ( gamma + beta > 1 )
       return null;
 
-    final double alpha = 1 - gamma + beta;
+    final double alpha = 1 - (gamma + beta);
     final Normal3 normal = aNormal.mul(alpha).add(bNormal.mul(beta)).add(cNormal.mul(gamma));
 
     return new Hit( t, r, this, normal );
