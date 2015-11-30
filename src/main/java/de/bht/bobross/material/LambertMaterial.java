@@ -26,21 +26,26 @@ public class LambertMaterial extends Material {
     this.color = color;
   }
 
-  //TODO: integrate AmbientLight calculation
+  //TODO: Fix black sphere center when using ambient light
   @Override
   public Color colorFor( final Hit hit, final World world ) {
-    Color c = color.mul( world.ambientLightColor );
 
+    Color c = color.mul( world.ambientLightColor );
     final Point3 p = hit.getPoint();
-    final Color black = new Color(0, 0, 0);
 
     for ( Light light : world.lights ) {
-      if(!light.illuminates(p)) {
-        return black;
-      }
       final Vector3 l = light.directionFrom(p);
-      final Color nc = color.mul(light.color).mul(Math.max(0, hit.normal.dot(l)));
-      c = c.add(nc);
+
+      if(!light.illuminates(p)) {
+        final Color cTemp = color.mul(world.ambientLightColor).mul(Math.max(0, hit.normal.dot(l)));
+        c = c.add(cTemp);
+      }else {
+        //Sobald man hier ambientes Licht hinzumultipliziert wird die Mitte der Sphere dunkel.
+        //(Zum Zentrum hin wird es aber noch heller)
+        //Lässt man das ambiente Licht weg ist alles wie es sein soll.
+        final Color cTemp = color.mul(light.color).mul(Math.max(0, hit.normal.dot(l)));
+        c = c.add(cTemp);
+      }
     }
     return c;
   }

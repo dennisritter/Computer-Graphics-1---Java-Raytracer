@@ -36,36 +36,36 @@ public class Sphere extends Geometry
   }
 
   @Override
-  public Hit hit( final Ray r ) {
-    final double aHelp = r.d.dot(r.d);
-    final double bHelp = r.d.dot((r.o.sub(c)).mul(2));
-    final double cHelp = (r.o.sub(c).dot(r.o.sub(c))) - this.r * this.r;
+  public Hit hit( final Ray ray ) {
+    final double aHelp = ray.d.dot(ray.d);
+    final double bHelp = ray.d.dot((ray.o.sub(c)).mul(2));
+    final double cHelp = (ray.o.sub(c).dot(ray.o.sub(c))) - this.r * this.r;
     final double dHelp = bHelp * bHelp - 4 * aHelp * cHelp;
+
+    if(dHelp < 0){
+      return null;
+    }
 
     if(aHelp == 0){
       return null;
     }
-    if(dHelp < 0){
+
+    final double t1 = ( -bHelp - Math.sqrt(dHelp) ) / 2 * aHelp ;
+    final double t2 = ( -bHelp + Math.sqrt(dHelp) ) / 2 * aHelp ;
+
+    if (t2 < 0 ) {
       return null;
     }
-    final double t1 = ( -1 * bHelp + Math.sqrt(dHelp) ) / 2 * aHelp;
-    final double t2 = ( -1 * bHelp - Math.sqrt(dHelp) ) / 2 * aHelp;
-
-    double t;
-
+    double t = t1;
     if (t1 < 0) {
       t = t2;
-    } else if (t2 < 0){
-      t = t1;
-    } else {
-      t = Math.min(t1,t2);
     }
 
-    final Point3 pr = r.at(t);
+    final Point3 pr = ray.at(t);
     final Vector3 prc = pr.sub(c);
     final Normal3 n = prc.asNormal();
 
-    return new Hit(t, r, this, n);
+    return new Hit(t, ray, this, n);
   }
 
   @Override

@@ -47,7 +47,9 @@ public class RaytracerTest {
 //    dirLightPhong();
 //    spotLightPhong();
 
-//    spotLightLambert();
+
+    spotLightLambertAmbient25();
+    spotLightLambert();
 //    spotLightSingleColor();
   }
 
@@ -126,6 +128,21 @@ public class RaytracerTest {
     frame.drawImage();
   }
 
+  public static void spotLightLambertAmbient25(){
+
+    final AxisAlignedBox aab = new AxisAlignedBox( new Point3(-1.5, 0.5, 0.5), new Point3(-0.5, 1.5, 1.5), new LambertMaterial(BLUE) );
+    final Plane plane =  new Plane( new Point3(0, 0, 0), new Normal3(0, 1, 0), new LambertMaterial(RED));
+    final Sphere sphere = new Sphere( new Point3(1,1,1), 0.5, new LambertMaterial(GREEN));
+    final Triangle triangle = new Triangle( new Point3(0,0,-1), new Point3(1,0,-1), new Point3(1,1,-1), new LambertMaterial(YELLOW) );
+
+    final Camera c = new PerspectiveCamera( CAM_POSITION, new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI/4);
+    final World w = new World( new Geometry[] {aab, plane, sphere, triangle}, new Light[] { SPOTLIGHT }, BLACK,  new Color(0.25, 0.25, 0.25));
+
+    final RaytracerFrame frame = createRaytracerFrame(w, c, WIDTH, HEIGHT);
+    frame.setVisible(true);
+    frame.drawImage();
+  }
+
   public static void spotLightLambert(){
 
     final AxisAlignedBox aab = new AxisAlignedBox( new Point3(-1.5, 0.5, 0.5), new Point3(-0.5, 1.5, 1.5), new LambertMaterial(BLUE) );
@@ -134,7 +151,7 @@ public class RaytracerTest {
     final Triangle triangle = new Triangle( new Point3(0,0,-1), new Point3(1,0,-1), new Point3(1,1,-1), new LambertMaterial(YELLOW) );
 
     final Camera c = new PerspectiveCamera( CAM_POSITION, new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI/4);
-    final World w = new World( new Geometry[] {aab, plane, sphere, triangle}, new Light[] { SPOTLIGHT }, BLACK, new Color (0.25, 0.25, 0.25));
+    final World w = new World( new Geometry[] {aab, plane, sphere, triangle}, new Light[] { SPOTLIGHT }, BLACK, BLACK);
 
     final RaytracerFrame frame = createRaytracerFrame(w, c, WIDTH, HEIGHT);
     frame.setVisible(true);
