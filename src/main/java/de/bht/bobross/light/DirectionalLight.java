@@ -11,7 +11,8 @@ import de.bht.bobross.math.Vector3;
  */
 public class DirectionalLight extends Light {
 
-  Vector3 direction;
+  /** Represents the light's main direction */
+  final Vector3 direction;
 
   public DirectionalLight(Color color, Vector3 direction){
     super(color);

@@ -49,7 +49,7 @@ public class PhongMaterial extends Material {
       }
       final Vector3 l = light.directionFrom(p);
       final Vector3 e = p.sub(hit.ray.o).normalized();
-      final Vector3 r = l.mul(-1).add(hit.normal.mul(hit.normal.dot(l)).mul(2));
+      final Vector3 r = l.add(hit.normal.mul(hit.normal.dot(l)).mul(2));
       final Color nc = diffuse.mul(light.color).mul(Math.max(0, hit.normal.dot(l)))
           .add(specular.mul(light.color).mul(Math.pow(Math.max(0, e.dot(r)), exponent)));
       c = c.add( nc );

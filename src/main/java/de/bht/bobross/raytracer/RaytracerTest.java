@@ -47,9 +47,8 @@ public class RaytracerTest {
 //    dirLightPhong();
 //    spotLightPhong();
 
-
-    spotLightLambertAmbient25();
-    spotLightLambert();
+//    spotLightLambertAmbient25();
+//    spotLightLambert();
 //    spotLightSingleColor();
   }
 
