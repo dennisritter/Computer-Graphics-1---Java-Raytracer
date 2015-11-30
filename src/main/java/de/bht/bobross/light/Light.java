@@ -4,6 +4,10 @@ import de.bht.bobross.Color;
 import de.bht.bobross.math.Point3;
 import de.bht.bobross.math.Vector3;
 
+/**
+ * @author        Jannik Portz
+ */
+
 abstract public class Light {
 
   /** The light's color */

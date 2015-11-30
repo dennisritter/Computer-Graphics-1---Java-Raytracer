@@ -22,8 +22,8 @@ import de.bht.bobross.math.Vector3;
 
 public class RaytracerTest {
 
-  static final int WIDTH = 640;
-  static final int HEIGHT = 480;
+  static final int WIDTH = 800;
+  static final int HEIGHT = 600;
 
   static final Color RED = new Color (1, 0, 0);
   static final Color BLUE = new Color (0, 0, 1);
@@ -47,7 +47,7 @@ public class RaytracerTest {
 //    dirLightPhong();
 //    spotLightPhong();
 
-//    spotLightLambertAmbient25();
+    spotLightLambertAmbient25();
 //    spotLightLambert();
 //    spotLightSingleColor();
   }

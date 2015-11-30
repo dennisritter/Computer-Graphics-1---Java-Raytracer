@@ -4,12 +4,30 @@ import de.bht.bobross.Color;
 import de.bht.bobross.math.Point3;
 import de.bht.bobross.math.Vector3;
 
+/**
+ * Represents a spotlight
+ *
+ * @author        Dennis RitteR
+ * */
+
 public class SpotLight extends Light {
 
+   /** The position of this spotlight */
   final public Point3 position;
+
+  /** The direction this spotlight points to */
   final public Vector3 direction;
+
+  /** The half opening angle of this spotlight */
   final public double halfAngle;
 
+  /**
+   * The constructor
+   * @param color           The color of this spotlight
+   * @param position        The position of this spotlight
+   * @param direction       The direction this spotlight points to
+   * @param halfAngle       The half opening angle of this spotlight
+   */
   public SpotLight(final Color color, final Point3 position, final Vector3 direction, final double halfAngle){
     super(color);
     this.position = position;
