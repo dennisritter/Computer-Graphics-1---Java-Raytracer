@@ -57,7 +57,7 @@ public class PhongMaterial extends Material {
         c = c.add(cTemp);
       }
     }
-    return limitColorComponentsValue(c);
+    return limitColorComponentsTo1(c);
   }
 
 }

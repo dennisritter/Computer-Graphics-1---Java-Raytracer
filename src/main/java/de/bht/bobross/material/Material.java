@@ -26,7 +26,7 @@ abstract public class Material {
    * @param     c         The color
    * @return    c         The Color with it´s components limited to 1.0
    */
-  private Color limitColorComponentsTo1(final Color c){
+  protected Color limitColorComponentsTo1(final Color c){
     return new Color(Math.min(c.r, 1.0), Math.min(c.g, 1.0), Math.min(c.b, 1.0));
   }
 }
