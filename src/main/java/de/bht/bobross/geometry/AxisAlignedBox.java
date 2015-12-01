@@ -37,10 +37,10 @@ public class AxisAlignedBox extends Geometry {
     this.run = run;
 
     this.planes = new Plane[] {
-        new Plane( run, new Normal3( 0, 1, 0 ), this.material ),
         new Plane( run, new Normal3( 1, 0, 0 ), this.material ),
-        new Plane( lbf, new Normal3( 0, -1, 0 ), this.material ),
         new Plane( lbf, new Normal3( -1, 0, 0 ), this.material ),
+        new Plane( run, new Normal3( 0, 1, 0 ), this.material ),
+        new Plane( lbf, new Normal3( 0, -1, 0 ), this.material ),
         new Plane( run, new Normal3( 0, 0, 1 ), this.material ),
         new Plane( lbf, new Normal3( 0, 0, -1 ), this.material ),
     };

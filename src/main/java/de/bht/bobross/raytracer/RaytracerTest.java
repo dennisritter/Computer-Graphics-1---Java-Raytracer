@@ -86,7 +86,7 @@ public class RaytracerTest {
 
     final AxisAlignedBox aab = new AxisAlignedBox( new Point3(-1.5, 0.5, 0.5), new Point3(-0.5, 1.5, 1.5), new PhongMaterial(BLUE, WHITE, 64) );
     final Plane plane =  new Plane( new Point3(0, 0, 0), new Normal3(0, 1, 0), new PhongMaterial(RED, WHITE, 64));
-    final Sphere sphere = new Sphere( new Point3(1,1,1), 0.5, new PhongMaterial(GREEN, WHITE, 64) );
+    final Sphere sphere = new Sphere( new Point3(1, 1, 1), 0.5, new PhongMaterial(GREEN, WHITE, 64) );
     final Triangle triangle = new Triangle( new Point3(0,0,-1), new Point3(1,0,-1), new Point3(1,1,-1), new PhongMaterial(YELLOW, WHITE, 64) );
 
     final Camera c = new PerspectiveCamera( CAM_POSITION, new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI/4);

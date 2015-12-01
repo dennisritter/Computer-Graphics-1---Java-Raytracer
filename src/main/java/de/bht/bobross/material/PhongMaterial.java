@@ -48,12 +48,12 @@ public class PhongMaterial extends Material {
 
       if(light.illuminates(p)) {
         final Color cTemp = diffuse.mul(light.color).mul(Math.max(0, (hit.normal.dot(l))))
-            .add(specular.mul(light.color).mul(Math.pow(Math.max(0, (e.dot(r))), exponent)));
+            .add(specular.mul(light.color).mul(Math.pow(Math.max(0, e.dot(r)), exponent)));
         c = c.add(cTemp);
       }else {
         final Color cTemp = diffuse.mul(world.ambientLightColor).mul(Math.max(0, hit.normal.dot(l)))
             .add(specular.mul(light.color).mul(Math.pow(Math.max(0, e.dot(r)), exponent)));
-        c = c.add(cTemp);
+        c = c.add(cTemp).add(diffuse);
       }
     }
 
