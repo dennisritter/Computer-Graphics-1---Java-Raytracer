@@ -11,11 +11,17 @@ import de.bht.bobross.math.Vector3;
  */
 public class DirectionalLight extends Light {
 
-  Vector3 direction;
+  /** Represents the light's main direction */
+  final Vector3 direction;
 
+  /**
+   * The constructor
+   * @param color           Represents the color of this spotlight
+   * @param direction       Represents the light's main direction
+   */
   public DirectionalLight(Color color, Vector3 direction){
     super(color);
-    this.direction = direction.mul(-1);
+    this.direction = direction;
   }
 
   @Override
@@ -25,6 +31,6 @@ public class DirectionalLight extends Light {
 
   @Override
   public Vector3 directionFrom(Point3 point) {
-    return direction.normalized();
+    return direction.mul(-1).normalized();
   }
 }

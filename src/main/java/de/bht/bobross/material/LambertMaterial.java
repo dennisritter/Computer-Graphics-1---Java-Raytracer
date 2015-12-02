@@ -36,17 +36,12 @@ public class LambertMaterial extends Material {
     for ( Light light : world.lights ) {
       final Vector3 l = light.directionFrom(p);
 
-      if(!light.illuminates(p)) {
-        final Color cTemp = color.mul(world.ambientLightColor).mul(Math.max(0, hit.normal.dot(l)));
-        c = c.add(cTemp);
-      }else {
-        //Sobald man hier ambientes Licht hinzumultipliziert wird die Mitte der Sphere dunkel.
-        //(Zum Zentrum hin wird es aber noch heller)
-        //Lässt man das ambiente Licht weg ist alles wie es sein soll.
+      if(light.illuminates(p)) {
         final Color cTemp = color.mul(light.color).mul(Math.max(0, hit.normal.dot(l)));
         c = c.add(cTemp);
       }
     }
-    return c;
+    return limitColorComponentsTo1(c);
   }
+
 }

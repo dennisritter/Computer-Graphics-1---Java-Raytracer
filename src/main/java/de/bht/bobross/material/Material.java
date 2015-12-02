@@ -21,4 +21,12 @@ abstract public class Material {
    */
   abstract public Color colorFor ( final Hit hit, final World world );
 
+  /**
+   * Limits the colors components to a maximum of 1.0
+   * @param     c         The color
+   * @return    c         The Color with it´s components limited to 1.0
+   */
+  protected Color limitColorComponentsTo1(final Color c){
+    return new Color(Math.min(c.r, 1.0), Math.min(c.g, 1.0), Math.min(c.b, 1.0));
+  }
 }
