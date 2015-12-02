@@ -39,7 +39,6 @@ public abstract class Geometry {
     Geometry geometry = (Geometry) o;
 
     return material.equals(geometry.material);
-
   }
 
   @Override
