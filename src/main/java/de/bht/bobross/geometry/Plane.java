@@ -1,6 +1,5 @@
 package de.bht.bobross.geometry;
 
-import de.bht.bobross.Color;
 import de.bht.bobross.Ray;
 import de.bht.bobross.material.Material;
 import de.bht.bobross.math.Normal3;
@@ -38,7 +37,7 @@ public class Plane extends Geometry {
       return null;
     }
 
-    double t = n.dot(a.sub(r.o))/n.dot(r.d);
+    final double t = n.dot(a.sub(r.o))/n.dot(r.d);
 
     return new Hit(t, r, this, n);
   }

@@ -48,10 +48,10 @@ public class AxisAlignedBox extends Geometry {
 
   @Override
   public Hit hit(Ray r) {
-    double minT = -1;
+    double maxT = -1;
     Plane mp = null;
     for ( Plane p : planes ) {
-      if ( r.d.dot( p.n ) < 0 )
+      if ( r.d.dot( p.n ) >= 0 )
         continue;
 
       final Hit hit = p.hit( r );
@@ -59,16 +59,16 @@ public class AxisAlignedBox extends Geometry {
       if ( hit == null || hit.t <= 0 )
         continue;
 
-      if ( minT <= 0 || minT > 0 && hit.t < minT ) {
-        minT = hit.t;
+      if ( hit.t > maxT ) {
+        maxT = hit.t;
         mp = p;
       }
     }
 
-    if ( minT < 0 )
+    if ( maxT < 0 )
       return null;
 
-    final Point3 p = r.at( minT );
+    final Point3 p = r.at( maxT );
 
     if ( mp.n.x == 0 && lbf.x > p.x || p.x > run.x )
       return null;
@@ -79,7 +79,7 @@ public class AxisAlignedBox extends Geometry {
     if ( mp.n.z == 0 && lbf.z > p.z || p.z > run.z )
       return null;
 
-    return new Hit ( minT, r, this, mp.n );
+    return new Hit ( maxT, r, this, mp.n );
   }
 
   @Override
