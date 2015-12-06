@@ -13,7 +13,7 @@ import de.bht.bobross.math.Point3;
  */
 public class SingleColorMaterial extends Material {
 
-  /** The satic color */
+  /** The static color */
   public final Color color;
 
   /**
@@ -25,19 +25,17 @@ public class SingleColorMaterial extends Material {
     this.color = color;
   }
 
-  //TODO: integrate AmbientLight calculation
   @Override
   public Color colorFor( final Hit hit, final World world ) {
     final Point3 p = hit.getPoint();
-    final Color black = new Color(0, 0, 0);
+    Color c = color.mul(world.ambientLightColor);
 
     for ( Light light : world.lights ) {
-      if (!light.illuminates(p)) {
-        return black;
+      if (light.illuminates(p)) {
+        final Color nc = light.color;
+        c.add(nc);
       }
-      final Color nc = light.color;
-      color.add(nc);
     }
-      return color;
+    return limitColorComponentsTo1(c);
   }
 }
