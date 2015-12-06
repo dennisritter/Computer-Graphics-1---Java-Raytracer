@@ -25,8 +25,7 @@ public class LambertMaterial extends Material {
   public LambertMaterial ( final Color color ) {
     this.color = color;
   }
-
-  //TODO: Fix black sphere center when using ambient light
+  
   @Override
   public Color colorFor( final Hit hit, final World world ) {
 
