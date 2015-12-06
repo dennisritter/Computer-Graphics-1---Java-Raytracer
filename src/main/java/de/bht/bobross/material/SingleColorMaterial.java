@@ -32,8 +32,7 @@ public class SingleColorMaterial extends Material {
 
     for ( Light light : world.lights ) {
       if (light.illuminates(p)) {
-        final Color nc = light.color;
-        c.add(nc);
+        c.add(light.color);
       }
     }
     return limitColorComponentsTo1(c);
