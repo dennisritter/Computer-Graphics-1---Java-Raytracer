@@ -125,7 +125,7 @@ public class RaytracerTest {
 
   /**
    * Creates a scene with a blue AxisAlignedBox, a red plane, a green sphere and a yellow disc.
-   * Uses the LambertMaterial and a PointLight
+   * Uses the Phong material and a point light.
    */
   public static void pointLightPhongDisc(){
 
@@ -144,7 +144,7 @@ public class RaytracerTest {
 
   /**
    * Creates a scene with a blue AxisAlignedBox, a red plane, a green sphere and a yellow triangle.
-   * Uses the Phong material and a directional light
+   * Uses the Phong material and a directional light.
    */
   public static void dirLightPhong(){
 
@@ -240,7 +240,7 @@ public class RaytracerTest {
 
   /**
    * Creates a scene with a blue AxisAlignedBox, a red plane, a green sphere and a yellow triangle.
-   * Uses the Lambert material and a spotlight.
+   * Uses the single color material and a spotlight.
    */
   public static void spotLightSingleColor(){
 
