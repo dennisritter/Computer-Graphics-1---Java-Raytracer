@@ -31,7 +31,7 @@ public class RaytracerFrame extends JFrame {
   public RaytracerFrame ( final Raytracer r ) {
     this.panel = new RaytracerPanel( r );
 
-    setDefaultCloseOperation( WindowConstants.EXIT_ON_CLOSE );
+    setDefaultCloseOperation( WindowConstants.DISPOSE_ON_CLOSE );
     setTitle( "Bob Ross Raytracer" );
     final Container container = getContentPane();
     createMenu();
