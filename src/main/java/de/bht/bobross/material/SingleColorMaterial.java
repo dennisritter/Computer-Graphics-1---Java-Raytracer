@@ -5,6 +5,7 @@ import de.bht.bobross.World;
 import de.bht.bobross.geometry.Hit;
 import de.bht.bobross.light.Light;
 import de.bht.bobross.math.Point3;
+import de.bht.bobross.raytracer.Tracer;
 
 /**
  * Represents a Material that always has the same static color regardless of the lighting in the scene
@@ -26,7 +27,7 @@ public class SingleColorMaterial extends Material {
   }
 
   @Override
-  public Color colorFor( final Hit hit, final World world ) {
+  public Color colorFor( final Hit hit, final World world, final Tracer tracer) {
     final Point3 p = hit.getPoint();
     Color c = color.mul(world.ambientLightColor);
 
