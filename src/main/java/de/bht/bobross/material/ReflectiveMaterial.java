@@ -42,7 +42,7 @@ public class ReflectiveMaterial extends Material{
 
     for (Light light : world.lights){
       final Vector3 l = light.directionFrom(p);
-      final Vector3 r = l.reflectedOn(hit.normal); //
+      final Vector3 r = l.reflectedOn(hit.normal);
       final Vector3 e = hit.ray.d.mul(-1);
 
       if(light.illuminates(p, world)) {
