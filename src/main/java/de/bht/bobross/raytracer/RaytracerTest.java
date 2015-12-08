@@ -54,13 +54,13 @@ public class RaytracerTest {
 
   /** Displays the selected scenes, each in it's own window. */
   public static void main ( final String[] args ) {
-        singleColor();
-        pointLightLambert();
-        pointLightPhong();
-        dirLightPhong();
-        spotLightPhong();
-        spotLightPhongAmbient();
-        pointLightPhongDisc();
+       // singleColor();
+    // pointLightLambert();
+    //   pointLightPhong();
+    //  dirLightPhong();
+    //  spotLightPhong();
+    //  spotLightPhongAmbient();
+    //  pointLightPhongDisc();
         customDemoScene();
   }
 
@@ -267,7 +267,7 @@ public class RaytracerTest {
     /** Initializes the point light and the directional light*/
     Light[] lights = {
       new PointLight(WHITE, new Point3(4, 4, 0)),
-      new DirectionalLight(BLACK, new Vector3(1, 1, 1).normalized())
+      new DirectionalLight(GOLD, new Vector3(1, 1, 1).normalized())
     };
 
     Geometry[] geometries = {
