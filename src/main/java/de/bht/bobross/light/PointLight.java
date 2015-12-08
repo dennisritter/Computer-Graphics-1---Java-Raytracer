@@ -30,17 +30,18 @@ public class PointLight extends Light {
 
   @Override
   public boolean illuminates(Point3 point, World world) {
-    //wenn vec l ein Objekt, vor der Lichtquelle schneidet wirft das objekt einen Schatten auf den zu prüfenden Punkt
     Vector3 l = directionFrom(point);
-    Ray rayGeo = new Ray( point, l );
-    Ray rayLight = new Ray ( position, point.sub(position).normalized() );
-    Hit hitGeo = world.hit( rayGeo );
-    Hit hitLight = world.hit( rayLight );
-    if( hitGeo.t <= hitLight.t ){
-      System.out.println("shadow");
+
+    Ray ray = new Ray( point, l );
+
+    Hit hitGeo = world.hit( ray );
+
+    if ( hitGeo == null ){
+      return true;
+    }
+    if( hitGeo.t > 0.0 && hitGeo.t <= ray.tOf( this.position ) ){
       return false;
     }else {
-      System.out.println("light");
       return true;
     }
   }

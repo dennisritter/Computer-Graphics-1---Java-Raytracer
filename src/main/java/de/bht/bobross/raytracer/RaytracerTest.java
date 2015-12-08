@@ -34,6 +34,24 @@ public class RaytracerTest {
     scene2();
   }
 
+  public static void illuminatesTest () {
+    final Geometry[] geometries = new Geometry[]{
+        new Plane(new Point3(0, 0, 0), new Normal3(0, 1, 0), new LambertMaterial(RED)),
+        new Sphere(new Point3(-3, 1, 0), 1, new LambertMaterial(BLUE)),
+        new Sphere(new Point3(0, 1, 0), 1, new LambertMaterial(WHITE)),
+        new Sphere(new Point3(3, 1, 0), 1, new LambertMaterial(GREEN))
+    };
+
+    final Camera cam = new PerspectiveCamera( new Point3(8,8,8), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI / 4);
+
+    final Light[] lights = new Light[]{
+        new PointLight( WHITE, true, new Point3(8,8,8) )
+    };
+
+    final World world = new World( geometries, lights, BLACK, BLACK );
+    createFrame( cam, world );
+    }
+
   public static void scene1 () {
     final Geometry[] geometries = new Geometry[]{
       new Plane( new Point3(0,0,0), new Normal3(0,1,0), new ReflectiveMaterial( new Color(.1,.1,.1), BLACK, 64, new Color(.5,.5,.5) ) ),

@@ -44,7 +44,7 @@ public class Ray {
    * @return          The factor to multiply the direction vector with to reach the point p
    */
   public double tOf ( final Point3 p ) {
-    return ( p.x - o.x ) / d.x;
+    return ( p.sub( o ).magnitude) / d.magnitude;
   }
 
   @Override

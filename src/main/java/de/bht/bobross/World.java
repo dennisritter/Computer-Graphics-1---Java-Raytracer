@@ -3,6 +3,7 @@ package de.bht.bobross;
 import de.bht.bobross.geometry.Geometry;
 import de.bht.bobross.geometry.Hit;
 import de.bht.bobross.light.Light;
+import de.bht.bobross.math.Helpers;
 
 import java.util.Arrays;
 
