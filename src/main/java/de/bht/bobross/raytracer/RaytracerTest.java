@@ -4,11 +4,13 @@ import de.bht.bobross.Color;
 import de.bht.bobross.World;
 import de.bht.bobross.camera.Camera;
 import de.bht.bobross.camera.PerspectiveCamera;
+import de.bht.bobross.geometry.AxisAlignedBox;
 import de.bht.bobross.geometry.Geometry;
 import de.bht.bobross.geometry.Plane;
 import de.bht.bobross.geometry.Sphere;
 import de.bht.bobross.light.Light;
 import de.bht.bobross.light.PointLight;
+import de.bht.bobross.material.LambertMaterial;
 import de.bht.bobross.material.ReflectiveMaterial;
 import de.bht.bobross.math.Normal3;
 import de.bht.bobross.math.Point3;
@@ -28,6 +30,7 @@ public class RaytracerTest {
 
   public static void main ( final String[] args ) {
     scene1();
+    scene2();
   }
 
   public static void scene1 () {
@@ -42,6 +45,22 @@ public class RaytracerTest {
 
     final Light[] lights = new Light[]{
         new PointLight( WHITE, true, new Point3(8,8,8) )
+    };
+
+    final World world = new World( geometries, lights, BLACK, BLACK );
+    createFrame( cam, world );
+  }
+
+  public static void scene2 () {
+    final Geometry[] geometries = new Geometry[]{
+      new Plane( new Point3(0,0,0), new Normal3(0,1,0), new LambertMaterial( new Color(.8,.8,.8) ) ),
+      new AxisAlignedBox( new Point3(-.5,0,-.5), new Point3(.5,1,.5), new LambertMaterial( RED ) )
+    };
+
+    final Camera cam = new PerspectiveCamera( new Point3(8,8,8), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI / 4 );
+
+    final Light[] lights = new Light[]{
+        new PointLight( WHITE, true, new Point3(8,8,0) )
     };
 
     final World world = new World( geometries, lights, BLACK, BLACK );
