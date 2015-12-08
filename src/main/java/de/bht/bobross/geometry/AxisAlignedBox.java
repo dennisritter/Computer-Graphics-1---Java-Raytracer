@@ -70,13 +70,13 @@ public class AxisAlignedBox extends Geometry {
 
     final Point3 p = r.at( maxT );
 
-    if ( mp.n.x == 0 && lbf.x > p.x || p.x > run.x )
+    if ( mp.n.x == 0 && ( lbf.x > p.x || p.x > run.x ) )
       return null;
 
-    if ( mp.n.y == 0 && lbf.y > p.y || p.y > run.y )
+    if ( mp.n.y == 0 && ( lbf.y > p.y || p.y > run.y ) )
       return null;
 
-    if ( mp.n.z == 0 && lbf.z > p.z || p.z > run.z )
+    if ( mp.n.z == 0 && ( lbf.z > p.z || p.z > run.z ) )
       return null;
 
     return new Hit ( maxT, r, this, mp.n );
