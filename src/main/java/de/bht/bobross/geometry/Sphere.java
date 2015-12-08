@@ -54,7 +54,7 @@ public class Sphere extends Geometry
     final double t1 = ( -bHelp - Math.sqrt(dHelp) ) / 2 * aHelp ;
     final double t2 = ( -bHelp + Math.sqrt(dHelp) ) / 2 * aHelp ;
 
-    if (t2 < 0 ) {
+    if (t2 < Helpers.EPSILON ) {
       return null;
     }
     double t = t1;
