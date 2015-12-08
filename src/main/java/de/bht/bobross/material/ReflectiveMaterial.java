@@ -47,7 +47,7 @@ public class ReflectiveMaterial extends Material{
 
       if(light.illuminates(p, world)) {
         final Color cTemp = diffuse.mul(light.color).mul(Math.max(0, (hit.normal.dot(l))))
-            .add(specular.mul(light.color).mul(Math.max(0, Math.pow(e.dot(r), exponent))));
+            .add(specular.mul(light.color).mul(Math.pow(Math.max(0, e.dot(r)), exponent)));
         final Color cReflection = reflection.mul(tracer.traceRay(new Ray(p, hit.ray.d.reflectedOn(hit.normal))));
         c.add(cTemp).add(cReflection);
       }
