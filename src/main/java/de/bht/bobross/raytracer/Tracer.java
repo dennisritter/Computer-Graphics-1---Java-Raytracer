@@ -4,6 +4,7 @@ import de.bht.bobross.Color;
 import de.bht.bobross.Ray;
 import de.bht.bobross.World;
 import de.bht.bobross.geometry.Hit;
+import de.bht.bobross.math.Helpers;
 
 /**
  * Class used to trace a single ray
@@ -44,7 +45,7 @@ public class Tracer {
 
     final Hit h = world.hit( ray );
 
-    if ( h == null || h.t <= 0 )
+    if ( h == null || h.t <= Helpers.EPSILON )
       return world.backgroundColor;
 
     --recursions;

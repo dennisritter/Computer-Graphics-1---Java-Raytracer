@@ -40,10 +40,7 @@ public class PointLight extends Light {
     if ( hitGeo == null ){
       return true;
     }
-    if( hitGeo.t > 0.0 && hitGeo.t <= ray.tOf( this.position ) ){
-      return false;
-    }
-    return true;
+    return !( hitGeo.t > 0.0 && hitGeo.t <= ray.tOf( this.position ) );
   }
 
   @Override

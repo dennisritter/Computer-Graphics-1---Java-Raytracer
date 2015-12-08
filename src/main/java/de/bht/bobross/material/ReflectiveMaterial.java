@@ -49,7 +49,7 @@ public class ReflectiveMaterial extends Material{
         final Color cTemp = diffuse.mul(light.color).mul(Math.max(0, (hit.normal.dot(l))))
             .add(specular.mul(light.color).mul(Math.pow(Math.max(0, e.dot(r)), exponent)));
         final Color cReflection = reflection.mul(tracer.traceRay(new Ray(p, hit.ray.d.reflectedOn(hit.normal))));
-        c.add(cTemp).add(cReflection);
+        c = c.add(cTemp).add(cReflection);
       }
     }
     return c.limitComponents();
