@@ -54,13 +54,13 @@ public class RaytracerTest {
 
   /** Displays the selected scenes, each in it's own window. */
   public static void main ( final String[] args ) {
-       // singleColor();
-    // pointLightLambert();
-    //   pointLightPhong();
-    //  dirLightPhong();
-    //  spotLightPhong();
-    //  spotLightPhongAmbient();
-    //  pointLightPhongDisc();
+        singleColor();
+        pointLightLambert();
+        pointLightPhong();
+        dirLightPhong();
+        spotLightPhong();
+        spotLightPhongAmbient();
+        pointLightPhongDisc();
         customDemoScene();
   }
 
