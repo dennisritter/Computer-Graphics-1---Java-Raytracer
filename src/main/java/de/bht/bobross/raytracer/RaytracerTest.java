@@ -64,7 +64,7 @@ public class RaytracerTest {
     final Camera cam = new PerspectiveCamera( new Point3(8,8,8), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI / 4);
 
     final Light[] lights = new Light[]{
-        new PointLight( WHITE, true, new Point3(8,8,0) )
+        new PointLight( WHITE, true, new Point3(8,8,8) )
     };
 
     final World world = new World( geometries, lights, BLACK, AMBIENT );
