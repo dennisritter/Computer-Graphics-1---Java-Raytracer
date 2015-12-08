@@ -4,7 +4,6 @@ import de.bht.bobross.Color;
 import de.bht.bobross.Ray;
 import de.bht.bobross.World;
 import de.bht.bobross.camera.Camera;
-import de.bht.bobross.geometry.Hit;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -143,31 +142,6 @@ public class Raytracer {
     }
   }
 
-  /**
-   * Traces a ray representing the specified pixel and determines the color of the pixel
-   *
-   * @param     x         The pixel's x coordinate
-   * @param     y         The pixel's y coordinate
-   * @param     width     The image's width
-   * @param     height    The image's height
-   * @return              The color in which the specified pixel shall be displayed
-   */
-  public Color traceRay ( final int x, final int y, final int width, final int height ) {
-    if ( x < 0 || x >= width )
-      throw new IllegalArgumentException( "Parameter x must be in the range of the image's width." );
-
-    if ( y < 0 || y >= height )
-      throw new IllegalArgumentException( "Parameter y must be in the range of the image's height" );
-
-    final Ray r = camera.rayFor( width, height, x, y );
-    final Hit h = world.hit( r );
-
-    if ( h == null || h.t <= 0 )
-      return world.backgroundColor;
-
-    return h.geo.material.colorFor(h, world);
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -293,6 +267,9 @@ public class Raytracer {
     /** Shared counter representing the number of pixels that have been drawn in the whole image */
     public final AtomicInteger counter;
 
+    /** Tracer used to trace the rays */
+    public final Tracer tracer;
+
     /**
      * Constructs a new RaytracerRunnable
      *
@@ -304,6 +281,7 @@ public class Raytracer {
       this.minY = minY;
       this.maxY = maxY;
       this.counter = counter;
+      this.tracer = new Tracer( world );
     }
 
     /**
@@ -318,13 +296,26 @@ public class Raytracer {
 
       for ( int y = minY; y < maxY; y++ ) {
         for ( int x = 0; x < w; x++ ) {
-          pixels[ (h-y-1) * w + x ] = traceRay( x, y, image.getWidth(), image.getHeight() ).asInt();
+          pixels[ (h-y-1) * w + x ] = traceRay( x, y ).asInt();
           counter.incrementAndGet();
           if ( counter.get() % progressInterval == 0 ) {
             notifyActionListeners( new RaytracerProgress( counter.get(), totalPixels ), RaytracerCommands.PROGRESS );
           }
         }
       }
+    }
+
+    /**
+     * Traces a ray from the specified pixel in the camera
+     *
+     * @param   x       The pixel's x coordinate
+     * @param   y       The pixel's y coordinate
+     * @return          The color for the pixel
+     */
+    protected Color traceRay ( final int x, final int y ) {
+      tracer.resetRecursionCounter();
+      final Ray ray = camera.rayFor( image.getWidth(), image.getHeight(), x, y );
+      return tracer.traceRay( ray );
     }
   }
 }
