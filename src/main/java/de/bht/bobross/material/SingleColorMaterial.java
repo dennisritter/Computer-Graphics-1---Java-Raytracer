@@ -32,7 +32,7 @@ public class SingleColorMaterial extends Material {
     Color c = color.mul(world.ambientLightColor);
 
     for ( Light light : world.lights ) {
-      if (light.illuminates(p)) {
+      if (light.illuminates(p, world)) {
         c.add(light.color);
       }
     }
