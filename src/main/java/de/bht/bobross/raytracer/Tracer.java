@@ -47,6 +47,7 @@ public class Tracer {
     if ( h == null || h.t <= 0 )
       return world.backgroundColor;
 
+    --recursions;
     return h.geo.material.colorFor( h, world, this );
   }
 

@@ -296,7 +296,7 @@ public class Raytracer {
 
       for ( int y = minY; y < maxY; y++ ) {
         for ( int x = 0; x < w; x++ ) {
-          pixels[ (h-y-1) * w + x ] = traceRay( x, y ).asInt();
+          pixels[ (h-y-1) * w + x ] = tracePixel( x, y ).asInt();
           counter.incrementAndGet();
           if ( counter.get() % progressInterval == 0 ) {
             notifyActionListeners( new RaytracerProgress( counter.get(), totalPixels ), RaytracerCommands.PROGRESS );
@@ -312,7 +312,7 @@ public class Raytracer {
      * @param   y       The pixel's y coordinate
      * @return          The color for the pixel
      */
-    protected Color traceRay ( final int x, final int y ) {
+    protected Color tracePixel ( final int x, final int y ) {
       tracer.resetRecursionCounter();
       final Ray ray = camera.rayFor( image.getWidth(), image.getHeight(), x, y );
       return tracer.traceRay( ray );
