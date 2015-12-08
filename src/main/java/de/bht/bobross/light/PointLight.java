@@ -1,6 +1,7 @@
 package de.bht.bobross.light;
 
 import de.bht.bobross.Color;
+import de.bht.bobross.World;
 import de.bht.bobross.math.Point3;
 import de.bht.bobross.math.Vector3;
 
@@ -16,8 +17,9 @@ public class PointLight extends Light {
 
   /**
    * The constructor
-   * @param color       the color of the light;
-   * @param position    the position of this PointLight;
+   * @param color         the color of the light;
+   * @param position      the position of this PointLight;
+   * @param castsShadows  Whether the light casts shadows
    */
   public PointLight(final Color color, final boolean castsShadows, final Point3 position){
     super(color, castsShadows);
@@ -25,7 +27,7 @@ public class PointLight extends Light {
   }
 
   @Override
-  public boolean illuminates(Point3 point) {
+  public boolean illuminates(Point3 point, World world) {
     return true;
   }
 
