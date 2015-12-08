@@ -30,7 +30,7 @@ public class SpotLight extends Light {
    * @param halfAngle       The half opening angle of this spotlight
    * @param castsShadows    Whether the light casts shadows
    */
-  public SpotLight(final Color color, final boolean castsShadows, final Point3 position, final Vector3 direction, final double halfAngle){
+  public SpotLight (final Color color, final boolean castsShadows, final Point3 position, final Vector3 direction, final double halfAngle){
     super(color, castsShadows);
     this.position = position;
     this.direction = direction;
@@ -40,11 +40,7 @@ public class SpotLight extends Light {
   @Override
   public boolean illuminates(Point3 point, World world) {
     double angle = Math.acos(point.sub(position).normalized().dot(direction));
-    if (angle > halfAngle) {
-      return false;
-    } else {
-      return true;
-    }
+    return angle <= halfAngle;
   }
 
   @Override

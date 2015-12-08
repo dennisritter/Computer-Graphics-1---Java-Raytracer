@@ -41,7 +41,7 @@ public class Tracer {
    */
   public Color traceRay ( final Ray ray ) {
     if ( recursions == 0 )
-      return new Color(0,1,0);
+      return world.backgroundColor;
 
     final Hit h = world.hit( ray );
 
