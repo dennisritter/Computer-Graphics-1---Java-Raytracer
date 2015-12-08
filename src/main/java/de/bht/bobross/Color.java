@@ -90,6 +90,15 @@ public class Color {
     return i;
   }
 
+
+  /**
+   * Limits the colors components to a maximum of 1.0
+   * @return    c         The Color with it´s components limited to 1.0
+   */
+  public Color limitComponents (){
+    return new Color(Math.min(r, 1.0), Math.min(g, 1.0), Math.min(b, 1.0));
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;

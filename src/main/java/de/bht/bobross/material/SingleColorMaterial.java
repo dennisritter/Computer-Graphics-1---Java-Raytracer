@@ -35,6 +35,6 @@ public class SingleColorMaterial extends Material {
         c.add(light.color);
       }
     }
-    return limitColorComponentsTo1(c);
+    return c.limitComponents();
   }
 }

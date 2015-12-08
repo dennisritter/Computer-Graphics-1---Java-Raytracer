@@ -40,7 +40,7 @@ public class LambertMaterial extends Material {
         c = c.add(cTemp);
       }
     }
-    return limitColorComponentsTo1(c);
+    return c.limitComponents();
   }
 
 }
