@@ -27,7 +27,7 @@ public class RaytracerTest {
   public static final Color WHITE = new Color( 1, 1, 1 );
   public static final Color BLUE = new Color( 0, 0, 1 );
   public static final Color GREEN = new Color( 0, 1, 0 );
-  public static final Color AMBIENT = new Color( .15, .15, .15 );
+  public static final Color AMBIENT = new Color( .25, .25, .25 );
 
   public static void main ( final String[] args ) {
 //    illuminatesTest();
@@ -64,7 +64,7 @@ public class RaytracerTest {
     final Camera cam = new PerspectiveCamera( new Point3(8,8,8), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI / 4);
 
     final Light[] lights = new Light[]{
-        new PointLight( WHITE, true, new Point3(8,8,8) )
+        new PointLight( WHITE, true, new Point3(8,8,0) )
     };
 
     final World world = new World( geometries, lights, BLACK, AMBIENT );
