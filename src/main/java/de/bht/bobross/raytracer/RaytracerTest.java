@@ -31,6 +31,7 @@ public class RaytracerTest {
 
   public static void main ( final String[] args ) {
 //    illuminatesTest();
+//    reflectiveBox();
     scene1();
     scene2();
   }
@@ -47,6 +48,22 @@ public class RaytracerTest {
 
     final Light[] lights = new Light[]{
         new PointLight( WHITE, true, new Point3(8,6,0) )
+    };
+
+    final World world = new World( geometries, lights, BLACK, AMBIENT );
+    createFrame( cam, world );
+  }
+
+  public static void reflectiveBox () {
+    final Geometry[] geometries = new Geometry[]{
+        new Plane( new Point3(0,0,0), new Normal3(0,1,0), new ReflectiveMaterial( WHITE, BLACK, 64, new Color(.5,.5,.5) ) ),
+        new AxisAlignedBox( new Point3(-.5,0,-.5), new Point3(.5,1,.5), new ReflectiveMaterial( RED, BLACK, 64, new Color(.5,.5,.5) ) )
+    };
+
+    final Camera cam = new PerspectiveCamera( new Point3(8,8,8), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI / 4 );
+
+    final Light[] lights = new Light[]{
+        new PointLight( WHITE, true, new Point3(8,8,0) )
     };
 
     final World world = new World( geometries, lights, BLACK, AMBIENT );
