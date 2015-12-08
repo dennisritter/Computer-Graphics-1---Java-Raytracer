@@ -19,8 +19,8 @@ public class PointLight extends Light {
    * @param color       the color of the light;
    * @param position    the position of this PointLight;
    */
-  public PointLight(final Color color, final Point3 position){
-    super(color);
+  public PointLight(final Color color, final boolean castsShadows, final Point3 position){
+    super(color, castsShadows);
     this.position = position;
   }
 

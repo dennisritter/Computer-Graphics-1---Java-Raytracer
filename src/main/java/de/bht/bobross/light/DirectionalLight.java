@@ -19,8 +19,8 @@ public class DirectionalLight extends Light {
    * @param color           Represents the color of this spotlight
    * @param direction       Represents the light's main direction
    */
-  public DirectionalLight(Color color, Vector3 direction){
-    super(color);
+  public DirectionalLight(final Color color, final boolean castsShadows, final Vector3 direction){
+    super(color, castsShadows);
     this.direction = direction;
   }
 

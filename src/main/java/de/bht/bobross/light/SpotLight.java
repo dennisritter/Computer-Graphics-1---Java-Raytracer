@@ -28,8 +28,8 @@ public class SpotLight extends Light {
    * @param direction       The direction this spotlight points to
    * @param halfAngle       The half opening angle of this spotlight
    */
-  public SpotLight(final Color color, final Point3 position, final Vector3 direction, final double halfAngle){
-    super(color);
+  public SpotLight(final Color color, final boolean castsShadows, final Point3 position, final Vector3 direction, final double halfAngle){
+    super(color, castsShadows);
     this.position = position;
     this.direction = direction;
     this.halfAngle = halfAngle;
