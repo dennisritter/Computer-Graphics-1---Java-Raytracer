@@ -2,6 +2,7 @@ package de.bht.bobross.geometry;
 
 import de.bht.bobross.Ray;
 import de.bht.bobross.material.Material;
+import de.bht.bobross.math.Helpers;
 import de.bht.bobross.math.Normal3;
 import de.bht.bobross.math.Point3;
 import de.bht.bobross.math.Vector3;
@@ -57,7 +58,7 @@ public class Sphere extends Geometry
       return null;
     }
     double t = t1;
-    if (t1 < 0) {
+    if (t1 < 0 && t2 > Helpers.EPSILON) {
       t = t2;
     }
 
