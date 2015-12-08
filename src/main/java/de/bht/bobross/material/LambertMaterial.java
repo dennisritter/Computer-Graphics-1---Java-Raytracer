@@ -28,7 +28,7 @@ public class LambertMaterial extends Material {
   }
   
   @Override
-  public Color colorFor( final Hit hit, final World world, final Tracer tracer ) {
+  public Color colorFor ( final Hit hit, final World world, final Tracer tracer ) {
 
     Color c = color.mul( world.ambientLightColor );
     final Point3 p = hit.getPoint();
