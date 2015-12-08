@@ -30,10 +30,11 @@ public class PointLight extends Light {
 
   @Override
   public boolean illuminates(Point3 point, World world) {
+    if ( !castsShadows ){
+      return true;
+    }
     Vector3 l = directionFrom(point);
-
     Ray ray = new Ray( point, l );
-
     Hit hitGeo = world.hit( ray );
 
     if ( hitGeo == null ){
@@ -41,9 +42,8 @@ public class PointLight extends Light {
     }
     if( hitGeo.t > 0.0 && hitGeo.t <= ray.tOf( this.position ) ){
       return false;
-    }else {
-      return true;
     }
+    return true;
   }
 
   @Override
