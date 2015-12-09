@@ -4,6 +4,7 @@ import de.bht.bobross.Color;
 import de.bht.bobross.Ray;
 import de.bht.bobross.World;
 import de.bht.bobross.geometry.Hit;
+import de.bht.bobross.math.Helpers;
 import de.bht.bobross.math.Point3;
 import de.bht.bobross.math.Vector3;
 
@@ -40,7 +41,7 @@ public class PointLight extends Light {
     if ( hitGeo == null ){
       return true;
     }
-    return !( hitGeo.t > 0.0 && hitGeo.t <= ray.tOf( this.position ) );
+    return !( hitGeo.t > Helpers.EPSILON && hitGeo.t <= ray.tOf( this.position ) );
   }
 
   @Override
