@@ -22,12 +22,19 @@ public class ReflectiveMaterial extends Material{
   /** The material's specular color */
   public final Color specular;
 
-  /** The material's Phong exponent */
+  /** The material's exponent */
   public final int exponent;
 
   /** The material's reflection color */
   public final Color reflection;
 
+  /**
+   * Constructs a new ReflectiveMaterial with all attributes
+   * @param diffuse    The material's diffuse color.
+   * @param specular   The material's specular color.
+   * @param exponent   The material's exponent.
+   * @param reflection The material's reflection.
+   */
   public ReflectiveMaterial(Color diffuse, Color specular, int exponent, Color reflection){
     this.diffuse = diffuse;
     this.specular = specular;
