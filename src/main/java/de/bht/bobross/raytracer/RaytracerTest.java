@@ -78,10 +78,10 @@ public class RaytracerTest {
       new Sphere( new Point3(3,1,0), 1, new ReflectiveMaterial( BLUE, WHITE, 64, new Color(.5,.5,.5) ) )
     };
 
-    final Camera cam = new PerspectiveCamera( new Point3(8,8,8), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI / 4);
+    final Camera cam = new PerspectiveCamera( new Point3(8,8,8), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI / 4 );
 
     final Light[] lights = new Light[]{
-        new PointLight( WHITE, true, new Point3(8,8,8) )
+        new PointLight( WHITE, false, new Point3(8,8,8) )
     };
 
     final World world = new World( geometries, lights, BLACK, AMBIENT );

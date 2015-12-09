@@ -45,7 +45,7 @@ public class Tracer {
 
     final Hit h = world.hit( ray );
 
-    if ( h == null || h.t <= Helpers.EPSILON )
+    if ( h == null || h.t <= 0 )
       return world.backgroundColor;
 
     --recursions;
