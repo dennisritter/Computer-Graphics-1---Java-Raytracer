@@ -4,6 +4,7 @@ import de.bht.bobross.Color;
 import de.bht.bobross.Ray;
 import de.bht.bobross.material.Material;
 import de.bht.bobross.material.SingleColorMaterial;
+import de.bht.bobross.math.Helpers;
 import de.bht.bobross.math.Normal3;
 import de.bht.bobross.math.Point3;
 
@@ -51,12 +52,12 @@ public class AxisAlignedBox extends Geometry {
     double maxT = -1;
     Plane mp = null;
     for ( Plane p : planes ) {
-      if ( r.d.dot( p.n ) >= 0 )
+      if ( r.d.dot( p.n ) > 0 )
         continue;
 
       final Hit hit = p.hit( r );
 
-      if ( hit == null || hit.t <= 0 )
+      if ( hit == null || hit.t <= Helpers.EPSILON)
         continue;
 
       if ( hit.t > maxT ) {

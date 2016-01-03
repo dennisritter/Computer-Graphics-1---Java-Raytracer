@@ -94,7 +94,7 @@ public class RaytracerTest {
       new AxisAlignedBox( new Point3(-.5,0,-.5), new Point3(.5,1,.5), new LambertMaterial( RED ) )
     };
 
-    final Camera cam = new PerspectiveCamera( new Point3(8,8,8), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI / 4 );
+    final Camera cam = new PerspectiveCamera( new Point3(4, 4, 4), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI / 8 );
 
     final Light[] lights = new Light[]{
         new PointLight( WHITE, true, new Point3(8,8,0) )

@@ -41,7 +41,7 @@ public class PointLight extends Light {
     if ( hitGeo == null ){
       return true;
     }
-    return !( hitGeo.t > Helpers.EPSILON && hitGeo.t <= ray.tOf( this.position ) );
+    return !( hitGeo.t <= ray.tOf( this.position ) );
   }
 
   @Override
