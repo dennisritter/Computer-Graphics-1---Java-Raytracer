@@ -6,6 +6,7 @@ import de.bht.bobross.geometry.Hit;
 import de.bht.bobross.light.Light;
 import de.bht.bobross.math.Point3;
 import de.bht.bobross.math.Vector3;
+import de.bht.bobross.raytracer.Tracer;
 
 /**
  * Represents a Lambert Material for a geometry
@@ -27,7 +28,7 @@ public class LambertMaterial extends Material {
   }
   
   @Override
-  public Color colorFor( final Hit hit, final World world ) {
+  public Color colorFor ( final Hit hit, final World world, final Tracer tracer ) {
 
     Color c = color.mul( world.ambientLightColor );
     final Point3 p = hit.getPoint();
@@ -35,12 +36,12 @@ public class LambertMaterial extends Material {
     for ( Light light : world.lights ) {
       final Vector3 l = light.directionFrom(p);
 
-      if(light.illuminates(p)) {
+      if(light.illuminates(p, world)) {
         final Color cTemp = color.mul(light.color).mul(Math.max(0, hit.normal.dot(l)));
         c = c.add(cTemp);
       }
     }
-    return limitColorComponentsTo1(c);
+    return c.limitComponents();
   }
 
 }

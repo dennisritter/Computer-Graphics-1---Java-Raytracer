@@ -6,6 +6,7 @@ import de.bht.bobross.geometry.Hit;
 import de.bht.bobross.light.Light;
 import de.bht.bobross.math.Point3;
 import de.bht.bobross.math.Vector3;
+import de.bht.bobross.raytracer.Tracer;
 
 /**
  * Represents a PhongMaterial for a geometry
@@ -37,7 +38,7 @@ public class PhongMaterial extends Material {
   }
 
   @Override
-  public Color colorFor( final Hit hit, final World world ) {
+  public Color colorFor( final Hit hit, final World world, final Tracer tracer ) {
     Color c = diffuse.mul( world.ambientLightColor );
     final Point3 p = hit.getPoint();
     for ( Light light : world.lights ) {
@@ -45,13 +46,13 @@ public class PhongMaterial extends Material {
       final Vector3 r = l.reflectedOn(hit.normal);
       final Vector3 e = hit.ray.d.mul(-1);
 
-      if(light.illuminates(p)) {
+      if(light.illuminates(p, world)) {
         final Color cTemp = diffuse.mul(light.color).mul(Math.max(0, (hit.normal.dot(l))))
             .add(specular.mul(light.color).mul(Math.pow(Math.max(0, e.dot(r)), exponent)));
         c = c.add(cTemp);
       }
     }
-    return limitColorComponentsTo1(c);
+    return c.limitComponents();
   }
 
 }

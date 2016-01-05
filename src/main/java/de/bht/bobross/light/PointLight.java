@@ -1,6 +1,10 @@
 package de.bht.bobross.light;
 
 import de.bht.bobross.Color;
+import de.bht.bobross.Ray;
+import de.bht.bobross.World;
+import de.bht.bobross.geometry.Hit;
+import de.bht.bobross.math.Helpers;
 import de.bht.bobross.math.Point3;
 import de.bht.bobross.math.Vector3;
 
@@ -16,17 +20,28 @@ public class PointLight extends Light {
 
   /**
    * The constructor
-   * @param color       the color of the light;
-   * @param position    the position of this PointLight;
+   * @param color         the color of the light;
+   * @param position      the position of this PointLight;
+   * @param castsShadows  Whether the light casts shadows
    */
-  public PointLight(final Color color, final Point3 position){
-    super(color);
+  public PointLight(final Color color, final boolean castsShadows, final Point3 position){
+    super(color, castsShadows);
     this.position = position;
   }
 
   @Override
-  public boolean illuminates(Point3 point) {
-    return true;
+  public boolean illuminates(Point3 point, World world) {
+    if ( !castsShadows ){
+      return true;
+    }
+    Vector3 l = directionFrom(point);
+    Ray ray = new Ray( point, l );
+    Hit hitGeo = world.hit( ray );
+
+    if ( hitGeo == null ){
+      return true;
+    }
+    return !( hitGeo.t <= ray.tOf( this.position ) );
   }
 
   @Override

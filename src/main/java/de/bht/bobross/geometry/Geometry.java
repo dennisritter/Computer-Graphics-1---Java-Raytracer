@@ -1,6 +1,5 @@
 package de.bht.bobross.geometry;
 
-import de.bht.bobross.Color;
 import de.bht.bobross.Ray;
 import de.bht.bobross.material.Material;
 

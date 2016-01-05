@@ -1,6 +1,7 @@
 package de.bht.bobross.light;
 
 import de.bht.bobross.Color;
+import de.bht.bobross.World;
 import de.bht.bobross.math.Point3;
 import de.bht.bobross.math.Vector3;
 
@@ -27,22 +28,19 @@ public class SpotLight extends Light {
    * @param position        The position of this spotlight
    * @param direction       The direction this spotlight points to
    * @param halfAngle       The half opening angle of this spotlight
+   * @param castsShadows    Whether the light casts shadows
    */
-  public SpotLight(final Color color, final Point3 position, final Vector3 direction, final double halfAngle){
-    super(color);
+  public SpotLight (final Color color, final boolean castsShadows, final Point3 position, final Vector3 direction, final double halfAngle){
+    super(color, castsShadows);
     this.position = position;
     this.direction = direction;
     this.halfAngle = halfAngle;
   }
 
   @Override
-  public boolean illuminates(Point3 point) {
+  public boolean illuminates(Point3 point, World world) {
     double angle = Math.acos(point.sub(position).normalized().dot(direction));
-    if (angle > halfAngle) {
-      return false;
-    } else {
-      return true;
-    }
+    return angle <= halfAngle;
   }
 
   @Override
