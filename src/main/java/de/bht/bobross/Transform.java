@@ -6,6 +6,7 @@ package de.bht.bobross;
 
 import de.bht.bobross.math.Mat4x4;
 import de.bht.bobross.math.Normal3;
+import de.bht.bobross.math.Vector3;
 
 /**
  * Represents a Transformation
@@ -22,7 +23,7 @@ public class Transform {
    * Initialises the transformation matrix and it´s inverse with the 4x4 unit matrix
    */
   public Transform(){
-    i = new Mat4x4(
+    m = new Mat4x4(
         1, 0, 0, 0,
         0, 1, 0, 0,
         0, 0, 1, 0,
@@ -42,7 +43,7 @@ public class Transform {
    * @param     m     inverse of the transformation matrix
    * @param     i     The transformation matrix
    */
-  private Transform(Mat4x4 m, Mat4x4 i){
+  private Transform(final Mat4x4 m, final Mat4x4 i){
     this.m = m;
     this.i = i;
   }
@@ -55,23 +56,23 @@ public class Transform {
    * @return    Transform   A new Transform-Object representing the translation
    *                        Transformation of the previous Transform-object
    */
-  public Transform translate(double x, double y, double z){
+  public Transform translate(final double x, final double y, final double z){
     //transformation matrix
-    Mat4x4 tm = new Mat4x4(
+    final Mat4x4 tm = new Mat4x4(
         1, 0, 0, x,
         0, 1, 0, y,
         0, 0, 1, z,
         0, 0, 0, 1
     );
     //inverse transformation matrix
-    Mat4x4 ti = new Mat4x4(
+    final Mat4x4 ti = new Mat4x4(
         1, 0, 0, -x,
         0, 1, 0, -y,
         0, 0, 1, -z,
         0, 0, 0, 1
     );
 
-    return new Transform( m.mul(tm), i.mul(ti) )
+    return new Transform( m.mul(tm), i.mul(ti) );
   }
 
   /**
@@ -82,16 +83,16 @@ public class Transform {
    * @return    @return    Transform    A new Transform-Object representing the scaling
    *                                    Transformation of the previous Transform-object
    */
-  public Transform scale(double sx, double sy, double sz){
+  public Transform scale(final double sx, final double sy, final double sz){
     //transformation matrix
-    Mat4x4 tm = new Mat4x4(
+    final Mat4x4 tm = new Mat4x4(
         sx, 0, 0, 0,
         0, sy, 0, 0,
         0, 0, sz, 0,
         0, 0,  0, 1
     );
     //inverse transformation matrix
-    Mat4x4 ti = new Mat4x4(
+    final Mat4x4 ti = new Mat4x4(
         1/sx,    0,    0, 0,
            0, 1/sy,    0, 0,
            0,    0, 1/sz, 0,
@@ -108,16 +109,16 @@ public class Transform {
    * @return    @return    Transform    A new Transform-Object representing the rotation around the x-axis
    *                                    of the previous Transform-object
    */
-  public Transform rotateX(double alpha){
+  public Transform rotateX(final double alpha){
     //transformation matrix
-    Mat4x4 tm = new Mat4x4(
+    final Mat4x4 tm = new Mat4x4(
         1,                0,                0, 0,
         0,  Math.cos(alpha), -Math.sin(alpha), 0,
         0,  Math.sin(alpha),  Math.cos(alpha), 0,
         0,                0,                0, 1
     );
     //inverse transformation matrix
-    Mat4x4 ti = new Mat4x4(
+    final Mat4x4 ti = new Mat4x4(
         1,                 0,                0, 0,
         0,   Math.cos(alpha),  Math.sin(alpha), 0,
         0,  -Math.sin(alpha),  Math.cos(alpha), 0,
@@ -133,16 +134,16 @@ public class Transform {
    * @return    @return    Transform    A new Transform-Object representing the rotation around the y-axis
    *                                    of the previous Transform-object
    */
-  public Transform rotateY(double alpha){
+  public Transform rotateY(final double alpha){
     //transformation matrix
-    Mat4x4 tm = new Mat4x4(
+    final Mat4x4 tm = new Mat4x4(
         Math.cos(alpha), 0, -Math.sin(alpha), 0,
                       0, 1,                0, 0,
         Math.sin(alpha), 0,  Math.cos(alpha), 0,
                       0, 0,                0, 1
     );
     //inverse transformation matrix
-    Mat4x4 ti = new Mat4x4(
+    final Mat4x4 ti = new Mat4x4(
          Math.cos(alpha), 0, Math.sin(alpha), 0,
                        0, 1,               0, 0,
         -Math.sin(alpha), 0, Math.cos(alpha), 0,
@@ -158,16 +159,16 @@ public class Transform {
    * @return    @return    Transform    A new Transform-Object representing the rotation around the z-axis
    *                                    of the previous Transform-object
    */
-  public Transform rotateZ(double alpha){
+  public Transform rotateZ(final double alpha){
     //transformation matrix
-    Mat4x4 tm = new Mat4x4(
+    final Mat4x4 tm = new Mat4x4(
         Math.cos(alpha), -Math.sin(alpha), 0, 0,
         Math.sin(alpha),  Math.cos(alpha), 0, 0,
                       0,                0, 1, 0,
                       0,                0, 0, 1
     );
     //inverse transformation matrix
-    Mat4x4 ti = new Mat4x4(
+    final Mat4x4 ti = new Mat4x4(
          Math.cos(alpha),  Math.sin(alpha), 0, 0,
         -Math.sin(alpha),  Math.cos(alpha), 0, 0,
                        0,                0, 1, 0,
@@ -177,11 +178,12 @@ public class Transform {
     return new Transform( m.mul(tm), i.mul(ti) );
   }
 
-  public Normal3 mul(Normal3 normal){
-    return null;
+  public Normal3 mul(final Normal3 normal){
+    Vector3 normalVec = new Vector3(normal.x, normal.y, normal.z);
+    return i.transpose().mul(normalVec).asNormal();
   }
 
-  public Ray mul(Ray ray){
-    return null;
+  public Ray mul(final Ray ray){
+    return new Ray( i.mul(ray.o), i.mul(ray.d) );
   }
 }
