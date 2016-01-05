@@ -102,7 +102,12 @@ public class Transform {
   }
 
 
-
+  /**
+   * Rotates the transform-object around the x-axis
+   * @param     alpha     the degree for the rotation
+   * @return    @return    Transform    A new Transform-Object representing the rotation around the x-axis
+   *                                    of the previous Transform-object
+   */
   public Transform rotateX(double alpha){
     //transformation matrix
     Mat4x4 tm = new Mat4x4(
@@ -122,6 +127,12 @@ public class Transform {
     return new Transform( m.mul(tm), i.mul(ti) );
   }
 
+  /**
+   * Rotates the transform-object around the y-axis
+   * @param     alpha     the degree for the rotation
+   * @return    @return    Transform    A new Transform-Object representing the rotation around the y-axis
+   *                                    of the previous Transform-object
+   */
   public Transform rotateY(double alpha){
     //transformation matrix
     Mat4x4 tm = new Mat4x4(
@@ -141,6 +152,12 @@ public class Transform {
     return new Transform( m.mul(tm), i.mul(ti) );
   }
 
+  /**
+   * Rotates the transform-object around the z-axis
+   * @param     alpha     the degree for the rotation
+   * @return    @return    Transform    A new Transform-Object representing the rotation around the z-axis
+   *                                    of the previous Transform-object
+   */
   public Transform rotateZ(double alpha){
     //transformation matrix
     Mat4x4 tm = new Mat4x4(
