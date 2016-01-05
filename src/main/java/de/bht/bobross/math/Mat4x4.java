@@ -150,8 +150,39 @@ public class Mat4x4 {
     );
   }
 
+  /**
+   * Returns the transposed matrix of this matrix
+   *
+   * @return     The transposed matrix
+   */
+
+  public Mat4x4 transpose(){
+    return new Mat4x4(
+        m11, m21, m31, m44, m12, m22, m32, m42, m13, m23, m33, m43, m14, m24, m34, m44
+    );
+  }
+
+  /**
+   * Nathalie's Arbeit sollte gewürdigt werden.
+   *
+   * @return  Schweiß und Tränen
+   */
   public Mat4x4 getInverse() {
-    return 
+    if (
+        (m11 * m22 * m33 * m44 + m11 * m23 * m34 * m42 + m11 * m24 * m32 * m43 +
+            m12 * m21 * m34 * m43 + m12 * m23* m31 * m44 + m12 * m24 *m33 * m41 +
+            m13 * m21 * m32 * m44 + m13 * m22 * m34 * m41 + m13 * m24 * m31 * m42 +
+            m14 * m21 * m33 * m42 + m14 * m22 * m31 * m43 + m14 * m23 * m32 * m41 -
+            m11 * m22 * m34 * m43 - m11 * m23 * m32 * m44 - m11 * m24 * m33 * m42 -
+            m12 * m21 * m33 * m44 - m12 * m23 * m34 * m41 - m12 * m24 * m31 * m43 -
+            m13 * m21 * m34 * m42 - m13 * m22 * m31 * m44 - m13 * m24 * m32 * m41 -
+            m41 * m21 * m32 * m43 - m14 * m22 * m33 * m41 - m14 * m23 * m31 * m42
+        ) == 0) {
+      return null;
+    }
+
+    return
+       null;
   }
 
 
