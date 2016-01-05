@@ -57,11 +57,13 @@ public class ReflectiveMaterial extends Material{
             .add(specular.mul(light.color).mul(Math.pow(Math.max(0, e.dot(r)), exponent)));
         c = c.add(cTemp);
       }
-      final double cosPhiOne = (hit.ray.d.mul(-1.0)).dot(hit.normal);
-      final Vector3 r_d = hit.ray.d.add(hit.normal.mul(cosPhiOne * 2.0));
-      final Color cReflection = reflection.mul(tracer.traceRay(new Ray(p, r_d)));
-      c = c.add(cReflection);
+
     }
+    //final double cosPhiOne = (hit.ray.d.mul(-1.0)).dot(hit.normal);
+    final Vector3 r_d = hit.ray.d.mul( -1 ).reflectedOn( hit.normal );
+    final Color cReflection = reflection.mul(tracer.traceRay(new Ray(p, r_d)));
+    c = c.add(cReflection);
+
     return c.limitComponents();
   }
 
