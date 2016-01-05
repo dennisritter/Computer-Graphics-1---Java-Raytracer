@@ -48,7 +48,7 @@ public class ReflectiveMaterial extends Material{
     final Point3 p = hit.getPoint();
 
     for (Light light : world.lights){
-      final Vector3 l = light.directionFrom(p);
+      final Vector3 l = light.directionFrom(p).normalized();
       final Vector3 r = l.reflectedOn(hit.normal);
       final Vector3 e = hit.ray.d.mul(-1);
 
@@ -57,9 +57,14 @@ public class ReflectiveMaterial extends Material{
             .add(specular.mul(light.color).mul(Math.pow(Math.max(0, e.dot(r)), exponent)));
         c = c.add(cTemp);
       }
-      final Color cReflection = reflection.mul(tracer.traceRay(new Ray(p, hit.ray.d.reflectedOn(hit.normal).mul(-1))));
+      final double cosPhiOne = (hit.ray.d.mul(-1.0)).dot(hit.normal);
+      final Vector3 r_d = hit.ray.d.add(hit.normal.mul(cosPhiOne * 2.0));
+      final Color cReflection = reflection.mul(tracer.traceRay(new Ray(p, r_d)));
       c = c.add(cReflection);
     }
     return c.limitComponents();
   }
+
+
+
 }
