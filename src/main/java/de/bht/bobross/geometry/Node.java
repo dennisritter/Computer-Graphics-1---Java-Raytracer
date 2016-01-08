@@ -4,6 +4,7 @@ import de.bht.bobross.Ray;
 import de.bht.bobross.Transform;
 import de.bht.bobross.material.Material;
 import de.bht.bobross.math.Helpers;
+import de.bht.bobross.math.Normal3;
 
 /**
  *
@@ -46,8 +47,7 @@ public class Node extends Geometry{
     if( minHit == null ){
       return null;
     }
-    return new Hit( minHit.t, r, minHit.geo, minHit.normal  );
-
+    return new Hit( minHit.t, r, minHit.geo, transform.mul(minHit.normal) );
   }
 
   @Override
