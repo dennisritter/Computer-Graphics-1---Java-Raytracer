@@ -39,18 +39,16 @@ public class RaytracerTest {
 
   public static void transformScene() {
     final Geometry[] geometries = new Geometry[]{
-        new Sphere( new Point3 ( -.5,1,-4 ), 1.0, new LambertMaterial( BLUE ) ),
-        new Sphere( new Point3 ( -.5,1,-.5 ), 1.0, new LambertMaterial( GREEN ) ),
-        new Sphere( new Point3 ( -.5,1,3 ), 1.0, new LambertMaterial( RED ) ),
-        new Plane( new Point3(0,0,0), new Normal3(0,1,0), new ReflectiveMaterial( WHITE, BLACK, 64, new Color(.5,.5,.5) ) )
+//        new Plane( new Point3(0,0,0), new Normal3(0,1,0), new ReflectiveMaterial( WHITE, BLACK, 64, new Color(.5,.5,.5) ) ),
+        new Sphere(new LambertMaterial( GREEN ) )
     };
-    final Node[] nodes = new Node[]{ new Node( new Transform(), geometries, new LambertMaterial( RED ) ) };
+    final Node[] nodes = new Node[]{ new Node( new Transform().scale(.5,.5,.5), geometries, null ) };
     final Light[] lights = new Light[]{
-        new PointLight( WHITE, true, new Point3(8,8,0) )
+        new PointLight( WHITE, true, new Point3(4,4,4) )
     };
 
     final World world = new World( nodes, lights, BLACK, AMBIENT );
-    final Camera cam = new PerspectiveCamera( new Point3(8,8,8), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI / 4 );
+    final Camera cam = new PerspectiveCamera( new Point3(2,2,2), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI / 4 );
 
     createFrame(cam, world);
   }
@@ -116,4 +114,5 @@ public class RaytracerTest {
     frame.drawImage();
     return frame;
   }
+
 }
