@@ -1,6 +1,7 @@
 package de.bht.bobross.raytracer;
 
 import de.bht.bobross.Color;
+import de.bht.bobross.Transform;
 import de.bht.bobross.World;
 import de.bht.bobross.camera.Camera;
 import de.bht.bobross.camera.PerspectiveCamera;
@@ -31,30 +32,31 @@ public class RaytracerTest {
   public static final Color AMBIENT = new Color( .25, .25, .25 );
 
   public static void main ( final String[] args ) {
-//    illuminatesTest();
 //    reflectiveBox();
-//    scene1();
-//    scene2();
-    transparentScene();
+//    transparentScene();
+    transformScene();
   }
 
-  public static void illuminatesTest () {
+  public static void transformScene() {
     final Geometry[] geometries = new Geometry[]{
-        new Plane( new Point3(0,0,0), new Normal3(0,1,0), new LambertMaterial( new Color(.8,.8,.8) ) ),
-        new Sphere(new Point3(-3, 1, 0), 1, new LambertMaterial(BLUE)),
-        new Sphere(new Point3(0, 1, 0), 1, new LambertMaterial(RED)),
-        new Sphere(new Point3(3, 1, 0), 1, new LambertMaterial(GREEN))
+        new Sphere( new Point3 ( -.5,1,-4 ), 1.0, new LambertMaterial( BLUE ) ),
+        new Sphere( new Point3 ( -.5,1,-.5 ), 1.0, new LambertMaterial( GREEN ) ),
+        new Sphere( new Point3 ( -.5,1,3 ), 1.0, new LambertMaterial( RED ) ),
+        new Plane( new Point3(0,0,0), new Normal3(0,1,0), new ReflectiveMaterial( WHITE, BLACK, 64, new Color(.5,.5,.5) ) )
+    };
+    final Node[] nodes = new Node[]{ new Node( new Transform(), geometries, new LambertMaterial( RED ) ) };
+    final Light[] lights = new Light[]{
+        new PointLight( WHITE, true, new Point3(8,8,0) )
     };
 
+    final World world = new World( nodes, lights, BLACK, AMBIENT );
     final Camera cam = new PerspectiveCamera( new Point3(8,8,8), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI / 4 );
 
-    final Light[] lights = new Light[]{
-        new PointLight( WHITE, true, new Point3(8,6,0) )
-    };
-
-    final World world = new World( geometries, lights, BLACK, AMBIENT );
-    createFrame( cam, world );
+    createFrame(cam, world);
   }
+
+
+
 
   public static void reflectiveBox () {
     final Geometry[] geometries = new Geometry[]{
@@ -63,40 +65,6 @@ public class RaytracerTest {
     };
 
     final Camera cam = new PerspectiveCamera( new Point3(8,8,8), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI / 4 );
-
-    final Light[] lights = new Light[]{
-        new PointLight( WHITE, true, new Point3(8,8,0) )
-    };
-
-    final World world = new World( geometries, lights, BLACK, AMBIENT );
-    createFrame( cam, world );
-  }
-
-  public static void scene1 () {
-    final Geometry[] geometries = new Geometry[]{
-      new Plane( new Point3(0,0,0), new Normal3(0,1,0), new ReflectiveMaterial( new Color(.1,.1,.1), BLACK, 64, new Color(.5,.5,.5) ) ),
-      new Sphere( new Point3(-3,1,0), 1, new ReflectiveMaterial( RED, WHITE, 64, new Color(.5,.5,.5) ) ),
-      new Sphere( new Point3(0,1,0), 1, new ReflectiveMaterial( GREEN, WHITE, 64, new Color(.5,.5,.5) ) ),
-      new Sphere( new Point3(3,1,0), 1, new ReflectiveMaterial( BLUE, WHITE, 64, new Color(.5,.5,.5) ) )
-    };
-
-    final Camera cam = new PerspectiveCamera( new Point3(8,8,8), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI / 4 );
-
-    final Light[] lights = new Light[]{
-        new PointLight( WHITE, true, new Point3(8,8,8) )
-    };
-
-    final World world = new World( geometries, lights, BLACK, AMBIENT );
-    createFrame( cam, world );
-  }
-
-  public static void scene2 () {
-    final Geometry[] geometries = new Geometry[]{
-      new Plane( new Point3(0,0,0), new Normal3(0,1,0), new LambertMaterial( new Color(.8,.8,.8) ) ),
-      new AxisAlignedBox( new Point3(-.5,0,-.5), new Point3(.5,1,.5), new LambertMaterial( RED ) )
-    };
-
-    final Camera cam = new PerspectiveCamera( new Point3(4, 4, 4), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI / 8 );
 
     final Light[] lights = new Light[]{
         new PointLight( WHITE, true, new Point3(8,8,0) )

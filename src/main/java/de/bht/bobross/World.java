@@ -14,11 +14,11 @@ import java.util.Arrays;
  */
 public class World {
 
-  /** Collection of all light sources in the world */
-  public final Light[] lights;
-
   /** Collection of geometries in the world */
   public final Geometry[] objects;
+
+  /** Collection of all light sources in the world */
+  public final Light[] lights;
 
   /** The world's background color */
   public final Color backgroundColor;
