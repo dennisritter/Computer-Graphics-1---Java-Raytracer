@@ -34,21 +34,21 @@ public class RaytracerTest {
   public static void main ( final String[] args ) {
 //    reflectiveBox();
 //    transparentScene();
-    transformScene();
+    transformScene1();
   }
 
-  public static void transformScene() {
+  public static void transformScene1() {
     final Geometry[] geometries = new Geometry[]{
-//        new Plane( new Point3(0,0,0), new Normal3(0,1,0), new ReflectiveMaterial( WHITE, BLACK, 64, new Color(.5,.5,.5) ) ),
-        new Sphere(new LambertMaterial( GREEN ) )
+        new Sphere(new PhongMaterial( RED, WHITE, 64 ) )
     };
-    final Node[] nodes = new Node[]{ new Node( new Transform().scale(.5,.5,.5), geometries, null ) };
+
+    final Node[] nodes = new Node[]{ new Node( new Transform().scale(1,.2,1).rotateX( Math.PI/8  ).rotateZ( -Math.PI/5 ), geometries, new PhongMaterial( RED, WHITE, 64 ) ) };
     final Light[] lights = new Light[]{
-        new PointLight( WHITE, true, new Point3(4,4,4) )
+        new PointLight( WHITE, true, new Point3(0,0,4) )
     };
 
     final World world = new World( nodes, lights, BLACK, AMBIENT );
-    final Camera cam = new PerspectiveCamera( new Point3(2,2,2), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI / 4 );
+    final Camera cam = new PerspectiveCamera( new Point3(0,0,4), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI / 4 );
 
     createFrame(cam, world);
   }

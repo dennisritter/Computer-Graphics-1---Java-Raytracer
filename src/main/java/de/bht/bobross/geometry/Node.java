@@ -44,10 +44,8 @@ public class Node extends Geometry{
         minHit = hit;
       }
     }
-    if( minHit == null ){
-      return null;
-    }
-    return new Hit( minHit.t, r, minHit.geo, transform.mul(minHit.normal) );
+    if( minHit == null ) { return null; }
+    return new Hit( minHit.t, r, minHit.geo, transform.mul( minHit.normal ) );
   }
 
   @Override
