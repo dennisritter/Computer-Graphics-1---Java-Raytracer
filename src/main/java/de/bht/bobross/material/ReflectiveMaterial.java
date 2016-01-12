@@ -44,6 +44,9 @@ public class ReflectiveMaterial extends Material{
 
   @Override
   public Color colorFor(Hit hit, World world, Tracer tracer) {
+
+    Tracer tracer1 = new Tracer(world);
+
     Color c = diffuse.mul( world.ambientLightColor );
     final Point3 p = hit.getPoint();
 
