@@ -27,7 +27,7 @@ public class AxisAlignedBox extends Geometry {
   protected final Plane[] planes;
 
   /**
-   * Constructs a new axis-aligned-box with fixed low-bottom-far corner and right-upper-near corner coordinates.
+   * Constructs a new axis-aligned-box with preset low-bottom-far corner and right-upper-near corner coordinates.
    * (Change Position or appearance of the AAB by using transformations.)
    * @param     material   The box' Material
    */

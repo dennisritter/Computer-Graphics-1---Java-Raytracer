@@ -20,6 +20,17 @@ public class Plane extends Geometry {
   public final Normal3 n;
 
   /**
+   * Constructs a new plane with preset arbitrary point and normal.
+   * @param   material      the planes material
+   */
+  public Plane ( final Material material ){
+    super(material);
+    this.a = new Point3( 0, 0, 0 );
+    this.n = new Normal3( 0, 1, 0 );
+  }
+
+  /**
+   * TODO: REMOVE this constructor later(or set to protected?)
    * Constructs a new plane
    *
    * @param     a           An arbitrary point on the plane

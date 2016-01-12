@@ -29,12 +29,14 @@ public class RaytracerTest {
   public static final Color WHITE = new Color( 1, 1, 1 );
   public static final Color BLUE = new Color( 0, 0, 1 );
   public static final Color GREEN = new Color( 0, 1, 0 );
+  public static final Color YELLOW = new Color( 1, 1, 0 );
   public static final Color AMBIENT = new Color( .25, .25, .25 );
 
   public static void main ( final String[] args ) {
 //    reflectiveBox();
 //    transparentScene();
     transformScene1();
+    transformScene2();
   }
 
   public static void transformScene1() {
@@ -43,6 +45,22 @@ public class RaytracerTest {
     };
 
     final Node[] nodes = new Node[]{ new Node( new Transform().scale(1,.2,1).rotateX( Math.PI/8  ).rotateZ( -Math.PI/5 ), geometries, new PhongMaterial( RED, WHITE, 64 ) ) };
+    final Light[] lights = new Light[]{
+        new PointLight( WHITE, true, new Point3(0,0,4) )
+    };
+
+    final World world = new World( nodes, lights, BLACK, AMBIENT );
+    final Camera cam = new PerspectiveCamera( new Point3(0,0,4), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI / 4 );
+
+    createFrame(cam, world);
+  }
+
+  public static void transformScene2() {
+    final Geometry[] geometries = new Geometry[]{
+        new AxisAlignedBox( new LambertMaterial( YELLOW ) )
+    };
+
+    final Node[] nodes = new Node[]{ new Node( new Transform().scale(.2,1,3).rotateY(Math.PI/2).rotateX(-Math.PI/4).rotateY(-Math.PI/4), geometries, new PhongMaterial( RED, WHITE, 64 ) ) };
     final Light[] lights = new Light[]{
         new PointLight( WHITE, true, new Point3(0,0,4) )
     };

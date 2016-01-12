@@ -72,7 +72,7 @@ public class Transform {
         0, 0, 0, 1
     );
 
-    return new Transform( m.mul(tm), i.mul(ti) );
+    return new Transform( tm.mul(m), i.mul(ti) );
   }
 
   /**
@@ -99,7 +99,7 @@ public class Transform {
            0,    0,    0, 1
     );
 
-    return new Transform( m.mul(tm), i.mul(ti) );
+    return new Transform( tm.mul(m), i.mul(ti) );
   }
 
 
@@ -125,7 +125,7 @@ public class Transform {
         0,                 0,                0, 1
     );
 
-    return new Transform( m.mul(tm), i.mul(ti) );
+    return new Transform( tm.mul(m), i.mul(ti) );
   }
 
   /**
@@ -150,7 +150,7 @@ public class Transform {
                        0, 0,               0, 1
     );
 
-    return new Transform( m.mul(tm), i.mul(ti) );
+    return new Transform( tm.mul(m), i.mul(ti) );
   }
 
   /**
@@ -175,14 +175,24 @@ public class Transform {
                        0,                0, 0, 1
     );
 
-    return new Transform( m.mul(tm), i.mul(ti) );
+    return new Transform( tm.mul(m), i.mul(ti) );
   }
 
+  /**
+   * Calculates the normal back
+   * @param     normal    The normal
+   * @return              The corrected normal
+   */
   public Normal3 mul(final Normal3 normal){
     Vector3 normalVec = new Vector3(normal.x, normal.y, normal.z);
     return i.transpose().mul(normalVec).asNormal();
   }
 
+  /**
+   * Transforms the Ray
+   * @param     ray     The ray to transform
+   * @return    Ray     The transformed ray
+   */
   public Ray mul(final Ray ray){
     return new Ray( i.mul(ray.o), i.mul(ray.d) );
   }
