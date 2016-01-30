@@ -1,7 +1,9 @@
 package de.bht.bobross.light;
 
 import de.bht.bobross.Color;
+import de.bht.bobross.Ray;
 import de.bht.bobross.World;
+import de.bht.bobross.geometry.Hit;
 import de.bht.bobross.math.Point3;
 import de.bht.bobross.math.Vector3;
 
@@ -28,7 +30,17 @@ public class DirectionalLight extends Light {
 
   @Override
   public boolean illuminates(Point3 point, World world) {
-    return true;
+    if ( !castsShadows ){
+      return true;
+    }
+    Vector3 l = directionFrom(point);
+    Ray ray = new Ray( point, l );
+    Hit hitGeo = world.hit( ray );
+
+    if ( hitGeo == null ){
+      return true;
+    }
+    return false;
   }
 
   @Override
