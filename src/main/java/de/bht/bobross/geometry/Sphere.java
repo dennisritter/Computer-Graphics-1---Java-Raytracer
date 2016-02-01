@@ -25,6 +25,17 @@ public class Sphere extends Geometry
   public final double r;
 
   /**
+   * Constructs a new Sphere with a center at 0,0,0 and radius 1
+   * @param   material   The color of the new Sphere
+   */
+  public Sphere( final Material material ){
+    super(material);
+    this.c = new Point3(0,0,0);
+    this.r = 1;
+  }
+
+  /**
+   * TODO: REMOVE this constructor later
    * Constructs a new Sphere
    * @param   c          The center of the new Sphere
    * @param   r          The radius of the new Sphere
@@ -51,8 +62,8 @@ public class Sphere extends Geometry
       return null;
     }
 
-    final double t1 = ( -bHelp - Math.sqrt(dHelp) ) / 2 * aHelp ;
-    final double t2 = ( -bHelp + Math.sqrt(dHelp) ) / 2 * aHelp ;
+    final double t1 = ( -bHelp - Math.sqrt(dHelp) ) / ( 2 * aHelp ) ;
+    final double t2 = ( -bHelp + Math.sqrt(dHelp) ) / ( 2 * aHelp ) ;
 
     if (t2 < Helpers.EPSILON ) {
       return null;

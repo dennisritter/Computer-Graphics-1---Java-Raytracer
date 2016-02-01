@@ -27,6 +27,27 @@ public class AxisAlignedBox extends Geometry {
   protected final Plane[] planes;
 
   /**
+   * Constructs a new axis-aligned-box with preset low-bottom-far corner and right-upper-near corner coordinates.
+   * (Change Position or appearance of the AAB by using transformations.)
+   * @param     material   The box' Material
+   */
+  public AxisAlignedBox(Material material){
+    super( material );
+    this.lbf = new Point3( -.5, -.5, -.5 );
+    this.run = new Point3( .5, .5, .5 );
+
+    this.planes = new Plane[] {
+        new Plane( run, new Normal3( 1, 0, 0 ), this.material ),
+        new Plane( lbf, new Normal3( -1, 0, 0 ), this.material ),
+        new Plane( run, new Normal3( 0, 1, 0 ), this.material ),
+        new Plane( lbf, new Normal3( 0, -1, 0 ), this.material ),
+        new Plane( run, new Normal3( 0, 0, 1 ), this.material ),
+        new Plane( lbf, new Normal3( 0, 0, -1 ), this.material ),
+    };
+  };
+
+  /**
+   * TODO: REMOVE this constructor later
    * Constructs a new axis-aligned-box
    * @param     lbf        The low-bottom-far corner of the box
    * @param     run        The right-upper-near corner of the box
