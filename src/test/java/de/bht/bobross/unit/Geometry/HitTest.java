@@ -1,6 +1,5 @@
-package de.bht.bobross.unit.Geometry;
+package de.bht.bobross.unit.geometry;
 
-import junit.framework.Assert;
 import org.junit.Test;
 
 /**
@@ -10,7 +9,7 @@ public class HitTest {
 
   @Test
   public void testConstructor(){
-    //TODO: implement when Geometry subclasses are finished
+    //TODO: implement when geometry subclasses are finished
   }
 
 

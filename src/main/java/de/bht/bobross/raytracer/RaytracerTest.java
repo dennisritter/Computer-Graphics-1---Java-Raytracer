@@ -33,10 +33,10 @@ public class RaytracerTest {
   public static final Color AMBIENT = new Color( .25, .25, .25 );
 
   public static void main ( final String[] args ) {
-//    reflectiveBox();
-//    transparentScene();
-//    transformScene1();
-//    transformScene2();
+    reflectiveBox();
+    transparentScene();
+    transformScene1();
+    transformScene2();
   }
 
   public static void transformScene1() {

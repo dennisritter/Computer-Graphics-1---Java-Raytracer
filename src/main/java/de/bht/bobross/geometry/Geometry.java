@@ -15,18 +15,18 @@ public abstract class Geometry {
 
   /**
    * The constructor
-   * @param   material  The Material of this Geometry
+   * @param   material  The Material of this geometry
    */
   public Geometry ( final Material material ) {
     this.material = material;
   }
 
   /**
-   * Tests whether a ray hits a Geometry and returns an Hit Object representing this hit.
-   * Returns null if the Geometry has not been hit by the Ray.
+   * Tests whether a ray hits a geometry and returns an Hit Object representing this hit.
+   * Returns null if the geometry has not been hit by the Ray.
    *
-   * @param   r   The Ray that hits a Geometry
-   * @return      A Hit Object representing the intersection between the Ray and the Geometry or null if the Geometry has not been hit by the Ray
+   * @param   r   The Ray that hits a geometry
+   * @return      A Hit Object representing the intersection between the Ray and the geometry or null if the geometry has not been hit by the Ray
    */
   public abstract Hit hit ( final Ray r );
 

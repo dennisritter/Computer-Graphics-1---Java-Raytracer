@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * A Raytracer traces rays coming from a camera and returns the closest hit with a Geometry.
+ * A Raytracer traces rays coming from a camera and returns the closest hit with a geometry.
  *
  * @author      Jannik Portz
  */

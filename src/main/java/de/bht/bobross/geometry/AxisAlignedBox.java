@@ -1,9 +1,7 @@
 package de.bht.bobross.geometry;
 
-import de.bht.bobross.Color;
 import de.bht.bobross.Ray;
 import de.bht.bobross.material.Material;
-import de.bht.bobross.material.SingleColorMaterial;
 import de.bht.bobross.math.Helpers;
 import de.bht.bobross.math.Normal3;
 import de.bht.bobross.math.Point3;
@@ -17,7 +15,7 @@ import java.util.Arrays;
  */
 public class AxisAlignedBox extends Geometry {
 
-  /** The low-bottom-far corner of the box */
+  /** The left-bottom-far corner of the box */
   public final Point3 lbf;
 
   /** The right-upper-near corner of the box */
@@ -69,11 +67,14 @@ public class AxisAlignedBox extends Geometry {
   }
 
   @Override
-  public Hit hit(Ray r) {
+  public Hit hit ( final Ray r ) {
+    final boolean fromInside = fromInside( r );
     double maxT = -1;
     Plane mp = null;
     for ( Plane p : planes ) {
-      if ( r.d.dot( p.n ) > 0 )
+      final Normal3 normal = fromInside ? p.n.mul( -1 ) : p.n;
+
+      if ( r.d.dot( normal ) > 0 )
         continue;
 
       final Hit hit = p.hit( r );
@@ -81,7 +82,7 @@ public class AxisAlignedBox extends Geometry {
       if ( hit == null || hit.t <= Helpers.EPSILON)
         continue;
 
-      if ( hit.t > maxT ) {
+      if ( !fromInside && hit.t > maxT || fromInside && ( maxT == -1 || hit.t < maxT ) ) {
         maxT = hit.t;
         mp = p;
       }
@@ -101,7 +102,21 @@ public class AxisAlignedBox extends Geometry {
     if ( mp.n.z == 0 && ( lbf.z > p.z || p.z > run.z ) )
       return null;
 
-    return new Hit ( maxT, r, this, mp.n );
+    final Normal3 normal = fromInside ? mp.n.mul( -1 ) : mp.n;
+    return new Hit ( maxT, r, this, normal );
+  }
+
+  private boolean fromInside (final Ray r ) {
+    if ( r.o.x < lbf.x || r.o.x > run.x )
+      return false;
+
+    if ( r.o.y < lbf.y || r.o.y > run.y )
+      return false;
+
+    if ( r.o.z < lbf.z || r.o.z > run.z )
+      return false;
+
+    return true;
   }
 
   @Override

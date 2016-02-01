@@ -45,12 +45,13 @@ public class Plane extends Geometry {
 
   @Override
   public Hit hit(Ray r) {
-    if(n.dot(r.d) == 0){
+    if( n.dot(r.d) == 0 ){
       return null;
     }
 
     final double t = n.dot(a.sub(r.o))/n.dot(r.d);
-    if( t > Helpers.EPSILON) {
+
+    if ( t > Helpers.EPSILON ) {
       return new Hit(t, r, this, n);
     }
 
