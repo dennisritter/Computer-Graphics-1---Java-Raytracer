@@ -313,9 +313,20 @@ public class Raytracer {
      * @return          The color for the pixel
      */
     protected Color tracePixel ( final int x, final int y ) {
-      tracer.resetRecursionCounter();
-      final Ray ray = camera.rayFor( image.getWidth(), image.getHeight(), x, y );
-      return tracer.traceRay( ray );
+      final Ray[] rays = camera.raysFor( image.getWidth(), image.getHeight(), x, y );
+      Color avg = new Color(0,0,0);
+      final int n = rays.length;
+
+      for ( final Ray r : rays ) {
+        tracer.resetRecursionCounter();
+        final Color c = tracer.traceRay( r );
+        avg = new Color(
+            avg.r + c.r / n,
+            avg.g + c.g / n,
+            avg.b + c.b / n
+        );
+      }
+      return avg;
     }
   }
 }

@@ -1,6 +1,7 @@
 package de.bht.bobross.camera;
 
 import de.bht.bobross.Ray;
+import de.bht.bobross.math.Point2;
 import de.bht.bobross.math.Point3;
 import de.bht.bobross.math.Vector3;
 
@@ -22,19 +23,19 @@ public class PerspectiveCamera extends Camera {
    * @param     t     The camera's up-vector
    * @param     angle The camera's angular aperture
    */
-  public PerspectiveCamera (Point3 e, Vector3 g, Vector3 t, double angle) {
-    super(e, g, t);
+  public PerspectiveCamera (Point3 e, Vector3 g, Vector3 t, double angle, SamplingPattern pattern) {
+    super(e, g, t, pattern);
     this.angle = angle;
   }
 
   @Override
-  public Ray rayFor( final int w, final int h, final int x, final int y) {
+  protected Ray rayFor ( final int w, final int h, final int x, final int y, final Point2 samplingPoint ) {
     final double tan = Math.tan(angle / 2);
 
     final double dw = w*1.0;
     final double dh = h*1.0;
-    final double dx = x*1.0;
-    final double dy = y*1.0;
+    final double dx = x*1.0 + samplingPoint.x;
+    final double dy = y*1.0 + samplingPoint.y;
 
     double d1 = dx-((dw-1.0)/2.0);
     double d2 = dy-((dh-1.0)/2.0);

@@ -1,6 +1,7 @@
 package de.bht.bobross.camera;
 
 import de.bht.bobross.Ray;
+import de.bht.bobross.math.Point2;
 import de.bht.bobross.math.Point3;
 import de.bht.bobross.math.Vector3;
 
@@ -17,24 +18,25 @@ public class OrthographicCamera extends Camera {
   /**
    * Constructs a new orthographic camera with all attributes
    *
-   * @param     e   The camera's eye-position
-   * @param     g   The camera's gaze direction
-   * @param     t   The camera's up-vector
-   * @param     s   The camera's scaling factor
+   * @param     e         The camera's eye-position
+   * @param     g         The camera's gaze direction
+   * @param     t         The camera's up-vector
+   * @param     s         The camera's scaling factor
+   * @param     pattern   The sampling pattern to use
    */
-  public OrthographicCamera (final Point3 e, final Vector3 g, final Vector3 t, final double s) {
-    super(e, g, t);
+  public OrthographicCamera ( final Point3 e, final Vector3 g, final Vector3 t, final double s, final SamplingPattern pattern ) {
+    super(e, g, t, pattern);
     this.s = s;
   }
 
   @Override
-  public Ray rayFor (final int w, final int h, final int x, final int y) {
+  protected Ray rayFor ( final int w, final int h, final int x, final int y, Point2 samplingPoint ) {
     final Vector3 d = this.w.mul(-1);
 
     final double dw = w*1.0;
     final double dh = h*1.0;
-    final double dx = x*1.0;
-    final double dy = y*1.0;
+    final double dx = x*1.0 + samplingPoint.x;
+    final double dy = y*1.0 + samplingPoint.y;
     final double a = dw / dh;
 
     final double f1 = (dx-((dw-1.0)/2.0))/(dw-1.0);

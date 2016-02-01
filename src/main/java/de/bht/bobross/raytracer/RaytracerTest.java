@@ -5,6 +5,7 @@ import de.bht.bobross.Transform;
 import de.bht.bobross.World;
 import de.bht.bobross.camera.Camera;
 import de.bht.bobross.camera.PerspectiveCamera;
+import de.bht.bobross.camera.SamplingPattern;
 import de.bht.bobross.geometry.*;
 import de.bht.bobross.light.DirectionalLight;
 import de.bht.bobross.light.Light;
@@ -32,6 +33,8 @@ public class RaytracerTest {
   public static final Color YELLOW = new Color( 1, 1, 0 );
   public static final Color AMBIENT = new Color( .25, .25, .25 );
 
+  public static final SamplingPattern PATTERN = new SamplingPattern(5,5);
+
   public static void main ( final String[] args ) {
     reflectiveBox();
     transparentScene();
@@ -50,7 +53,7 @@ public class RaytracerTest {
     };
 
     final World world = new World( nodes, lights, BLACK, AMBIENT );
-    final Camera cam = new PerspectiveCamera( new Point3(0,0,4), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI / 4 );
+    final Camera cam = new PerspectiveCamera( new Point3(0,0,4), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI / 4, PATTERN );
 
     createFrame(cam, world);
   }
@@ -66,7 +69,7 @@ public class RaytracerTest {
     };
 
     final World world = new World( nodes, lights, BLACK, AMBIENT );
-    final Camera cam = new PerspectiveCamera( new Point3(0,0,4), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI / 4 );
+    final Camera cam = new PerspectiveCamera( new Point3(0,0,4), new Vector3(0,0,-1), new Vector3(0,1,0), Math.PI / 4, PATTERN );
 
     createFrame(cam, world);
   }
@@ -80,7 +83,7 @@ public class RaytracerTest {
         new AxisAlignedBox( new Point3(-.5,0,-.5), new Point3(.5,1,.5), new ReflectiveMaterial( RED, BLACK, 64, new Color(.5,.5,.5) ) )
     };
 
-    final Camera cam = new PerspectiveCamera( new Point3(8,8,8), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI / 4 );
+    final Camera cam = new PerspectiveCamera( new Point3(8,8,8), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI / 4, PATTERN );
 
     final Light[] lights = new Light[]{
         new PointLight( WHITE, true, new Point3(8,8,0) )
@@ -121,7 +124,7 @@ public class RaytracerTest {
         new DirectionalLight(new Color(.3,.3,.3), true, new Vector3 (1,-1,0))
     };
 
-    final PerspectiveCamera cam = new PerspectiveCamera(new Point3(8,8,8), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI/4);
+    final PerspectiveCamera cam = new PerspectiveCamera(new Point3(8,8,8), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI/4, PATTERN );
     final World world = new World(geometries, lights, BLACK, ambient);
     createFrame(cam, world);
   }

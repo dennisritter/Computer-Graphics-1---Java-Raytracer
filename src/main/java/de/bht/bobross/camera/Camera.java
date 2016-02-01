@@ -1,6 +1,7 @@
 package de.bht.bobross.camera;
 
 import de.bht.bobross.Ray;
+import de.bht.bobross.math.Point2;
 import de.bht.bobross.math.Point3;
 import de.bht.bobross.math.Vector3;
 
@@ -29,6 +30,9 @@ public abstract class Camera {
   /** The z-Axis of the camera's orthonormal coordinate system */
   public final Vector3 w;
 
+  /** The pattern to use for generating sampling points */
+  public final SamplingPattern pattern;
+
   /**
    * Initializes the camera with 3 vectors e, g, t.
    *
@@ -36,10 +40,11 @@ public abstract class Camera {
    * @param     g   the camera's gaze direction
    * @param     t   the camera's up-vector.
    */
-  public Camera (final Point3 e, final Vector3 g, final Vector3 t) {
+  public Camera ( final Point3 e, final Vector3 g, final Vector3 t, final SamplingPattern pattern ) {
     this.e = e;
     this.g = g;
     this.t = t;
+    this.pattern = pattern;
 
     this.w = g.normalized().mul(-1);
     this.u = t.x(w).normalized();
@@ -47,15 +52,37 @@ public abstract class Camera {
   }
 
   /**
-   * Returns the ray of a precise pixel.
+   * Generates a Ray for a specific pixel with the provided sampling point
+   * @param     w   the width of the image.
+   * @param     h   the height of the image.
+   * @param     x   the x-coordinate of the pixel.
+   * @param     y   the y-coordinate of the pixel.
+   * @param     samplingPoint The sampling point for the ray
+   * @return        A ray for the specified pixel with the provided sampling point
+   */
+  protected abstract Ray rayFor ( int w, int h, int x, int y, Point2 samplingPoint );
+
+  /**
+   * Returns an array of Rays for the specified pixel.
+   * Each ray in the array represents a sampling ray
+   *
    * @param     w   the width of the image.
    * @param     h   the height of the image.
    * @param     x   the x-coordinate of the pixel.
    * @param     y   the y-coordinate of the pixel.
    *
-   * @return        the ray for the pixel
+   * @return        array of rays for one specific pixel
    */
-  public abstract Ray rayFor (final int w, final int h, final int x, final int y);
+  public Ray[] raysFor (int w, int h, int x, int y) {
+    final Point2[] samplingPoints = pattern.generatePoints();
+    final Ray[] rays = new Ray[ samplingPoints.length ];
+
+    for ( int i = 0; i < samplingPoints.length; ++i ) {
+      rays[i] = rayFor( w, h, x, y, samplingPoints[i] );
+    }
+
+    return rays;
+  }
 
   @Override
   public boolean equals(Object o) {
