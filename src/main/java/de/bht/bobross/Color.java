@@ -30,12 +30,6 @@ public class Color {
    * @param   b   The amount of blue light the color will contain
    */
   public Color(final double r, final double g, final double b) {
-//    if( r > 1.0) { this.r = 1.0; }
-//    else { this.r = r; }
-//    if( g > 1.0) { this.g = 1.0; }
-//    else { this.g = g; }
-//    if( b > 1.0) { this.b = 1.0; }
-//    else { this.b = b; }
     this.r = r;
     this.g = g;
     this.b = b;
