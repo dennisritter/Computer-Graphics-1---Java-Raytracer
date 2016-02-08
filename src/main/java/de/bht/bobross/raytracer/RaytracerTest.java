@@ -36,10 +36,10 @@ public class RaytracerTest {
   public static final SamplingPattern PATTERN = new SamplingPattern(5,5);
 
   public static void main ( final String[] args ) {
-    reflectiveBox();
+  //  reflectiveBox();
     transparentScene();
-    transformScene1();
-    transformScene2();
+    //transformScene1();
+    //transformScene2();
   }
 
   public static void transformScene1() {

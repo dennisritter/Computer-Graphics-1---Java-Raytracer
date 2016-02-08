@@ -27,57 +27,36 @@ public class TransparentMaterial extends Material {
   }
 
   @Override
-  public Color colorFor(Hit hit, World world, Tracer tracer) {
-    final Vector3 d = hit.ray.d;
-    Normal3 normal = hit.normal;
-
-    double eta = 1;                                       //Brechungsindex des Ausgangsmediums
-
-    final double cosPhiOne = (d.mul(-1.0)).dot(normal);
-    final double cosPhiTwo = Math.sqrt(1.0-Math.pow((eta/indexOfRefraction),2.0)*(1.0-Math.pow(cosPhiOne,2.0)));
-
-
-    if (cosPhiOne < 0){
-
-      /** Brechungsindex des Ausgangsmediums und Brechungsindex des Eintrittsmediums werden vertauscht*/
-      eta = indexOfRefraction;
-      indexOfRefraction = 1;
-
-      /** Normale wird umgedreht*/
-      normal = normal.mul(-1);
-
-      final Vector3 r_d = d.add(normal.mul(cosPhiOne * 2.0));     //reflektierter Vektor d
-      final Vector3 rt = d.mul(eta/indexOfRefraction).sub(normal.mul((cosPhiTwo - (eta / indexOfRefraction)*cosPhiOne)));
-
-      final double rNull = Math.pow((eta-indexOfRefraction)/(eta+indexOfRefraction),2.0);
-      final double R = rNull + (1.0-rNull)*Math.pow(1.0-cosPhiOne,5.0);
-      final double T = 1.0 - R;
-
-      final Point3 p = hit.getPoint();
-
-      //  R * f[pr, rd] + T * [pr, rt]
-      final Color c1 = tracer.traceRay(new Ray(p, r_d)).mul(R);
-      final Color c2 = tracer.traceRay(new Ray(p, rt)).mul(T);
-      final Color c3 = c1.add(c2);
-
-      return c3.limitComponents();
-    }
-
-    final Vector3 r_d = d.add(normal.mul(cosPhiOne * 2.0));     //reflektierter Vektor d
-    final Vector3 rt = d.mul(eta/indexOfRefraction).sub(normal.mul((cosPhiTwo - (eta / indexOfRefraction)*cosPhiOne)));
-
-    final double rNull = Math.pow((eta-indexOfRefraction)/(eta+indexOfRefraction),2.0);
-    final double R = rNull + (1.0-rNull)*Math.pow(1.0-cosPhiOne,5.0);
-    final double T = 1.0 - R;
+  public Color colorFor(Hit hit, World world, Tracer tracer){
 
     final Point3 p = hit.getPoint();
+    final Vector3 d = hit.ray.d;
+
+    double eta = 1.0 / indexOfRefraction;
+    Normal3 normal = hit.normal;
+
+    final double cosPhiOne = normal.dot( d.mul(-1) );
+    if (cosPhiOne < 0) {
+      eta = indexOfRefraction/1.0;
+      normal = normal.mul(-1);
+    }
+
+    final double cosPhiTwo =  Math.sqrt( 1 - ( Math.pow(eta,2) ) * ( 1-Math.pow(cosPhiOne, 2) ) );
+
+    final Vector3 r_d = d.add( normal.mul(cosPhiOne * 2) );
+    final Vector3 t = ( d.mul(eta) ).sub( normal.mul(cosPhiTwo - eta * cosPhiOne) );
+
+    double r0 = Math.pow( (1 - indexOfRefraction)/(1 + indexOfRefraction), 2 );
+    double rr = r0 + ( 1-r0 ) * Math.pow(1-cosPhiOne, 5);
+    double tt = 1 - rr;
 
     //  R * f[pr, rd] + T * [pr, rt]
-    final Color c1 = tracer.traceRay(new Ray(p, r_d)).mul(R);
-    final Color c2 = tracer.traceRay(new Ray(p, rt)).mul(T);
-    final Color c3 = c1.add(c2);
+    final Color c1 = tracer.traceRay(new Ray(p, r_d)).mul(rr);
+    final Color c2 = tracer.traceRay(new Ray(p, t)).mul(tt);
 
-    return c3.limitComponents();
+    return ( c1.add(c2) ).limitComponents();
+
   }
+
 
 }
