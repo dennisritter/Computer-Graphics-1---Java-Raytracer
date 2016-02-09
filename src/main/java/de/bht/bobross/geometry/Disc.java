@@ -20,6 +20,13 @@ public class Disc extends Geometry {
     this.radius = radius;
   }
 
+  public Disc ( final Material material ) {
+    super( material );
+    this.c = new Point3(0,0,0);
+    this.n = new Normal3(0,1,0);
+    this.radius = 1.0;
+  }
+
   @Override
   public Hit hit(Ray r) {
     if ( n.dot(r.d) == 0 ) {

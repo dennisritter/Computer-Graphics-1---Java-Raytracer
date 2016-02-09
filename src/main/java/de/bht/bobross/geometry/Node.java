@@ -24,12 +24,15 @@ public class Node extends Geometry{
    * The constructor
    * @param transform    The transformation
    * @param geometries   The geometries to be transformed
-   * @param material     The material
    */
-  public Node ( final Transform transform, final Geometry[] geometries, final Material material ){
-    super(material);
+  public Node ( final Transform transform, final Geometry[] geometries ){
+    super( null );
     this.transform = transform;
     this.geometries = geometries;
+  }
+
+  public Node ( final Transform transform, final Geometry geo ) {
+    this( transform, new Geometry[] { geo } );
   }
 
   @Override
