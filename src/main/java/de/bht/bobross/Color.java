@@ -67,7 +67,7 @@ public class Color {
    * @param   v     The Scalar to multiply this Color with
    * @return        The new Color representing the product of this Color and the Scalar v
    */
-  public Color mul(final Double v){
+  public Color mul(final double v){
     return new Color(r * v, g * v, b * v);
   }
 

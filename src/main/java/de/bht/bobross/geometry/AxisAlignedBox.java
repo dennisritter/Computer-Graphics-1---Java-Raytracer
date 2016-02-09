@@ -103,7 +103,7 @@ public class AxisAlignedBox extends Geometry {
       return null;
 
     final Normal3 normal = fromInside ? mp.n.mul( -1 ) : mp.n;
-    return new Hit ( maxT, r, this, normal );
+    return new Hit ( maxT, r, this, mp.n );
   }
 
   private boolean fromInside (final Ray r ) {

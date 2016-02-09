@@ -30,7 +30,7 @@ public class OrthographicCamera extends Camera {
   }
 
   @Override
-  protected Ray rayFor ( final int w, final int h, final int x, final int y, Point2 samplingPoint ) {
+  public Ray rayFor ( final int w, final int h, final int x, final int y, Point2 samplingPoint ) {
     final Vector3 d = this.w.mul(-1);
 
     final double dw = w*1.0;

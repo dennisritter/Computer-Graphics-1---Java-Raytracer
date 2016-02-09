@@ -29,7 +29,7 @@ public class PerspectiveCamera extends Camera {
   }
 
   @Override
-  protected Ray rayFor ( final int w, final int h, final int x, final int y, final Point2 samplingPoint ) {
+  public Ray rayFor ( final int w, final int h, final int x, final int y, final Point2 samplingPoint ) {
     final double tan = Math.tan(angle / 2);
 
     final double dw = w*1.0;

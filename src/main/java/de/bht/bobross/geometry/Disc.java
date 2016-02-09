@@ -2,6 +2,7 @@ package de.bht.bobross.geometry;
 
 import de.bht.bobross.Ray;
 import de.bht.bobross.material.Material;
+import de.bht.bobross.math.Helpers;
 import de.bht.bobross.math.Normal3;
 import de.bht.bobross.math.Point3;
 import de.bht.bobross.math.Vector3;
@@ -30,6 +31,9 @@ public class Disc extends Geometry {
     final Vector3 v = i.sub( c );
 
     if ( v.magnitude > radius )
+      return null;
+
+    if ( t < Helpers.EPSILON )
       return null;
 
     return new Hit( t, r, this, this.n );

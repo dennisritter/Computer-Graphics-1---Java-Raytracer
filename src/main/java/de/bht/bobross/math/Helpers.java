@@ -10,7 +10,7 @@ public class Helpers {
   /**
    * Represents the allowed variance for results of type double
    */
-  public static final double EPSILON = 10e-5;
+  public static final double EPSILON = 1e-5;
 
   /**
    * Compares the two specified double values with a precision of three decimal places

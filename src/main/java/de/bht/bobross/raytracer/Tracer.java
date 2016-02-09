@@ -59,4 +59,11 @@ public class Tracer {
   public void resetRecursionCounter () {
     recursions = ALLOWED_RECURSIONS;
   }
+
+  /**
+   * Decrements the Recursion counter
+   */
+  public void decrementRecursionCounter () {
+    recursions++;
+  }
 }
