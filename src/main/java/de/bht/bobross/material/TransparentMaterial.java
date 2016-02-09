@@ -18,11 +18,14 @@ import de.bht.bobross.raytracer.Tracer;
  */
 public class TransparentMaterial extends Material {
 
-  /** Brechungsindex */
+  /** The refractive index of the medium the light is entering */
   public double indexOfRefraction;
 
+  /**
+   * The constructor
+   * @param indexOfRefraction The refractive index of the medium the light is entering
+   */
   public TransparentMaterial(double indexOfRefraction){
-
     this.indexOfRefraction = indexOfRefraction;
   }
 

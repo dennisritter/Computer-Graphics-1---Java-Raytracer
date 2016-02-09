@@ -45,7 +45,6 @@ public class AxisAlignedBox extends Geometry {
   };
 
   /**
-   * TODO: REMOVE this constructor later
    * Constructs a new axis-aligned-box
    * @param     lbf        The low-bottom-far corner of the box
    * @param     run        The right-upper-near corner of the box

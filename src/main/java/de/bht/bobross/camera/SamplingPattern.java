@@ -20,6 +20,11 @@ public class SamplingPattern {
   /** The width of one column in a pixel */
   public final double columnWidth;
 
+  /**
+   * The constructor
+   * @param rows    The number of rows per pixel
+   * @param columns The number of columns per pixel
+   */
   public SamplingPattern ( final int rows, final int columns ) {
     this.rows = rows;
     this.columns = columns;
