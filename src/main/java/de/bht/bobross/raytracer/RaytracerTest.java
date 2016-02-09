@@ -40,6 +40,8 @@ public class RaytracerTest {
   public static void main ( final String[] args ) {
     //reflectiveBox();
     transparentSceneFish();
+  //  reflectiveBox();
+    transparentScene();
     //transformScene1();
     //transformScene2();
   }
