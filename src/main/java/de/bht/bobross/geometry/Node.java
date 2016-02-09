@@ -7,7 +7,6 @@ import de.bht.bobross.math.Helpers;
 import de.bht.bobross.math.Normal3;
 
 /**
- *
  * Represents a Node with a transform object and a list of geometries.
  *
  * @author      Nathalie Junker

@@ -14,7 +14,6 @@ import de.bht.bobross.math.Vector3;
  * @author      Jannik Portz
  */
 
-//TODO: Fix wrong lightning when using LamertMaterial / PhongMaterial
 public class Triangle extends Geometry {
 
   /** The triangle's first vertex */
@@ -36,7 +35,7 @@ public class Triangle extends Geometry {
   public final Normal3 cNormal;
 
   /**
-   * Constructs a new triangle with its vertices and color
+   * Constructs a new triangle with its vertices, material and normals
    *
    * @param     a         The triangle's first vertex
    * @param     b         The triangle's second vertex
@@ -58,6 +57,14 @@ public class Triangle extends Geometry {
     this.cNormal = cNormal;
   }
 
+  /**
+   * Constructs a new triangle with its vertices and material
+   *
+   * @param a         The triangle's first vertex
+   * @param b         The triangle's second vertex
+   * @param c         The triangle's third vertex
+   * @param material  The material of the triangle
+   */
   public Triangle ( final Point3 a, final Point3 b, final Point3 c, final Material material) {
     super(material);
     this.a = a;

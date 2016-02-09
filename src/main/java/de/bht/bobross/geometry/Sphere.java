@@ -14,14 +14,10 @@ import de.bht.bobross.math.Vector3;
  */
 public class Sphere extends Geometry
 {
-  /**
-   * The center of this Sphere
-   */
+  /** The center of this Sphere */
   public final Point3 c;
 
-  /**
-   * The radius of this Sphere
-   */
+  /** The radius of this Sphere */
   public final double r;
 
   /**
@@ -35,7 +31,6 @@ public class Sphere extends Geometry
   }
 
   /**
-   * TODO: REMOVE this constructor later
    * Constructs a new Sphere
    * @param   c          The center of the new Sphere
    * @param   r          The radius of the new Sphere

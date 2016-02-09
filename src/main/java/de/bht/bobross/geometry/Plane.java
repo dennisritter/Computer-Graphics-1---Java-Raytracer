@@ -30,7 +30,6 @@ public class Plane extends Geometry {
   }
 
   /**
-   * TODO: REMOVE this constructor later(or set to protected?)
    * Constructs a new plane
    *
    * @param     a           An arbitrary point on the plane

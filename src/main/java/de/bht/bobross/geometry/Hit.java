@@ -5,16 +5,16 @@ import de.bht.bobross.math.Normal3;
 import de.bht.bobross.math.Point3;
 
 /**
- * Represents a intersection between a Ray and geometry
+ * Represents a intersection between a ray and a geometry
  *
  * @author Dennis Ritter
  */
 public class Hit {
 
-  /** The scalar when the direction Vector hit the geometry */
+  /** The scalar when the direction vector hits the geometry */
   public final double t;
 
-  /** The Ray that hits the geometry */
+  /** The ray that hits the geometry */
   public final Ray ray;
 
   /** The geometry that has been hit */

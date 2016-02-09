@@ -8,19 +8,13 @@ import de.bht.bobross.math.Helpers;
  */
 public class Color {
 
-  /**
-   * Represents the amount of red light
-   */
+  /** Represents the amount of red light */
   public final double r;
 
-  /**
-   * Represents the amount of green light
-   */
+  /** Represents the amount of green light */
   public final double g;
 
-  /**
-   * Represents the amount of blue light
-   */
+  /** Represents the amount of blue light */
   public final double b;
 
   /**
@@ -36,7 +30,7 @@ public class Color {
   }
 
   /**
-   *
+   * Adds a Color to the current Color
    * @param   c    The Color to add to this Color
    * @return       The new Color representing the sum of this Color and the Color c
    */
@@ -45,7 +39,7 @@ public class Color {
   }
 
   /**
-   *
+   * Subtracts a Color from the current Color
    * @param   c     The Color to subtract from this Color
    * @return        The new Color representing the difference of this Color and the Color c
    */
@@ -54,7 +48,7 @@ public class Color {
   }
 
   /**
-   *
+   * Multiplies a Color with the current Color
    * @param    c    The Color to multiply this Color with
    * @return        The new Color representing the product of this Color and the Color c
    */
@@ -63,7 +57,7 @@ public class Color {
   }
 
   /**
-   *
+   * Multiplies a Scalar with the current Color
    * @param   v     The Scalar to multiply this Color with
    * @return        The new Color representing the product of this Color and the Scalar v
    */

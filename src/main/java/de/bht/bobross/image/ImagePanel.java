@@ -8,14 +8,12 @@ import java.awt.Dimension;
 /**
  * The ImagePanel creates a new panel which draws the provided Image
  *
- * @author      nathalie
+ * @author      Nathalie Junker
  */
 
 public class ImagePanel extends JPanel {
 
-  /**
-   * The Image to draw inside the panel
-   */
+  /** The Image to draw inside the panel */
   private Image img;
 
   /**

@@ -21,9 +21,7 @@ import java.io.IOException;
  */
 public class CreateImageFrame extends JFrame {
 
-  /**
-   * The canvas to draw the image in
-   */
+  /** The canvas to draw the image in */
   private ImageCanvas canvas;
 
   /**

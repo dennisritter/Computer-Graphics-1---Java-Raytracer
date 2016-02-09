@@ -10,7 +10,7 @@ import de.bht.bobross.material.Material;
  */
 public abstract class Geometry {
 
-  /** The Geometrie's material   */
+  /** The Geometry's material   */
   public final Material material;
 
   /**

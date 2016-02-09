@@ -8,7 +8,7 @@ import de.bht.bobross.math.Vector3;
 /**
  * Represents a spotlight
  *
- * @author        Dennis RitteR
+ * @author        Dennis Ritter
  * */
 
 public class SpotLight extends Light {
