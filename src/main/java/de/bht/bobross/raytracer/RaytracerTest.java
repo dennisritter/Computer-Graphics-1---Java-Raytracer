@@ -20,6 +20,7 @@ import de.bht.bobross.material.TransparentMaterial;
 import de.bht.bobross.math.Normal3;
 import de.bht.bobross.math.Point3;
 import de.bht.bobross.math.Vector3;
+import jdk.internal.org.objectweb.asm.util.TraceSignatureVisitor;
 
 public class RaytracerTest {
 
@@ -31,19 +32,17 @@ public class RaytracerTest {
   public static final Color RED = new Color( 1, 0, 0 );
   public static final Color WHITE = new Color( 1, 1, 1 );
   public static final Color BLUE = new Color( 0, 0, 1 );
-  public static final Color GREEN = new Color( 0, 1, 0 );
   public static final Color YELLOW = new Color( 1, 1, 0 );
   public static final Color AMBIENT = new Color( .25, .25, .25 );
 
   public static final SamplingPattern PATTERN = new SamplingPattern(1,1);
 
   public static void main ( final String[] args ) {
-    //reflectiveBox();
-    transparentSceneFish();
-  //  reflectiveBox();
-    transparentScene();
-    //transformScene1();
-    //transformScene2();
+    reflectiveBox();
+    transformScene1();
+    transformScene2();
+    stereoScene();
+    stereoSceneSeparate();
   }
 
   public static void transformScene1() {
@@ -51,7 +50,7 @@ public class RaytracerTest {
         new Sphere(new PhongMaterial( RED, WHITE, 64 ) )
     };
 
-    final Node[] nodes = new Node[]{ new Node( new Transform().scale(1,.2,1).rotateX( Math.PI/8  ).rotateZ( -Math.PI/5 ), geometries, new PhongMaterial( RED, WHITE, 64 ) ) };
+    final Node[] nodes = new Node[]{ new Node( new Transform().scale(1,.2,1).rotateX( Math.PI/8  ).rotateZ( -Math.PI/5 ), geometries ) };
     final Light[] lights = new Light[]{
         new PointLight( WHITE, true, new Point3(0,0,4) )
     };
@@ -67,7 +66,7 @@ public class RaytracerTest {
         new AxisAlignedBox( new LambertMaterial( YELLOW ) )
     };
 
-    final Node[] nodes = new Node[]{ new Node( new Transform().scale(.2,1,3).rotateY(Math.PI/2).rotateX(-Math.PI/4).rotateY(-Math.PI/4), geometries, new PhongMaterial( RED, WHITE, 64 ) ) };
+    final Node[] nodes = new Node[]{ new Node( new Transform().scale(.2,1,3).rotateY(Math.PI/2).rotateX(-Math.PI/4).rotateY(-Math.PI/4), geometries ) };
     final Light[] lights = new Light[]{
         new PointLight( WHITE, true, new Point3(0,0,4) )
     };
@@ -78,13 +77,10 @@ public class RaytracerTest {
     createFrame(cam, world);
   }
 
-
-
-
   public static void reflectiveBox () {
-    final Geometry[] geometries = new Geometry[]{
-        new Plane( new Point3(0,0,0), new Normal3(0,1,0), new ReflectiveMaterial( WHITE, BLACK, 64, new Color(.5,.5,.5) ) ),
-        new AxisAlignedBox( new Point3(-.5,0,-.5), new Point3(.5,1,.5), new ReflectiveMaterial( RED, BLACK, 64, new Color(.5,.5,.5) ) )
+    final Geometry[] geometries1 = new Geometry[] {
+        new Plane( new ReflectiveMaterial( WHITE, BLACK, 64, new Color(.5,.5,.5) ) ),
+        new Node( new Transform().translate( 0, .5, 0 ), new Geometry[] { new AxisAlignedBox( new ReflectiveMaterial( RED, BLACK, 64, new Color(.5,.5,.5) ) ) } )
     };
 
     final Camera cam = new PerspectiveCamera( new Point3(8,8,8), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI / 4, PATTERN );
@@ -93,13 +89,48 @@ public class RaytracerTest {
         new PointLight( WHITE, true, new Point3(8,8,0) )
     };
 
-    final World world = new World( geometries, lights, BLACK, AMBIENT );
+    final World world = new World( geometries1, lights, BLACK, AMBIENT );
     createFrame( cam, world );
+  }
+
+
+  public static World createComplexWorld () {
+    final Geometry[] geometries = new Geometry[] {
+        new Plane( new ReflectiveMaterial( WHITE, WHITE, 10, WHITE ) ),
+        new Node( new Transform().scale(.5,.5,.5).translate(0,1,0), new Sphere( new ReflectiveMaterial( new Color (1,0,0), new Color (1,1,1), 10, new Color (1, .5, .5) ) ) ),
+        new Node( new Transform().scale(.5,.5,.5).translate(-1.5,1,0), new Sphere( new ReflectiveMaterial( new Color (1,0,0), new Color (1,1,1), 10, new Color (1, .5, .5) ) ) ),
+        new Node( new Transform().scale(.5,.5,.5).translate(1.5,1,0), new Sphere( new ReflectiveMaterial( new Color (1,0,0), new Color (1,1,1), 10, new Color (1, .5, .5) ) ) ),
+        new Node( new Transform().scale(.5,.5,.5).translate(0,1,-1.5), new Sphere( new ReflectiveMaterial( new Color (1,0,0), new Color (1,1,1), 10, new Color (1, .5, .5) ) ) ),
+        new Node( new Transform().scale(.5,.5,.5).translate(-1.5,1,-1.5), new Sphere( new ReflectiveMaterial( new Color (1,0,0), new Color (1,1,1), 10, new Color (1, .5, .5) ) ) ),
+        new Node( new Transform().scale(.5,.5,.5).translate(1.5,1,-1.5), new Sphere( new ReflectiveMaterial( new Color (1,0,0), new Color (1,1,1), 10, new Color (1, .5, .5) ) ) ),
+        new Node( new Transform().translate(-2,.5,0), new AxisAlignedBox( new LambertMaterial( RED ) ) ),
+        new Node( new Transform().translate( 0, 2, 0 ).rotateX( Math.PI / 2 ), new Disc( new LambertMaterial( BLUE ) ) )
+    };
+
+    final Color ambient = new Color (.1,.1,.1);
+
+    final Light[] lights = {
+        new SpotLight(new Color(.3, .3, .3), true, new Point3(0,5,-10), new Vector3(0,-1,0), Math.PI/8),
+        new PointLight(new Color (.3,.3,.3), true, new Point3(5,5,-10)),
+        new DirectionalLight(new Color(.3,.3,.3), true, new Vector3 (1,-1,0))
+    };
+
+    return new World(geometries, lights, BLACK, ambient);
+  }
+
+  public static void stereoScene () {
+    final World w = createComplexWorld();
+    createFrame( new StereoscopeSingleCamera( new Point3(8,8,8), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI/4, 0.2, PATTERN ), w );
+  }
+
+  public static void stereoSceneSeparate () {
+    final World w = createComplexWorld();
+    createFrame( new StereoscopeCamera( new Point3(8,8,8), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI/4, 0.2, PATTERN ), w );
   }
 
   public static void transparentScene() {
     final Geometry[] geometries = {
-        new Plane( new Point3(0,0,0), new Normal3(0,1,0), new ReflectiveMaterial( new Color (1,1,1), new Color(1,1,1), 10, new Color (1,1,1))),
+        //new Plane( new Point3(0,0,0), new Normal3(0,1,0), new ReflectiveMaterial( new Color (1,1,1), new Color(1,1,1), 10, new Color (1,1,1))),
 
         new Sphere( new Point3(0,1,0), 0.5, new ReflectiveMaterial( new Color (1,0,0), new Color (1,1,1), 10, new Color (1, .5, .5)) ),
         new Sphere( new Point3(-1.5, 1, 0), 0.5, new ReflectiveMaterial( new Color (0,1,0), new Color (1,1,1), 10, new Color (1, .5, .5)) ),
@@ -135,50 +166,10 @@ public class RaytracerTest {
     createFrame(cam, world);
   }
 
-  public static void transparentSceneFish () {
-    final Geometry[] geometries = {
-        new Plane( new Point3(0,0,0), new Normal3(0,1,0), new ReflectiveMaterial( new Color (1,1,1), new Color(1,1,1), 10, new Color (1,1,1))),
-
-        new Sphere( new Point3(0,1,0), 0.5, new ReflectiveMaterial( new Color (1,0,0), new Color (1,1,1), 10, new Color (1, .5, .5)) ),
-        new Sphere( new Point3(-1.5, 1, 0), 0.5, new ReflectiveMaterial( new Color (0,1,0), new Color (1,1,1), 10, new Color (1, .5, .5)) ),
-        new Sphere( new Point3(1.5,1,0), 0.5, new ReflectiveMaterial( new Color (0,0,1), new Color (1,1,1), 10, new Color (1, .5, .5)) ),
-        new Sphere( new Point3(0,1,-1.5), 0.5, new ReflectiveMaterial( new Color (0,1,1), new Color (1,1,1), 10, new Color (1, .5, .5)) ),
-        new Sphere( new Point3(-1.5,1,-1.5), 0.5, new ReflectiveMaterial( new Color (1,0,1), new Color (1,1,1), 10, new Color (1, .5, .5)) ),
-        new Sphere( new Point3(1.5,1,-1.5), 0.5, new ReflectiveMaterial( new Color (1,1,0), new Color (1,1,1), 10, new Color (1, .5, .5)) ),
-
-        /** transparent spheres */
-        //new Sphere( new Point3( 0, 2, 1.5 ), 0.5, new TransparentMaterial( 1.33 ) ),
-        new Sphere( new Point3( -1.5, 2, 1.5 ), 0.5, new LambertMaterial( new Color( 1,0,0 ) ) ),
-        new Sphere( new Point3( 1.5, 2, 1.5 ), 0.5, new LambertMaterial( new Color( 1,0,1 ) ) ),
-
-        new Disc( new Point3(0,2,1.5), new Normal3( 1,1,1 ), 1.5, new LambertMaterial( new Color( 1,0,0 ) ) ),
-
-        /** transparent box */
-        new AxisAlignedBox( new Point3(-.5, 0, 3), new Point3 ( .5, 1, 4), new LambertMaterial( new Color( 0,1,0 ) ) ),
-
-        new Triangle( new Point3(.7, .5, 3), new Point3(1.3, .5, 3), new Point3(.7, .5, 4),
-            new Normal3(0,1,0), new Normal3(0,1,0), new Normal3(0,1,0), new PhongMaterial( new Color(0,1,0), new Color(0,1,0), 20) )
-    };
-
-    final Color ambient = new Color (.1,.1,.1);
-
-    final Light[] lights = {
-        new SpotLight(new Color(.3, .3, .3), true, new Point3(0,5,-10), new Vector3(0,-1,0), Math.PI/8),
-        new PointLight(new Color (.3,.3,.3), true, new Point3(5,5,-10)),
-        new DirectionalLight(new Color(.3,.3,.3), true, new Vector3 (1,-1,0))
-    };
-
-    final StereoscopeCamera steCam = new StereoscopeSingleCamera( new Point3(8,8,8), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI/4, 0.2, PATTERN );
-    final PerspectiveCamera cam = new PerspectiveCamera(new Point3(8,8,8), new Vector3(-1,-1,-1), new Vector3(0,1,0), Math.PI/4, PATTERN );
-    final World world = new World(geometries, lights, BLACK, ambient);
-    createFrame(steCam, world);
-  }
-
   public static RaytracerFrame createFrame ( final Camera c, final World w ) {
     final RaytracerFrame frame = new RaytracerFrame( new Raytracer( c, w, WIDTH, HEIGHT ) );
     frame.setVisible( true );
     frame.drawImage();
     return frame;
   }
-
 }
