@@ -60,7 +60,7 @@ public abstract class Camera {
    * @param     samplingPoint The sampling point for the ray
    * @return        A ray for the specified pixel with the provided sampling point
    */
-  protected abstract Ray rayFor ( int w, int h, int x, int y, Point2 samplingPoint );
+  public abstract Ray rayFor ( int w, int h, int x, int y, Point2 samplingPoint );
 
   /**
    * Returns an array of Rays for the specified pixel.

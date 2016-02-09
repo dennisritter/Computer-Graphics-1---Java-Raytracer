@@ -59,13 +59,15 @@ public class Sphere extends Geometry
 
     final double t1 = ( -bHelp - Math.sqrt(dHelp) ) / ( 2 * aHelp ) ;
     final double t2 = ( -bHelp + Math.sqrt(dHelp) ) / ( 2 * aHelp ) ;
+    final double tHi = Math.max( t1, t2 );
+    final double tLo = Math.min( t1, t2 );
 
-    if (t2 < Helpers.EPSILON ) {
+    if ( tHi < Helpers.EPSILON ) {
       return null;
     }
-    double t = t1;
-    if (t1 < 0 && t2 > Helpers.EPSILON) {
-      t = t2;
+    double t = tLo;
+    if ( tLo < 0 && tHi > Helpers.EPSILON) {
+      t = tHi;
     }
 
     final Point3 pr = ray.at(t);
